@@ -1,5 +1,7 @@
 import { useState } from 'react'
+import './App.css'
 import Header from './Components/Header/Header'
+import EntryBar from './Components/EntryBar/EntryBar'
 
 const GameData = [
   {
@@ -15,8 +17,9 @@ const GameData = [
 
 function App() {
  return (
-  <div className="bg-black min-h-screen">
+  <div className="App">
     <Header />
+    <EntryBar />
   </div>
  )
 }
