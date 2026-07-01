@@ -1,11 +1,18 @@
-.entry-bar_container {
+.section-wrapper {
+  width: 96rem;
+  margin: 0 auto;
+  padding: 1.5rem;
+}
+
+.sort-bar_container {
     justify-content: center;
     justify-self: center;
     display: grid;
     width: 96rem;
-    height: 8rem;
+    height: 4rem;
     column-gap: 2rem;
-    grid-template-columns: 3fr 2fr 8fr 3fr 2fr 2fr 1fr;
+    grid-template-columns: 3fr 2fr 2fr 2fr 3fr 2fr 2fr 4.5fr;
+    grid-template-rows: 2fr 2fr;
     padding: 1rem;
 }
 
@@ -19,6 +26,7 @@ h2 {
 }
 
 h3 {
+    margin-top: 1rem;
     font-size: .9rem;
     color: white;
 }

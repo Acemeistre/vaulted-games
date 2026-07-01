@@ -2,6 +2,8 @@ import './EntryBar.css'
 
 function EntryBar() {
   return (
+    <div className='section-wrapper'>
+    <h3>Entry</h3>
     <div className="entry-bar_container">
         <h2>Platform</h2>    
         <h2>Year</h2>     
@@ -30,7 +32,7 @@ function EntryBar() {
         </select>
         <button className="entry-bar__add-button">+</button>
         </div>    
-
+    </div>
   );
 }
 

@@ -2,6 +2,7 @@ import { useState } from 'react'
 import './App.css'
 import Header from './Components/Header/Header'
 import EntryBar from './Components/EntryBar/EntryBar'
+import SortBar from './Components/SortBar/SortBar'
 
 const GameData = [
   {
@@ -20,6 +21,7 @@ function App() {
   <div className="App">
     <Header />
     <EntryBar />
+    <SortBar />
   </div>
  )
 }
