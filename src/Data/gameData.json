@@ -1,0 +1,326 @@
+[
+  {
+    "id": "1",
+    "platform": "Nintendo 64",
+    "year": 1997,
+    "title": "The Legend of Zelda: Ocarina of Time",
+    "genre": "Action-adventure",
+    "rating": "Top 10",
+    "rank": 5
+  },
+  {
+    "id": "2",
+    "platform": "Nintendo 64",
+    "year": 1997,
+    "title": "Goldeneye",
+    "genre": "First-person shooter",
+    "rating": "Top 10",
+    "rank": 2
+  },
+  {
+    "id": "3",
+    "platform": "Nintendo 64",
+    "year": 1998,
+    "title": "F1 World Grand Prix",
+    "genre": "Racing",
+    "rating": "Great",
+    "rank": null
+  },
+  {
+    "id": "4",
+    "platform": "Nintendo 64",
+    "year": 1999,
+    "title": "International Superstar Soccer 98",
+    "genre": "Sports",
+    "rating": "Great",
+    "rank": null
+  },
+  {
+    "id": "5",
+    "platform": "Nintendo 64",
+    "year": 2000,
+    "title": "Diddy Kong Racing",
+    "genre": "Racing",
+    "rating": "Top 20",
+    "rank": 18
+  },
+  {
+    "id": "6",
+    "platform": "Nintendo 64",
+    "year": 2001,
+    "title": "Mario Golf",
+    "genre": "Sports",
+    "rating": "Amazing",
+    "rank": null
+  },
+  {
+    "id": "7",
+    "platform": "GameCube",
+    "year": 2002,
+    "title": "Star Wars: Rogue Squadron II: Rogue Leader",
+    "genre": "space combat shooter",
+    "rating": "Amazing",
+    "rank": null
+  },
+  {
+    "id": "8",
+    "platform": "GameCube",
+    "year": 2002,
+    "title": "Burnout",
+    "genre": "Racing",
+    "rating": "Great",
+    "rank": null
+  },
+  {
+    "id": "9",
+    "platform": "GameCube",
+    "year": 2002,
+    "title": "The Sims",
+    "genre": "God game",
+    "rating": "Top 10",
+    "rank": null
+  },
+  {
+    "id": "10",
+    "platform": "GameCube",
+    "year": 2003,
+    "title": "2002 Fifa World Cup",
+    "genre": "Sports",
+    "rating": "Forgettable",
+    "rank": null
+  },
+  {
+    "id": "11",
+    "platform": "GameCube",
+    "year": 2003,
+    "title": "Mario Party 4",
+    "genre": "Party",
+    "rating": "Top 20",
+    "rank": 16
+  },
+  {
+    "id": "12",
+    "platform": "GameCube",
+    "year": 2003,
+    "title": "F Zero GX",
+    "genre": "Racing",
+    "rating": "Top 20",
+    "rank": 15
+  },
+  {
+    "id": "13",
+    "platform": "GameCube",
+    "year": 2003,
+    "title": "Resident Evil",
+    "genre": "Horror",
+    "rating": "Top 20",
+    "rank": 20
+  },
+  {
+    "id": "14",
+    "platform": "GameCube",
+    "year": 2004,
+    "title": "Super Smash Bros. Melee",
+    "genre": "Beat-em up",
+    "rating": "Top 10",
+    "rank": 4
+  },
+  {
+    "id": "15",
+    "platform": "GameCube",
+    "year": 2004,
+    "title": "Super Monkey Ball",
+    "genre": "Platformer",
+    "rating": "Great",
+    "rank": null
+  },
+  {
+    "id": "16",
+    "platform": "GameCube",
+    "year": 2005,
+    "title": "Soul Calibur 2",
+    "genre": "Fighting",
+    "rating": "Great",
+    "rank": null
+  },
+  {
+    "id": "17",
+    "platform": "GameCube",
+    "year": 2005,
+    "title": "Time Splitters 2",
+    "genre": "First-person shooter",
+    "rating": "Great",
+    "rank": null
+  },
+  {
+    "id": "18",
+    "platform": "GameCube",
+    "year": 2006,
+    "title": "Call of Duty 2: Big Red One",
+    "genre": "First-person shooter",
+    "rating": "Ok",
+    "rank": null
+  },
+  {
+    "id": "19",
+    "platform": "GameCube",
+    "year": 2006,
+    "title": "Crash Bandicoot: The Wrath of Cortex",
+    "genre": "Platformer",
+    "rating": "Great",
+    "rank": null
+  },
+  {
+    "id": "20",
+    "platform": "GameCube",
+    "year": 2006,
+    "title": "Super Monkey Ball 2",
+    "genre": "Platformer",
+    "rating": "Great",
+    "rank": null
+  },
+  {
+    "id": "21",
+    "platform": "PlayStation 2",
+    "year": 2006,
+    "title": "Tottenham Hotspur Footbal Club 2005",
+    "genre": "Sports",
+    "rating": "Ok",
+    "rank": null
+  },
+  {
+    "id": "22",
+    "platform": "PlayStation 2",
+    "year": 2006,
+    "title": "Burnout 3: Takedown",
+    "genre": "Racing",
+    "rating": "Ok",
+    "rank": null
+  },
+  {
+    "id": "23",
+    "platform": "PlayStation 2",
+    "year": 2006,
+    "title": "Gran Turismo 3 A-Spec",
+    "genre": "Racing",
+    "rating": "Ok",
+    "rank": null
+  },
+  {
+    "id": "24",
+    "platform": "PlayStation 3",
+    "year": 2007,
+    "title": "Formula One Championship Edition",
+    "genre": "Racing",
+    "rating": "Top 10",
+    "rank": 7
+  },
+  {
+    "id": "25",
+    "platform": "PlayStation 3",
+    "year": 2008,
+    "title": "Call of Duty 4: Modern Warfare",
+    "genre": "First-person shooter",
+    "rating": "Top 10",
+    "rank": 6
+  },
+  {
+    "id": "26",
+    "platform": "PlayStation 3",
+    "year": 2009,
+    "title": "Heavenly Sword",
+    "genre": "Hack and slash",
+    "rating": "Great",
+    "rank": null
+  },
+  {
+    "id": "27",
+    "platform": "PlayStation 3",
+    "year": 2009,
+    "title": "LittleBigPlanet",
+    "genre": "Platformer",
+    "rating": "Ok",
+    "rank": null
+  },
+  {
+    "id": "28",
+    "platform": "PlayStation 3",
+    "year": 2009,
+    "title": "Fifa 09",
+    "genre": "Sports",
+    "rating": "Forgettable",
+    "rank": null
+  },
+  {
+    "id": "29",
+    "platform": "PlayStation 3",
+    "year": 2009,
+    "title": "TV Show King",
+    "genre": "Party",
+    "rating": "Great",
+    "rank": null
+  },
+  {
+    "id": "30",
+    "platform": "PlayStation 3",
+    "year": 2009,
+    "title": "Tiger Woods PGA Tour 09",
+    "genre": "Sports",
+    "rating": "Ok",
+    "rank": null
+  },
+  {
+    "id": "31",
+    "platform": "PlayStation 3",
+    "year": 2010,
+    "title": "2010 FIFA World Cup South Africa",
+    "genre": "Sports",
+    "rating": "Ok",
+    "rank": null
+  },
+  {
+    "id": "32",
+    "platform": "PlayStation 3",
+    "year": 2010,
+    "title": "Need for Speed: Shift",
+    "genre": "Racing",
+    "rating": "DNF",
+    "rank": null
+  },
+  {
+    "id": "33",
+    "platform": "PlayStation 3",
+    "year": 2010,
+    "title": "F1 2010",
+    "genre": "Racing",
+    "rating": "Top 10",
+    "rank": 3
+  },
+  {
+    "id": "34",
+    "platform": "PlayStation 3",
+    "year": 2010,
+    "title": "Virtua Tennis 2009",
+    "genre": "Sports",
+    "rating": "Forgettable",
+    "rank": null
+  },
+  {
+    "id": "35",
+    "platform": "PlayStation 3",
+    "year": 2010,
+    "title": "Far Cry 2",
+    "genre": "Open World FPS",
+    "rating": "Forgettable",
+    "rank": null
+  },
+  {
+    "id": "36",
+    "platform": "PlayStation 3",
+    "year": 2010,
+    "title": "Killzone 2",
+    "genre": "First-person shooter",
+    "rating": "Ok",
+    "rank": null
+  }
+]
