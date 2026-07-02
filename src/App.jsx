@@ -3,6 +3,8 @@ import './App.css'
 import Header from './Components/Header/Header'
 import EntryBar from './Components/EntryBar/EntryBar'
 import SortBar from './Components/SortBar/SortBar'
+import platforms from './Data/platforms.js'
+import genres from './Data/genres.js'
 
 function App() {
     const [selectedPlatform, setSelectedPlatform] = useState(null);
@@ -12,6 +14,12 @@ function App() {
     const [selectedRating, setSelectedRating] = useState(null);
     const [selectedRank, setSelectedRank] = useState(null);
 
+    const handleRatingChange = (rating) => {
+      setSelectedRating(rating);
+        if (rating !== 'Top 10' && rating !== 'Top 20') {
+      setSelectedRank(null);
+    }
+  }
 
 
  return (
@@ -27,9 +35,11 @@ function App() {
       selectedGenre={selectedGenre}
       onGenreChange={setSelectedGenre}
       selectedRating={selectedRating}
-      onRatingChange={setSelectedRating}
+      onRatingChange={handleRatingChange}
       selectedRank={selectedRank}
       onRankChange={setSelectedRank}
+      platforms={platforms}
+      genres={genres}
     />
     <SortBar />
   </div>

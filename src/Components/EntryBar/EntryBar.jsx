@@ -1,6 +1,9 @@
 import './EntryBar.css'
+import { useState } from 'react';
 
-function EntryBar() {
+
+
+function EntryBar ({platforms, genres}) {
   return (
     <div className='section-wrapper'>
     <h3>Entry</h3>
@@ -12,24 +15,62 @@ function EntryBar() {
         <h2>Rating</h2>
         <h2>Rank</h2>
         <div></div>
-        <select>
-            <option value="platform1">Platform 1</option>
-            <option value="platform2">Platform 2</option>
+        <select className='platform-select'>
+            <option value="">Select Platform</option>
+            {platforms.map(item => (
+                <optgroup 
+                    label={item.brand}
+                    key={item.brand}
+                    >
+                    {item.consoles.map(i => (
+                        <option 
+                            value={i}
+                            key={i}
+                            onChange={(e) => onPlatformChange(e.target.value)}
+                            >{i}
+                        </option>
+                    ))}
+                </optgroup>    
+                ))}
         </select>
-        <input className="entry-bar__year-row" type="number" placeholder="Year" />
-        <input className="entry-bar__title-row" type="text" placeholder="Title" />
-        <select>
-            <option value="genre1">Genre 1</option>
-            <option value="genre2">Genre 2</option>
+        <input className="entry-bar__year-row" min="1970" max="2026" type="number" placeholder="Year" onChange={(e) => onYearChange(e.target.value)}/>
+        <input className="entry-bar__title-row" type="text" placeholder="Title" onChange={(e) => onTitleChange(e.target.value)}/>
+        <select className='genre-select'>
+            <option value="">Select Genre</option>
+            {genres.map(item => (
+                <optgroup 
+                    label={item.category}
+                    key={item.category}
+                    >
+                    {item.subgenres.map(i => (
+                        <option 
+                            value={i}
+                            key={i}
+                            onChange={(e) => onGenreChange(e.target.value)}
+                            >{i}
+                        </option>
+                    ))}
+                </optgroup>    
+                ))}
         </select>
-        <select>
-            <option value="rating1">Rating 1</option>
-            <option value="rating2">Rating 2</option>
+        <select className='rating-select' onChange={(e) => onRatingChange(e.target.value)}>
+            <option value="">Select Rating</option> 
+            <option value="Top 10">Top 10</option>
+            <option value="Top 20">Top 20</option>
+            <option value="Amazing">Amazing</option>
+            <option value="Great">Great</option>
+            <option value="Ok">Ok</option>
+            <option value="Forgettable">Forgettable</option>
+            <option value="DNF">DNF</option>
         </select>
-        <select>
-            <option value="rank1">Rank 1</option>
-            <option value="rank2">Rank 2</option>
+        {selectedRating === 'Top 10' || selectedRating === 'Top 20' ? (
+        <select className='rank-select' onChange={(e) => onRankChange(e.target.value)}>
+        <option value="">Select Rank</option>
+            {Array.from({ length: selectedRating === 'Top 10' ? 10 : 20 }, (_, i) => (
+        <option key={i + 1} value={i + 1}>{i + 1}</option>
+            ))}
         </select>
+            ) : null}
         <button className="entry-bar__add-button">+</button>
         </div>    
     </div>
