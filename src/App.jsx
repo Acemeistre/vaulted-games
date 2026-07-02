@@ -4,23 +4,33 @@ import Header from './Components/Header/Header'
 import EntryBar from './Components/EntryBar/EntryBar'
 import SortBar from './Components/SortBar/SortBar'
 
-const GameData = [
-  {
-    id: 1,
-    platform: 'Nintendo 64',
-    year: 1998,
-    title: 'The Legend of Zelda: Ocarina of Time',
-    genre: 'Action-adventure',
-    rating: 'Top 10',
-    rank: 5
-  },
-]
-
 function App() {
+    const [selectedPlatform, setSelectedPlatform] = useState(null);
+    const [year, setYear] = useState('');
+    const [title, setTitle] = useState ('');
+    const [selectedGenre, setSelectedGenre] = useState(null);
+    const [selectedRating, setSelectedRating] = useState(null);
+    const [selectedRank, setSelectedRank] = useState(null);
+
+
+
  return (
   <div className="App">
     <Header />
-    <EntryBar />
+    <EntryBar 
+      selectedPlatform={selectedPlatform}
+      onPlatformChange={setSelectedPlatform}
+      year={year}
+      onYearChange={setYear}
+      title={title}
+      onTitleChange={setTitle}
+      selectedGenre={selectedGenre}
+      onGenreChange={setSelectedGenre}
+      selectedRating={selectedRating}
+      onRatingChange={setSelectedRating}
+      selectedRank={selectedRank}
+      onRankChange={setSelectedRank}
+    />
     <SortBar />
   </div>
  )
