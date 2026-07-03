@@ -15,7 +15,7 @@ function EntryBar ({platforms, genres, selectedRating, selectedRank, onPlatformC
         <h2>Rating</h2>
         <h2>Rank</h2>
         <div></div>
-        <select className='platform-select'>
+        <select className='platform-select' onChange={(e) => onPlatformChange(e.target.value)}>
             <option value="">Select Platform</option>
             {platforms.map(item => (
                 <optgroup 
@@ -26,7 +26,6 @@ function EntryBar ({platforms, genres, selectedRating, selectedRank, onPlatformC
                         <option 
                             value={i}
                             key={i}
-                            onChange={(e) => onPlatformChange(e.target.value)}
                             >{i}
                         </option>
                     ))}
@@ -35,7 +34,7 @@ function EntryBar ({platforms, genres, selectedRating, selectedRank, onPlatformC
         </select>
         <input className="entry-bar__year-row" min="1970" max="2026" type="number" placeholder="Year" onChange={(e) => onYearChange(e.target.value)}/>
         <input className="entry-bar__title-row" type="text" placeholder="Title" onChange={(e) => onTitleChange(e.target.value)}/>
-        <select className='genre-select'>
+        <select className='genre-select' onChange={(e) => onGenreChange(e.target.value)}>
             <option value="">Select Genre</option>
             {genres.map(item => (
                 <optgroup 
@@ -46,7 +45,6 @@ function EntryBar ({platforms, genres, selectedRating, selectedRank, onPlatformC
                         <option 
                             value={i}
                             key={i}
-                            onChange={(e) => onGenreChange(e.target.value)}
                             >{i}
                         </option>
                     ))}
