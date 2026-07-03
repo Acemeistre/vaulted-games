@@ -14,6 +14,12 @@ function App() {
     const [selectedRating, setSelectedRating] = useState(null);
     const [selectedRank, setSelectedRank] = useState(null);
 
+    const [sortPlatform, setSortPlatform] = useState(null);
+    const [sortYear, setSortYear] = useState(null);
+    const [sortTitle, setSortTitle] = useState(null);
+    const [sortGenre, setSortGenre] = useState(null);
+    const [sortRating, setSortRating] = useState(null);
+
     const handleRatingChange = (rating) => {
       setSelectedRating(rating);
         if (rating !== 'Top 10' && rating !== 'Top 20') {
@@ -41,7 +47,20 @@ function App() {
       platforms={platforms}
       genres={genres}
     />
-    <SortBar />
+    <SortBar 
+      sortPlatform={sortPlatform}
+      onSortPlatformChange={setSortPlatform}
+      sortYear={sortYear}
+      onSortYearChange={setSortYear}
+      sortTitle={sortTitle}
+      onSortTitleChange={setSortTitle}
+      sortGenre={sortGenre}
+      onSortGenreChange={setSortGenre}
+      sortRating={sortRating}
+      onSortRatingChange={setSortRating}
+      platforms={platforms}
+      genres={genres}
+    />
   </div>
  )
 }

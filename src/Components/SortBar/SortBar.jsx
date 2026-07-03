@@ -1,6 +1,7 @@
-import './SortBar.css'
+import './SortBar.css';
+import { useState } from 'react';
 
-function SortBar() {
+function SortBar({platforms, genres, sortPlatfor, onSortPlatformChange, sortYear, onSortYearChange, sortTitle, onSortTitleChange, sortGenre, onSortGenreChange, sortRating, onSortRatingChange}) {
   return (
     <div className='section-wrapper'>
         <h3>Sort</h3>
