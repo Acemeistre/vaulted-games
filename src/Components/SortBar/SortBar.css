@@ -2,11 +2,13 @@
   width: 96rem;
   margin: 0 auto;
   padding: 1.5rem;
+  position: relative;
 }
 
 .sort-bar_container {
     justify-content: center;
     justify-self: center;
+    align-items: start;
     display: grid;
     width: 96rem;
     height: 4rem;

@@ -1,3 +1,4 @@
+import RatingsKey from './RatingsKey/RatingsKey';
 import './SortBar.css';
 import { useState } from 'react';
 
@@ -19,7 +20,7 @@ function SortBar({platforms, genres, sortPlatform, onSortPlatformChange, sortYea
         <div></div>  
         <h2>Genre</h2>
         <h2>Rating</h2>
-        <h2>Rating key</h2>
+        <h2>Ratings key:</h2>
         
         <select className='platform-select' onChange={(e) => onSortPlatformChange(e.target.value)}>
             <option value="">Select Platform</option>
@@ -39,7 +40,7 @@ function SortBar({platforms, genres, sortPlatform, onSortPlatformChange, sortYea
                 ))}
         </select>
         <div className="year-enter">
-            <input onKeyDown={keyDown}/>
+            <input min="1970" max="2026" type="number" placeholder="Year" onKeyDown={keyDown}/>
         </div>
         <button className='alphabet-sort' onClick={() => onSortTitleChange('a-z')}>
             A-Z
@@ -75,8 +76,7 @@ function SortBar({platforms, genres, sortPlatform, onSortPlatformChange, sortYea
             <option value="Forgettable">Forgettable</option>
             <option value="DNF">DNF</option>
         </select>
-        
-         <button></button>
+         <RatingsKey />
         </div>    
     </div>
   );

@@ -1,0 +1,54 @@
+.ratings-key__wrapper {
+    position: end;
+}
+
+.ratings-key__names {
+    color: #FF9191;
+    background-color: #595959;
+    border: 4px solid #3D3D3D;
+    display: flex;
+    flex-direction: column;
+}
+
+.ratings-key__row {
+    display: flex;
+    align-items: center;  
+}
+
+.ratings-key__row p {
+    padding: 0 1rem; 
+}
+
+.rating-swatch {
+    margin-left: auto;
+    width: 2.5rem;
+    height: 2.5rem;
+}
+
+.purple {
+    background-color: #5A1C8F;
+}
+
+.blue {
+    background-color: #2475B7;
+}
+
+.green {
+    background-color: #2A6917;
+}
+
+.lime {
+    background-color: #87C837;
+}
+
+.yellow {
+    background-color: #AFAB26;
+}
+
+.orange {
+    background-color: #BE7022;
+}
+
+.red {
+    background-color: #6C2418;
+}
