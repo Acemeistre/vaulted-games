@@ -8,7 +8,7 @@ function SortBar() {
         <h2>Platform</h2>    
         <h2>Year</h2>     
         <h2>Title</h2>        
-        <h2>Genre</h2>
+        <h2></h2>
         <div></div>  
         <h2>Genre</h2>
         <h2>Rating</h2>

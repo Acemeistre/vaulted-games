@@ -3,7 +3,7 @@ import { useState } from 'react';
 
 
 
-function EntryBar ({platforms, genres}) {
+function EntryBar ({platforms, genres, selectedRating, selectedRank, onPlatformChange, onYearChange, onTitleChange, onGenreChange, onRankChange, onRatingChange}) {
   return (
     <div className='section-wrapper'>
     <h3>Entry</h3>
@@ -63,14 +63,20 @@ function EntryBar ({platforms, genres}) {
             <option value="Forgettable">Forgettable</option>
             <option value="DNF">DNF</option>
         </select>
-        {selectedRating === 'Top 10' || selectedRating === 'Top 20' ? (
-        <select className='rank-select' onChange={(e) => onRankChange(e.target.value)}>
+
+        
+        <select
+            value={selectedRank ?? ''}  
+            className='rank-select'
+            disabled={!(selectedRating === 'Top 10' || selectedRating === 'Top 20')} 
+            onChange={(e) => onRankChange(e.target.value)}>
         <option value="">Select Rank</option>
             {Array.from({ length: selectedRating === 'Top 10' ? 10 : 20 }, (_, i) => (
-        <option key={i + 1} value={i + 1}>{i + 1}</option>
-            ))}
+        <option key={i + 1} value={i + 1}> {i + 1}</option>
+        ))}
         </select>
-            ) : null}
+            
+
         <button className="entry-bar__add-button">+</button>
         </div>    
     </div>
