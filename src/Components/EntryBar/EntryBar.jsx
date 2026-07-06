@@ -1,10 +1,10 @@
 import './EntryBar.css'
-import { useState } from 'react';
 
-
-
-function EntryBar ({platforms, genres, selectedRating, selectedRank, onPlatformChange, onYearChange, onTitleChange, onGenreChange, onRankChange, onRatingChange}) {
-  return (
+function EntryBar ({platforms, genres, selectedPlatform, year, title, selectedGenre, selectedRating, selectedRank, onPlatformChange, onYearChange, onTitleChange, onGenreChange, onRankChange, onRatingChange, addGame}) {
+  
+ const isReadyToContinue = selectedPlatform !== null && year !== '' && title !== '' && selectedGenre !== null && (selectedRating === 'Top 10' || selectedRating === 'Top 20' ? selectedRank !== null : true)
+    
+    return (
     <div className='section-wrapper'>
     <h3>Entry</h3>
     <div className="entry-bar_container">
@@ -75,7 +75,22 @@ function EntryBar ({platforms, genres, selectedRating, selectedRank, onPlatformC
         </select>
             
 
-        <button className="entry-bar__add-button">+</button>
+              <button 
+        className={`continue-btn ${isReadyToContinue ? 'continue-btn--active' : 'continue-btn--disabled'}`}
+        onClick={isReadyToContinue ? addGame : null}
+            disabled={!isReadyToContinue}
+            title={
+            !selectedPlatform ? 'Please select a platform first' :
+            !year ? 'Please select a year' :
+            !title ? 'Please enter a game title' :
+            !selectedGenre ? 'Please select a genre' :
+            !selectedRating ? 'Please select a rating' :
+            (selectedRating === 'Top 10' || selectedRating === 'Top 20') && !selectedRank ? 'Please select a rank ' :
+            'Add new game entry'
+            }
+          >
+            +
+          </button>
         </div>    
     </div>
   );

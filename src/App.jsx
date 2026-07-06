@@ -5,6 +5,7 @@ import EntryBar from './Components/EntryBar/EntryBar'
 import SortBar from './Components/SortBar/SortBar'
 import platforms from './Data/platforms.js'
 import genres from './Data/genres.js'
+import gameData from './Data/gameData.json'
 
 function App() {
     const [selectedPlatform, setSelectedPlatform] = useState(null);
@@ -19,6 +20,21 @@ function App() {
     const [sortTitle, setSortTitle] = useState(null);
     const [sortGenre, setSortGenre] = useState(null);
     const [sortRating, setSortRating] = useState(null);
+
+    const [games, setGames] = useState (gameData);
+
+    const addGame = () => {
+      const newGame = {
+        platform: selectedPlatform,
+        year: year,
+        title: title,
+        genre: selectedGenre,
+        rating: selectedRating,
+        rank: (selectedRating === 'Top 10' || selectedRating === 'Top 20' ? selectedRank : null)
+        }
+      setGames(prev => ([...prev, newGame]))
+      console.log(newGame)
+    }
 
     const handleRatingChange = (rating) => {
       setSelectedRating(rating);
@@ -46,6 +62,7 @@ function App() {
       onRankChange={setSelectedRank}
       platforms={platforms}
       genres={genres}
+      addGame={addGame}
     />
     <SortBar 
       sortPlatform={sortPlatform}
