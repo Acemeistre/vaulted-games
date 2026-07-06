@@ -6,6 +6,7 @@ import SortBar from './Components/SortBar/SortBar'
 import platforms from './Data/platforms.js'
 import genres from './Data/genres.js'
 import gameData from './Data/gameData.json'
+import GameList from './Components/GameList/GameList'
 
 function App() {
     const [selectedPlatform, setSelectedPlatform] = useState(null);
@@ -77,6 +78,9 @@ function App() {
       onSortRatingChange={setSortRating}
       platforms={platforms}
       genres={genres}
+    />
+    <GameList
+    games={games}
     />
   </div>
  )
