@@ -16,7 +16,7 @@ function EntryBar ({platforms, genres, selectedPlatform, year, title, selectedGe
         <h2>Rank</h2>
         <div></div>
         <select className='platform-select' onChange={(e) => onPlatformChange(e.target.value)}>
-            <option value="">Select Platform</option>
+            <option value="">-Platform-</option>
             {platforms.map(item => (
                 <optgroup 
                     label={item.brand}
@@ -35,7 +35,7 @@ function EntryBar ({platforms, genres, selectedPlatform, year, title, selectedGe
         <input className="entry-bar__year-row" min="1970" max="2026" type="number" placeholder="Year" onChange={(e) => onYearChange(e.target.value)}/>
         <input className="entry-bar__title-row" type="text" placeholder="Title" onChange={(e) => onTitleChange(e.target.value)}/>
         <select className='genre-select' onChange={(e) => onGenreChange(e.target.value)}>
-            <option value="">Select Genre</option>
+            <option value="">-Genre-</option>
             {genres.map(item => (
                 <optgroup 
                     label={item.category}
@@ -52,7 +52,7 @@ function EntryBar ({platforms, genres, selectedPlatform, year, title, selectedGe
                 ))}
         </select>
         <select className='rating-select' onChange={(e) => onRatingChange(e.target.value)}>
-            <option value="">Select Rating</option> 
+            <option value="">-Rating-</option> 
             <option value="Top 10">Top 10</option>
             <option value="Top 20">Top 20</option>
             <option value="Amazing">Amazing</option>
@@ -68,7 +68,7 @@ function EntryBar ({platforms, genres, selectedPlatform, year, title, selectedGe
             className='rank-select'
             disabled={!(selectedRating === 'Top 10' || selectedRating === 'Top 20')} 
             onChange={(e) => onRankChange(e.target.value)}>
-        <option value="">Select Rank</option>
+        <option value="">-Rank-</option>
             {Array.from({ length: selectedRating === 'Top 10' ? 10 : 20 }, (_, i) => (
         <option key={i + 1} value={i + 1}> {i + 1}</option>
         ))}

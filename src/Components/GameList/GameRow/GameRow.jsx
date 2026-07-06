@@ -1,3 +1,5 @@
+import './GameRow.css'
+
 function GameRow ({game}) {
     return (
         <div className="game-row"

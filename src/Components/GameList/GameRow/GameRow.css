@@ -1,0 +1,33 @@
+.game-row {
+    justify-content: center;
+    justify-self: center;
+    display: grid;
+    width: 96rem;
+    height: 4rem;
+    column-gap: 2rem;
+    grid-template-columns: 2fr 1.5fr 8fr 4fr 2fr .75fr .75fr .75fr;
+    padding: 1rem;
+}
+
+.game__platform,
+.game__year,
+.game__title,
+.game__genre,
+.game__rating,
+.game__rank,
+.game__edit,
+.game__remove {
+    background-color: #595959;
+    color: white;
+    border: 4px solid #3D3D3D;
+    padding: 0.5rem;
+    width: 100%;
+}
+
+.game__genre {
+    overflow-y: auto;
+}
+
+.game__rank {
+    text-align: center;
+}

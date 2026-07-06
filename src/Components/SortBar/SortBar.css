@@ -13,9 +13,10 @@
     width: 96rem;
     height: 4rem;
     column-gap: 2rem;
-    grid-template-columns: 3fr 1.5fr 2fr 2fr 3fr 2.5fr 2.5fr 4fr;
+    grid-template-columns: 1.95fr 1.5fr 1.5fr 1.5fr 3.75fr 3.9fr 1.9fr 3.15fr;
     grid-template-rows: 2fr 2fr;
     padding: 1rem;
+    margin-bottom: 18rem;
 }
 
 h2 {

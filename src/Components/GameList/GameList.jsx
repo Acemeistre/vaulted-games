@@ -1,4 +1,5 @@
 import GameRow from './GameRow/GameRow'
+import './GameList.css'
 
 function GameList ({games}) {
 return (
