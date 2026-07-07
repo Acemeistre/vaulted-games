@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import './App.css'
 import Header from './Components/Header/Header'
 import EntryBar from './Components/EntryBar/EntryBar'
@@ -22,12 +22,19 @@ function App() {
     const [sortGenre, setSortGenre] = useState(null);
     const [sortRating, setSortRating] = useState(null);
 
-    const [games, setGames] = useState (gameData);
+    const [games, setGames] = useState(() => {
+      const saved = localStorage.getItem('games')
+      return saved ? JSON.parse(saved) :gameData
+    });
 
     const savedPlatforms = Array.from(new Set(games.map(game => game.platform)));
     const savedGenres = Array.from(new Set(games.map(game => game.genre)));
     const savedRatings = Array.from(new Set(games.map(game => game.rating)));
     const savedYears = Array.from(new Set(games.map(game => game.year)));
+
+    useEffect(() => {
+      localStorage.setItem('games', JSON.stringify(games))
+    }, [games])
 
     const filteredGames = games.filter(game => {
       return (sortPlatform === null ? true : sortPlatform === game.platform) && 
@@ -40,11 +47,10 @@ function App() {
         if (sortTitle === 'z-a') return b.title.localeCompare(a.title)
       return 0
     })
-     
-
 
     const addGame = () => {
       const newGame = {
+        id: Date.now(),
         platform: selectedPlatform,
         year: year,
         title: title,
