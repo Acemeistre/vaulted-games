@@ -24,9 +24,11 @@ function App() {
 
     const [games, setGames] = useState (gameData);
 
+
+
     const filteredGames = games.filter(game => {
       return (sortPlatform === null ? true : sortPlatform === game.platform) && 
-             (sortYear === null ? true : sortYear === game.year) && 
+             (sortYear === null ? true : Number(sortYear) === game.year) && 
              (sortGenre === null ? true : sortGenre === game.genre) && 
              (sortRating === null ? true : sortRating === game.rating)
           }) 

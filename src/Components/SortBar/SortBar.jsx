@@ -5,9 +5,14 @@ import { useState } from 'react';
 function SortBar({platforms, genres, sortPlatform, onSortPlatformChange, sortYear, onSortYearChange, sortTitle, onSortTitleChange, sortGenre, onSortGenreChange, sortRating, onSortRatingChange}) {
     
     const keyDown = (e) => {
-        if (e.key === 'Enter')
-        onSortYearChange (e.target.value)
-    };
+    if (e.key === 'Enter') {
+        if (e.target.value === '') {
+            onSortYearChange(null)
+        } else if (e.target.value >= 1970 && e.target.value <= 2026) {
+          onSortYearChange (e.target.value)
+        }
+        }
+    }
     
     return (
     <div className='section-wrapper'>
