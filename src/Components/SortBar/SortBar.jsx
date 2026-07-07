@@ -22,8 +22,8 @@ function SortBar({platforms, genres, sortPlatform, onSortPlatformChange, sortYea
         <h2>Rating</h2>
         <h2>Ratings key:</h2>
         
-        <select className='platform-select' onChange={(e) => onSortPlatformChange(e.target.value)}>
-            <option value="" className="placeholder-option">-Platform-</option>
+        <select className='platform-select' onChange={(e) => onSortPlatformChange(e.target.value === '' ? null : e.target.value)}>
+            <option value="">-Platform-</option>
             {platforms.map(item => (
                 <optgroup 
                     label={item.brand}
@@ -49,8 +49,8 @@ function SortBar({platforms, genres, sortPlatform, onSortPlatformChange, sortYea
             Z-A
         </button>
         <div>/</div>
-        <select className='genre-select' onChange={(e) => onSortGenreChange(e.target.value)}>
-            <option value="" className='placeholder-option'>-Genre-</option>
+        <select className='genre-select' onChange={(e) => onSortGenreChange(e.target.value === '' ? null : e.target.value)}>
+            <option value="">-Genre-</option>
             {genres.map(item => (
                 <optgroup 
                     label={item.category}
@@ -66,8 +66,8 @@ function SortBar({platforms, genres, sortPlatform, onSortPlatformChange, sortYea
                 </optgroup>    
                 ))}
         </select>
-        <select className='rating-select' onChange={(e) => onSortRatingChange(e.target.value)}>
-            <option value="" className='placeholder-option'>-Rating-</option> 
+        <select className='rating-select' onChange={(e) => onSortRatingChange(e.target.value === '' ? null : e.target.value)}>
+            <option value="">-Rating-</option> 
             <option value="Top 10">Top 10</option>
             <option value="Top 20">Top 20</option>
             <option value="Amazing">Amazing</option>

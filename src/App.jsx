@@ -24,6 +24,20 @@ function App() {
 
     const [games, setGames] = useState (gameData);
 
+    const filteredGames = games.filter(game => {
+      return (sortPlatform === null ? true : sortPlatform === game.platform) && 
+             (sortYear === null ? true : sortYear === game.year) && 
+             (sortGenre === null ? true : sortGenre === game.genre) && 
+             (sortRating === null ? true : sortRating === game.rating)
+          }) 
+        .sort((a, b) => {
+        if (sortTitle === 'a-z') return a.title.localeCompare(b.title)
+        if (sortTitle === 'z-a') return b.title.localeCompare(a.title)
+      return 0
+    })
+     
+
+
     const addGame = () => {
       const newGame = {
         platform: selectedPlatform,
@@ -80,7 +94,7 @@ function App() {
       genres={genres}
     />
     <GameList
-    games={games}
+    games={filteredGames}
     />
   </div>
  )

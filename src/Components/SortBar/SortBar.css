@@ -19,10 +19,9 @@
     margin-bottom: 18rem;
 }
 
-select option.placeholder-option {
-    color: #888;
+select:has(option[value=""]:checked) {
+  color: #888;
 }
-
 
 h2 {
     margin-bottom: .5rem;
