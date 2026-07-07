@@ -56,6 +56,12 @@ function App() {
       console.log(newGame)
     }
 
+    const removeGame = (id) => {
+      const confirmed = window.confirm("Are you certain? This will permenantly delete this game from your library")
+      if (!confirmed) return
+      setGames(prev => prev.filter(game => game.id !== id))
+    }
+
     const handleRatingChange = (rating) => {
       setSelectedRating(rating);
         if (rating !== 'Top 10' && rating !== 'Top 20') {
@@ -102,6 +108,7 @@ function App() {
     />
     <GameList
     games={filteredGames}
+    removeGame={removeGame}
     />
   </div>
  )
