@@ -2,9 +2,11 @@ import GameRow from './GameRow/GameRow'
 import './GameList.css'
 
 function GameList ({games}) {
+    
 return (
     <div className="games-list__wrapper">
-        {games.map((game) => {
+        {games.length === 0 ? <p className='no-results'>No games match the current filter parameters</p> :
+        games.map((game) => {
     return (
         <GameRow
             key={game.id}
