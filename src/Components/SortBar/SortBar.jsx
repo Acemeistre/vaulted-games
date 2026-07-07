@@ -2,19 +2,9 @@ import RatingsKey from './RatingsKey/RatingsKey';
 import './SortBar.css';
 import { useState } from 'react';
 
-function SortBar({platforms, genres, sortPlatform, onSortPlatformChange, sortYear, onSortYearChange, sortTitle, onSortTitleChange, sortGenre, onSortGenreChange, sortRating, onSortRatingChange}) {
+function SortBar({savedPlatforms, savedYears, savedGenres, savedRatings, sortPlatform, onSortPlatformChange, sortYear, onSortYearChange, sortTitle, onSortTitleChange, sortGenre, onSortGenreChange, sortRating, onSortRatingChange}) {
     
     const currentYear = new Date().getFullYear()
-
-    const keyDown = (e) => {
-    if (e.key === 'Enter') {
-        if (e.target.value === '') {
-            onSortYearChange(null)
-        } else if (e.target.value >= 1970 && e.target.value <= currentYear) {
-          onSortYearChange (e.target.value)
-        }
-        }
-    }
     
     return (
     <div className='section-wrapper'>
@@ -31,24 +21,17 @@ function SortBar({platforms, genres, sortPlatform, onSortPlatformChange, sortYea
         
         <select className='platform-select' onChange={(e) => onSortPlatformChange(e.target.value === '' ? null : e.target.value)}>
             <option value="">-Platform-</option>
-            {platforms.map(item => (
-                <optgroup 
-                    label={item.brand}
-                    key={item.brand}
-                    >
-                    {item.consoles.map(i => (
-                        <option 
-                            value={i}
-                            key={i}
-                            >{i}
-                        </option>
-                    ))}
-                </optgroup>    
-                ))}
+                {savedPlatforms.map(platform => (
+            <option key={platform} value={platform}>{platform}</option>
+            ))}
         </select>
-        <div className="year-enter">
-            <input min="1970" max="2026" type="number" placeholder="Year" onKeyDown={keyDown}/>
-        </div>
+
+        <select className='year-select' onChange={(e) => onSortYearChange(e.target.value === '' ? null : Number(e.target.value))}>
+            <option value="">-Year-</option>
+                {savedYears.map(year => (
+            <option key={year} value={year}>{year}</option>
+            ))}
+        </select>
         <button className='alphabet-sort' onClick={() => onSortTitleChange('a-z')}>
             A-Z
         </button>
@@ -58,21 +41,11 @@ function SortBar({platforms, genres, sortPlatform, onSortPlatformChange, sortYea
         <div>/</div>
         <select className='genre-select' onChange={(e) => onSortGenreChange(e.target.value === '' ? null : e.target.value)}>
             <option value="">-Genre-</option>
-            {genres.map(item => (
-                <optgroup 
-                    label={item.category}
-                    key={item.category}
-                    >
-                    {item.subgenres.map(i => (
-                        <option 
-                            value={i}
-                            key={i}
-                            >{i}
-                        </option>
-                    ))}
-                </optgroup>    
-                ))}
+                {savedGenres.map(genre => (
+            <option key={genre} value={genre}>{genre}</option>
+            ))}
         </select>
+        
         <select className='rating-select' onChange={(e) => onSortRatingChange(e.target.value === '' ? null : e.target.value)}>
             <option value="">-Rating-</option> 
             <option value="Top 10">Top 10</option>

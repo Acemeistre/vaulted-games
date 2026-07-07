@@ -24,13 +24,16 @@ function App() {
 
     const [games, setGames] = useState (gameData);
 
-
+    const savedPlatforms = Array.from(new Set(games.map(game => game.platform)));
+    const savedGenres = Array.from(new Set(games.map(game => game.genre)));
+    const savedRatings = Array.from(new Set(games.map(game => game.rating)));
+    const savedYears = Array.from(new Set(games.map(game => game.year)));
 
     const filteredGames = games.filter(game => {
       return (sortPlatform === null ? true : sortPlatform === game.platform) && 
              (sortYear === null ? true : Number(sortYear) === game.year) && 
              (sortGenre === null ? true : sortGenre === game.genre) && 
-             (sortRating === null ? true : sortRating === game.rating)
+             (sortRating === null ? true : (sortRating === 'Top 20' ? game.rating === 'Top 20' || game.rating === 'Top 10' : sortRating === game.rating))
           }) 
         .sort((a, b) => {
         if (sortTitle === 'a-z') return a.title.localeCompare(b.title)
@@ -92,8 +95,10 @@ function App() {
       onSortGenreChange={setSortGenre}
       sortRating={sortRating}
       onSortRatingChange={setSortRating}
-      platforms={platforms}
-      genres={genres}
+      savedPlatforms={savedPlatforms}
+      savedYears={savedYears}
+      savedGenres={savedGenres}
+      savedRatings={savedRatings}
     />
     <GameList
     games={filteredGames}
