@@ -1,7 +1,7 @@
 [
   {
     "id": "1",
-    "platform": "Nintendo 64",
+    "platform": "N64",
     "year": 1997,
     "title": "The Legend of Zelda: Ocarina of Time",
     "genre": "Action-adventure",
@@ -10,16 +10,16 @@
   },
   {
     "id": "2",
-    "platform": "Nintendo 64",
+    "platform": "N64",
     "year": 1997,
     "title": "Goldeneye",
-    "genre": "First-person shooter",
+    "genre": "FPS",
     "rating": "Top 10",
     "rank": 2
   },
   {
     "id": "3",
-    "platform": "Nintendo 64",
+    "platform": "N64",
     "year": 1998,
     "title": "F1 World Grand Prix",
     "genre": "Racing",
@@ -28,7 +28,7 @@
   },
   {
     "id": "4",
-    "platform": "Nintendo 64",
+    "platform": "N64",
     "year": 1999,
     "title": "International Superstar Soccer 98",
     "genre": "Sports",
@@ -37,7 +37,7 @@
   },
   {
     "id": "5",
-    "platform": "Nintendo 64",
+    "platform": "N64",
     "year": 2000,
     "title": "Diddy Kong Racing",
     "genre": "Racing",
@@ -46,7 +46,7 @@
   },
   {
     "id": "6",
-    "platform": "Nintendo 64",
+    "platform": "N64",
     "year": 2001,
     "title": "Mario Golf",
     "genre": "Sports",
@@ -58,7 +58,7 @@
     "platform": "GameCube",
     "year": 2002,
     "title": "Star Wars: Rogue Squadron II: Rogue Leader",
-    "genre": "space combat shooter",
+    "genre": "space combat",
     "rating": "Amazing",
     "rank": null
   },
@@ -148,7 +148,7 @@
     "platform": "GameCube",
     "year": 2005,
     "title": "Time Splitters 2",
-    "genre": "First-person shooter",
+    "genre": "FPS",
     "rating": "Great",
     "rank": null
   },
@@ -157,7 +157,7 @@
     "platform": "GameCube",
     "year": 2006,
     "title": "Call of Duty 2: Big Red One",
-    "genre": "First-person shooter",
+    "genre": "FPS",
     "rating": "Ok",
     "rank": null
   },
@@ -181,7 +181,7 @@
   },
   {
     "id": "21",
-    "platform": "PlayStation 2",
+    "platform": "PS2",
     "year": 2006,
     "title": "Tottenham Hotspur Footbal Club 2005",
     "genre": "Sports",
@@ -190,7 +190,7 @@
   },
   {
     "id": "22",
-    "platform": "PlayStation 2",
+    "platform": "PS2",
     "year": 2006,
     "title": "Burnout 3: Takedown",
     "genre": "Racing",
@@ -199,7 +199,7 @@
   },
   {
     "id": "23",
-    "platform": "PlayStation 2",
+    "platform": "PS2",
     "year": 2006,
     "title": "Gran Turismo 3 A-Spec",
     "genre": "Racing",
@@ -208,7 +208,7 @@
   },
   {
     "id": "24",
-    "platform": "PlayStation 3",
+    "platform": "PS3",
     "year": 2007,
     "title": "Formula One Championship Edition",
     "genre": "Racing",
@@ -217,16 +217,16 @@
   },
   {
     "id": "25",
-    "platform": "PlayStation 3",
+    "platform": "PS3",
     "year": 2008,
     "title": "Call of Duty 4: Modern Warfare",
-    "genre": "First-person shooter",
+    "genre": "FPS",
     "rating": "Top 10",
     "rank": 6
   },
   {
     "id": "26",
-    "platform": "PlayStation 3",
+    "platform": "PS3",
     "year": 2009,
     "title": "Heavenly Sword",
     "genre": "Hack and slash",
@@ -235,7 +235,7 @@
   },
   {
     "id": "27",
-    "platform": "PlayStation 3",
+    "platform": "PS3",
     "year": 2009,
     "title": "LittleBigPlanet",
     "genre": "Platformer",
@@ -244,7 +244,7 @@
   },
   {
     "id": "28",
-    "platform": "PlayStation 3",
+    "platform": "PS3",
     "year": 2009,
     "title": "Fifa 09",
     "genre": "Sports",
@@ -253,7 +253,7 @@
   },
   {
     "id": "29",
-    "platform": "PlayStation 3",
+    "platform": "PS3",
     "year": 2009,
     "title": "TV Show King",
     "genre": "Party",
@@ -262,7 +262,7 @@
   },
   {
     "id": "30",
-    "platform": "PlayStation 3",
+    "platform": "PS3",
     "year": 2009,
     "title": "Tiger Woods PGA Tour 09",
     "genre": "Sports",
@@ -271,7 +271,7 @@
   },
   {
     "id": "31",
-    "platform": "PlayStation 3",
+    "platform": "PS3",
     "year": 2010,
     "title": "2010 FIFA World Cup South Africa",
     "genre": "Sports",
@@ -280,7 +280,7 @@
   },
   {
     "id": "32",
-    "platform": "PlayStation 3",
+    "platform": "PS3",
     "year": 2010,
     "title": "Need for Speed: Shift",
     "genre": "Racing",
@@ -289,7 +289,7 @@
   },
   {
     "id": "33",
-    "platform": "PlayStation 3",
+    "platform": "PS3",
     "year": 2010,
     "title": "F1 2010",
     "genre": "Racing",
@@ -298,7 +298,7 @@
   },
   {
     "id": "34",
-    "platform": "PlayStation 3",
+    "platform": "PS3",
     "year": 2010,
     "title": "Virtua Tennis 2009",
     "genre": "Sports",
@@ -307,7 +307,7 @@
   },
   {
     "id": "35",
-    "platform": "PlayStation 3",
+    "platform": "PS3",
     "year": 2010,
     "title": "Far Cry 2",
     "genre": "Open World FPS",
@@ -316,10 +316,10 @@
   },
   {
     "id": "36",
-    "platform": "PlayStation 3",
+    "platform": "PS3",
     "year": 2010,
     "title": "Killzone 2",
-    "genre": "First-person shooter",
+    "genre": "FPS",
     "rating": "Ok",
     "rank": null
   }
