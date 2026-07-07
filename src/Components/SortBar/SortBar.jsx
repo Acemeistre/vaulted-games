@@ -4,11 +4,13 @@ import { useState } from 'react';
 
 function SortBar({platforms, genres, sortPlatform, onSortPlatformChange, sortYear, onSortYearChange, sortTitle, onSortTitleChange, sortGenre, onSortGenreChange, sortRating, onSortRatingChange}) {
     
+    const currentYear = new Date().getFullYear()
+
     const keyDown = (e) => {
     if (e.key === 'Enter') {
         if (e.target.value === '') {
             onSortYearChange(null)
-        } else if (e.target.value >= 1970 && e.target.value <= 2026) {
+        } else if (e.target.value >= 1970 && e.target.value <= currentYear) {
           onSortYearChange (e.target.value)
         }
         }

@@ -2,8 +2,10 @@ import './EntryBar.css'
 
 function EntryBar ({platforms, genres, selectedPlatform, year, title, selectedGenre, selectedRating, selectedRank, onPlatformChange, onYearChange, onTitleChange, onGenreChange, onRankChange, onRatingChange, addGame}) {
   
- const isReadyToContinue = selectedPlatform !== null && year !== '' && title !== '' && selectedGenre !== null && (selectedRating === 'Top 10' || selectedRating === 'Top 20' ? selectedRank !== null : true)
+    const isReadyToContinue = selectedPlatform !== null && year !== '' && title !== '' && selectedGenre !== null && (selectedRating === 'Top 10' || selectedRating === 'Top 20' ? selectedRank !== null : true)
     
+    const currentYear = new Date().getFullYear()
+
     return (
     <div className='section-wrapper'>
     <h3>Entry</h3>
@@ -32,7 +34,7 @@ function EntryBar ({platforms, genres, selectedPlatform, year, title, selectedGe
                 </optgroup>    
                 ))}
         </select>
-        <input className="entry-bar__year-row" min="1970" max="2026" type="number" placeholder="Year" onChange={(e) => onYearChange(e.target.value)}/>
+        <input className="entry-bar__year-row" min="1970" max={currentYear} type="number" placeholder="Year" onChange={(e) => onYearChange(e.target.value)}/>
         <input className="entry-bar__title-row" type="text" placeholder="Title" onChange={(e) => onTitleChange(e.target.value)}/>
         <select className='genre-select' onChange={(e) => onGenreChange(e.target.value)}>
             <option value="">-Genre-</option>
