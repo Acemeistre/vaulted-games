@@ -22,6 +22,8 @@ function App() {
     const [sortGenre, setSortGenre] = useState(null);
     const [sortRating, setSortRating] = useState(null);
 
+    const [editingId, setEditingId] = useState(null);
+
     const [games, setGames] = useState(() => {
       const saved = localStorage.getItem('games')
       return saved ? JSON.parse(saved) :gameData
@@ -47,6 +49,11 @@ function App() {
         if (sortTitle === 'z-a') return b.title.localeCompare(a.title)
       return 0
     })
+
+    const saveEdit = (updatedGame) => {
+        setGames(games.map(game => game.id === updatedGame.id ? updatedGame : game))
+      setEditingId(null)
+    }
 
     const addGame = () => {
       const newGame = {
@@ -113,8 +120,13 @@ function App() {
       savedRatings={savedRatings}
     />
     <GameList
+    platforms={platforms}
+    genres={genres}
     games={filteredGames}
     removeGame={removeGame}
+    editingId={editingId}
+    setEditingId={setEditingId}
+    saveEdit={saveEdit}
     />
   </div>
  )

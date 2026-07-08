@@ -1,7 +1,7 @@
 import GameRow from './GameRow/GameRow'
 import './GameList.css'
 
-function GameList ({games, removeGame}) {
+function GameList ({ platforms, genres, games, removeGame, editingId, setEditingId, saveEdit}) {
 
 return (
     <div className="games-list__wrapper">
@@ -11,7 +11,13 @@ return (
         <GameRow
             key={game.id}
             game={game}
-            removeGame={removeGame} />
+            removeGame={removeGame} 
+            editingId={editingId}
+            setEditingId={setEditingId}
+            saveEdit={saveEdit}
+            platforms={platforms}
+            genres={genres}
+            />
             )
         })}
     </div>

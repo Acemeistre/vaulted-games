@@ -1,17 +1,107 @@
 import './GameRow.css'
 
-function GameRow ({game, removeGame}) {
+function GameRow ({platforms, genres, game, removeGame, editingId, setEditingId, saveEdit}) {
+
+    const currentYear = new Date().getFullYear()
+
+    const isEditing = editingId === game.id
+    const [editData, setEditData] = useState({
+        platform: game.platform,
+        year: game.year,
+        title: game.title,
+        genre: game.genre,
+        rating: game.rating,
+        rank: game.rank
+    })
+    
     return (
         <div className="game-row">
+            {isEditing ? 
+            (
+            <>    
+        <select 
+        className='platform-select' 
+        onChange={(e) => setEditData({...editData, platform: e.target.value})}
+        >
+            <option value="">-Platform-</option>
+            {platforms.map(item => (
+                <optgroup 
+                    label={item.brand}
+                    key={item.brand}
+                    >
+                    {item.consoles.map(i => (
+                        <option 
+                            value={i}
+                            key={i}
+                            >{i}
+                        </option>
+                    ))}
+                </optgroup>    
+                ))}
+            </select>
+                
+        <input className="entry-bar__year-row" min="1970" max={currentYear} type="number" placeholder="Year" onChange={(e) => setEditData({...editData, year:e.target.value})}/>
+        
+        <input className="entry-bar__title-row" type="text" placeholder="Title" onChange={(e) => setEditData({...editData, title: e.target.value})}/>
+    
+        <select className='genre-select' onChange={(e) => setEditData({...editData, genre: e.target.value})}>
+            <option value="">-Genre-</option>
+            {genres.map(item => (
+                <optgroup 
+                    label={item.category}
+                    key={item.category}
+                    >
+                    {item.subgenres.map(i => (
+                        <option 
+                            value={i}
+                            key={i}
+                            >{i}
+                        </option>
+                    ))}
+                </optgroup>    
+                ))}
+        </select>
+        
+        <select className='rating-select' onChange={(e) => setEditData({...editData, rating:e.target.value})}>
+            <option value="">-Rating-</option> 
+            <option value="Top 10">Top 10</option>
+            <option value="Top 20">Top 20</option>
+            <option value="Amazing">Amazing</option>
+            <option value="Great">Great</option>
+            <option value="Ok">Ok</option>
+            <option value="Forgettable">Forgettable</option>
+            <option value="DNF">DNF</option>
+        </select>
+
+        <select
+            value={editData.rank ?? ''}  
+            className='rank-select'
+            disabled={!(editData.rating === 'Top 10' || editData.rating === 'Top 20')} 
+            onChange={(e) => setEditData({...editData, rank: e.target.value})}>
+        <option value="">-Rank-</option>
+            {Array.from({ length: editData.rating === 'Top 10' ? 10 : 20 }, (_, i) => (
+        <option key={i + 1} value={i + 1}> {i + 1}</option>
+        ))}
+        
+        </select>
+        <button onClick={() => saveEdit(editData)}>Save</button>
+        <button onClick={() => setEditingId(null)}>Cancel</button>
+        </>
+            ) : (
+                <>
             <span className="game__platform">{game.platform}</span>
             <span className="game__year">{game.year}</span>
             <span className="game__title">{game.title}</span>
             <span className="game__genre">{game.genre}</span>
             <span className="game__rating">{game.rating}</span>
             <span className="game__rank">{game.rank}</span>
-            <button className="game__edit">{game.edit}</button>
+            <button className="game__edit" onClick={() => setEditingId(game.id)}>/</button>
             <button className="game__remove" onClick={() => removeGame(game.id)}>X</button>
-        </div>
+
+    
+    </>
+            )}
+            </div>
     )
 }
 
