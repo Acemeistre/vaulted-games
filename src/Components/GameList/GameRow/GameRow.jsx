@@ -1,4 +1,5 @@
 import './GameRow.css'
+import { useState } from 'react'
 
 function GameRow ({platforms, genres, game, removeGame, editingId, setEditingId, saveEdit}) {
 
@@ -20,7 +21,8 @@ function GameRow ({platforms, genres, game, removeGame, editingId, setEditingId,
             (
             <>    
         <select 
-        className='platform-select' 
+        className='platform-select'
+        value={editData.platform} 
         onChange={(e) => setEditData({...editData, platform: e.target.value})}
         >
             <option value="">-Platform-</option>
@@ -40,11 +42,11 @@ function GameRow ({platforms, genres, game, removeGame, editingId, setEditingId,
                 ))}
             </select>
                 
-        <input className="entry-bar__year-row" min="1970" max={currentYear} type="number" placeholder="Year" onChange={(e) => setEditData({...editData, year:e.target.value})}/>
+        <input className="entry-bar__year-row" min="1970" max={currentYear} type="number" placeholder="Year" value={editData.year} onChange={(e) => setEditData({...editData, year:e.target.value})}/>
         
-        <input className="entry-bar__title-row" type="text" placeholder="Title" onChange={(e) => setEditData({...editData, title: e.target.value})}/>
+        <input className="entry-bar__title-row" type="text" placeholder="Title" value={editData.title} onChange={(e) => setEditData({...editData, title: e.target.value})}/>
     
-        <select className='genre-select' onChange={(e) => setEditData({...editData, genre: e.target.value})}>
+        <select className='genre-select' value={editData.genre} onChange={(e) => setEditData({...editData, genre: e.target.value})}>
             <option value="">-Genre-</option>
             {genres.map(item => (
                 <optgroup 
@@ -62,7 +64,7 @@ function GameRow ({platforms, genres, game, removeGame, editingId, setEditingId,
                 ))}
         </select>
         
-        <select className='rating-select' onChange={(e) => setEditData({...editData, rating:e.target.value})}>
+        <select className='rating-select' value={editData.rating} onChange={(e) => setEditData({...editData, rating:e.target.value})}>
             <option value="">-Rating-</option> 
             <option value="Top 10">Top 10</option>
             <option value="Top 20">Top 20</option>
@@ -84,8 +86,8 @@ function GameRow ({platforms, genres, game, removeGame, editingId, setEditingId,
         ))}
         
         </select>
-        <button onClick={() => saveEdit(editData)}>Save</button>
-        <button onClick={() => setEditingId(null)}>Cancel</button>
+        <button onClick={() => saveEdit(editData)}>✓</button>
+        <button onClick={() => setEditingId(null)}>✗</button>
         </>
             ) : (
                 <>
