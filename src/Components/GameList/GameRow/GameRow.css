@@ -1,8 +1,7 @@
 .game-row {
     justify-content: center;
-    justify-self: center;
     display: grid;
-    width: 96rem;
+    width: 100%;
     height: 4rem;
     column-gap: 2rem;
     grid-template-columns: 2fr 1.5fr 8fr 4fr 2fr .75fr .75fr .75fr;
@@ -21,7 +20,6 @@
     color: white;
     border: 4px solid #3D3D3D;
     padding: 0.5rem;
-    width: 100%;
 }
 
 .game__genre {
@@ -30,4 +28,42 @@
 
 .game__rank {
     text-align: center;
+    text-justify: center;
+}
+
+@media (max-width: 1600px) {
+    .game__platform,
+    .game__year,
+    .game__title,
+    .game__genre,
+    .game__rating,
+    .game__rank,
+    .game__edit,
+    .game__remove  {
+     font-size: .8rem;
+   }
+   .game__rank {
+    overflow: hidden;
+    font-size: .7rem;
+   }
+}
+
+@media (max-width: 1120px) {
+    .game-row {
+        height: 2.5rem;
+        align-items: center;
+        column-gap: 0.5rem;
+        padding: 0.25rem 1rem;
+    }
+    .game__platform,
+    .game__year,
+    .game__title,
+    .game__genre,
+    .game__rating,
+    .game__rank,
+    .game__edit,
+    .game__remove {
+        min-height: 2rem;
+        padding: 0.15rem;
+    }
 }

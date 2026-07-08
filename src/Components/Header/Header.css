@@ -23,3 +23,13 @@
     color: white;
     margin-top: 2rem;
 }
+
+@media (max-width: 1600px) {
+    .header__title {
+        font-size: 2rem;
+    }
+    .header__description {
+        font-size: 1.2rem;
+        font-weight: 600;
+    }
+}

@@ -71,7 +71,7 @@ function GameRow ({platforms, genres, game, removeGame, editingId, setEditingId,
             <option value="Amazing">Amazing</option>
             <option value="Great">Great</option>
             <option value="Ok">Ok</option>
-            <option value="Forgettable">Forgettable</option>
+            <option value="Forgettable">Meh..</option>
             <option value="DNF">DNF</option>
         </select>
 

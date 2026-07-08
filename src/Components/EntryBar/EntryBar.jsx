@@ -60,7 +60,7 @@ function EntryBar ({platforms, genres, selectedPlatform, year, title, selectedGe
             <option value="Amazing">Amazing</option>
             <option value="Great">Great</option>
             <option value="Ok">Ok</option>
-            <option value="Forgettable">Forgettable</option>
+            <option value="Meh">Forgettable</option>
             <option value="DNF">DNF</option>
         </select>
 

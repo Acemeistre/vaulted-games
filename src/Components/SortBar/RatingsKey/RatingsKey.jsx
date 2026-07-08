@@ -9,7 +9,7 @@ function RatingsKey  () {
                 <div className='ratings-key__row'><p>Amazing</p><div className="green rating-swatch"></div></div>
                 <div className='ratings-key__row'><p>Great</p><div className="lime rating-swatch"></div></div>
                 <div className='ratings-key__row'><p>Ok</p><div className="yellow rating-swatch"></div></div>
-                <div className='ratings-key__row'><p>Forgettable</p><div className="orange rating-swatch"></div></div>
+                <div className='ratings-key__row'><p>Meh..</p><div className="orange rating-swatch"></div></div>
                 <div className='ratings-key__row'><p>DNF</p><div className="red rating-swatch"></div></div>
             </div>
         </div>

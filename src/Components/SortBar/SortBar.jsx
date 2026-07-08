@@ -13,8 +13,8 @@ function SortBar({savedPlatforms, savedYears, savedGenres, savedRatings, sortPla
         <h2>Platform</h2>    
         <h2>Year</h2>     
         <h2>Title</h2>        
-        <h2></h2>
-        <div></div>  
+        <h2 className="sort-bar__hidden-header">Title</h2>
+        <h2></h2>  
         <h2>Genre</h2>
         <h2>Rating</h2>
         <h2>Ratings key:</h2>
@@ -35,7 +35,7 @@ function SortBar({savedPlatforms, savedYears, savedGenres, savedRatings, sortPla
         <button className='alphabet-sort' onClick={() => onSortTitleChange('a-z')}>
             A-Z
         </button>
-        <button value="alphabet-sort__reverse" onClick={() => onSortTitleChange('z-a')}>
+        <button className='alphabet-sort' value="alphabet-sort__reverse" onClick={() => onSortTitleChange('z-a')}>
             Z-A
         </button>
         <div>/</div>
@@ -53,7 +53,7 @@ function SortBar({savedPlatforms, savedYears, savedGenres, savedRatings, sortPla
             <option value="Amazing">Amazing</option>
             <option value="Great">Great</option>
             <option value="Ok">Ok</option>
-            <option value="Forgettable">Forgettable</option>
+            <option value="Meh">Forgettable</option>
             <option value="DNF">DNF</option>
         </select>
          <RatingsKey />
