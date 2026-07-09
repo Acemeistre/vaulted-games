@@ -27,6 +27,8 @@ function GameRow ({platforms, genres, game, removeGame, editingId, setEditingId,
     return matchedCategory ? matchedCategory.category : null
     }
 
+    const iconFile = genreIcons[genrePixelArt(game.genre)]
+
     const isEditing = editingId === game.id
     const [editData, setEditData] = useState({
         platform: game.platform,
@@ -116,7 +118,9 @@ function GameRow ({platforms, genres, game, removeGame, editingId, setEditingId,
             <span className="game__platform">{game.platform}</span>
             <span className="game__year">{game.year}</span>
             <span className="game__title">{game.title}</span>
-            <span className="game__genre">{game.genre}</span>
+            <span className="game__genre">
+                <img src={`/src/assets/${iconFile}.png`} />
+                {game.genre}</span>
             <span className="game__rating">{game.rating}</span>
             <span className="game__rank">{game.rank}</span>
             <button className="game__edit" onClick={() => setEditingId(game.id)}>/</button>

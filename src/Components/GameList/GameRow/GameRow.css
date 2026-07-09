@@ -22,8 +22,19 @@
     padding: 0.5rem;
 }
 
+.game__genre img {
+    width: 2rem;
+    height: 2rem;
+    margin-right: .25rem;
+}
+
 .game__genre {
-    overflow-y: auto;
+    display: flex;
+    flex-direction: row;
+    overflow: hidden;
+    align-items: center;
+    min-width: 0;
+    white-space: nowrap;
 }
 
 .game__rank {
@@ -66,4 +77,9 @@
         min-height: 2rem;
         padding: 0.15rem;
     }
+        .game__genre img {
+        width: 1.25rem;
+        height: 1.25rem;
+        margin-right: 0rem;
+        }
 }

@@ -22,7 +22,7 @@
     "platform": "N64",
     "year": 1998,
     "title": "F1 World Grand Prix",
-    "genre": "Racing",
+    "genre": "Simulation racing",
     "rating": "Great",
     "rank": null
   },
@@ -31,7 +31,7 @@
     "platform": "N64",
     "year": 1999,
     "title": "International Superstar Soccer 98",
-    "genre": "Sports",
+    "genre": "Simulation sports",
     "rating": "Great",
     "rank": null
   },
@@ -40,7 +40,7 @@
     "platform": "N64",
     "year": 2000,
     "title": "Diddy Kong Racing",
-    "genre": "Racing",
+    "genre": "Arcade racing",
     "rating": "Top 20",
     "rank": 18
   },
@@ -49,7 +49,7 @@
     "platform": "N64",
     "year": 2001,
     "title": "Mario Golf",
-    "genre": "Sports",
+    "genre": "Arcade sports",
     "rating": "Amazing",
     "rank": null
   },
@@ -58,7 +58,7 @@
     "platform": "GameCube",
     "year": 2002,
     "title": "Star Wars: Rogue Squadron II: Rogue Leader",
-    "genre": "space combat",
+    "genre": "Space combat",
     "rating": "Amazing",
     "rank": null
   },
@@ -67,7 +67,7 @@
     "platform": "GameCube",
     "year": 2002,
     "title": "Burnout",
-    "genre": "Racing",
+    "genre": "Arcade racing",
     "rating": "Great",
     "rank": null
   },
@@ -76,7 +76,7 @@
     "platform": "GameCube",
     "year": 2002,
     "title": "The Sims",
-    "genre": "God game",
+    "genre": "God Game",
     "rating": "Ok",
     "rank": null
   },
@@ -85,7 +85,7 @@
     "platform": "GameCube",
     "year": 2003,
     "title": "2002 Fifa World Cup",
-    "genre": "Sports",
+    "genre": "Simulation sports",
     "rating": "Meh",
     "rank": null
   },
@@ -103,7 +103,7 @@
     "platform": "GameCube",
     "year": 2003,
     "title": "F Zero GX",
-    "genre": "Racing",
+    "genre": "Arcade racing",
     "rating": "Top 20",
     "rank": 15
   },
@@ -112,7 +112,7 @@
     "platform": "GameCube",
     "year": 2003,
     "title": "Resident Evil",
-    "genre": "Horror",
+    "genre": "Survival-Horror",
     "rating": "Top 20",
     "rank": 20
   },
@@ -184,7 +184,7 @@
     "platform": "PS2",
     "year": 2006,
     "title": "Tottenham Hotspur Footbal Club 2005",
-    "genre": "Sports",
+    "genre": "Simulation sports",
     "rating": "Ok",
     "rank": null
   },
@@ -193,7 +193,7 @@
     "platform": "PS2",
     "year": 2006,
     "title": "Burnout 3: Takedown",
-    "genre": "Racing",
+    "genre": "Arcade racing",
     "rating": "Ok",
     "rank": null
   },
@@ -202,7 +202,7 @@
     "platform": "PS2",
     "year": 2006,
     "title": "Gran Turismo 3 A-Spec",
-    "genre": "Racing",
+    "genre": "Simulation racing",
     "rating": "Ok",
     "rank": null
   },
@@ -211,7 +211,7 @@
     "platform": "PS3",
     "year": 2007,
     "title": "Formula One Championship Edition",
-    "genre": "Racing",
+    "genre": "Arcade racing",
     "rating": "Top 10",
     "rank": 7
   },
@@ -247,7 +247,7 @@
     "platform": "PS3",
     "year": 2009,
     "title": "Fifa 09",
-    "genre": "Sports",
+    "genre": "Simulation sports",
     "rating": "Meh..",
     "rank": null
   },
@@ -265,7 +265,7 @@
     "platform": "PS3",
     "year": 2009,
     "title": "Tiger Woods PGA Tour 09",
-    "genre": "Sports",
+    "genre": "Simulation sports",
     "rating": "Ok",
     "rank": null
   },
@@ -274,7 +274,7 @@
     "platform": "PS3",
     "year": 2010,
     "title": "2010 FIFA World Cup South Africa",
-    "genre": "Sports",
+    "genre": "Simulation sports",
     "rating": "Ok",
     "rank": null
   },
@@ -283,7 +283,7 @@
     "platform": "PS3",
     "year": 2010,
     "title": "Need for Speed: Shift",
-    "genre": "Racing",
+    "genre": "Arcade racing",
     "rating": "DNF",
     "rank": null
   },
@@ -292,7 +292,7 @@
     "platform": "PS3",
     "year": 2010,
     "title": "F1 2010",
-    "genre": "Racing",
+    "genre": "Simulation racing",
     "rating": "Top 10",
     "rank": 3
   },
@@ -301,7 +301,7 @@
     "platform": "PS3",
     "year": 2010,
     "title": "Virtua Tennis 2009",
-    "genre": "Sports",
+    "genre": "Arcade sports",
     "rating": "Meh..",
     "rank": null
   },
