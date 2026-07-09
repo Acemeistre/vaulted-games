@@ -47,11 +47,30 @@ select, input {
 @media (max-width: 1600px) {
    select, input, button {
      font-size: .8rem;
+     padding: 0.5rem;
    }
 }
 
 @media (max-width: 1120px) {
     .entry-bar_container {
         column-gap: .5rem;
+        padding: .5rem;
+        height: 2rem;
+        
     }
+    button {
+      width: 100%;
+    }
+    .entry-bar_container select,
+    .entry-bar_container input,
+    .entry-bar_container button {
+      padding: .25rem;
+      font-size: .75rem;
+    }
+    .game__title,
+    .game__platform {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
 }
