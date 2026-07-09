@@ -52,3 +52,24 @@
 .red {
     background-color: #6C2418;
 }
+
+@media (max-width: 1600px) {
+        .ratings-key__row p {
+    padding: 0.5rem;
+    }
+    .ratings-key__names {
+        font-size: .8rem;
+    }
+}
+
+@media (max-width: 1120px) {
+
+    .ratings-key__row {
+        height: 2rem;
+    }
+    .rating-swatch {
+    margin-left: auto;
+    width: 2rem;
+    height: 2rem;
+}
+}

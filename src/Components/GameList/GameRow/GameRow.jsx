@@ -1,9 +1,31 @@
 import './GameRow.css'
 import { useState } from 'react'
 
+const genreIcons = {
+  Action: 'Action_v1_crossed-swords',
+  Adventure: 'Adventure_v1_globe',
+  Card: 'Cards_v1_cards-of-spade--hearts--diamond--clubs',
+  Misc: 'Misc_v1_dice',
+  Horror: 'Horror_v1_skull',
+  Casual: 'Casual_v1_video-game-controller',
+  Racing: 'Racing_v1_f1-car',
+  RPG: 'RPG_v1_wizard',
+  SciFi: 'SciFi_v1_alien-head',
+  Simulation: 'Simulation_v1_crane',
+  StoryRich: 'StoryRich_v1_open-book',
+  Strategy: 'Strategy_v1_chess-piece',
+  Sports: 'Sports_v1_football',
+  Shooter: 'Shooter_v1_machine-gun'
+}
+
 function GameRow ({platforms, genres, game, removeGame, editingId, setEditingId, saveEdit}) {
 
     const currentYear = new Date().getFullYear()
+
+    const genrePixelArt = (subgenre) => {     
+      const matchedCategory = genres.find(genre => genre.subgenres.includes(subgenre)) 
+    return matchedCategory ? matchedCategory.category : null
+    }
 
     const isEditing = editingId === game.id
     const [editData, setEditData] = useState({

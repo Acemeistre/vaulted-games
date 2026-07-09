@@ -7,3 +7,31 @@ body {
 h1, h2, h3 {
   font-family: 'Press Start 2P', serif;
 }
+
+@media (max-width: 767px) {
+    .rotate-prompt {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: black;
+        color: #80FF10;
+        font-family: 'Press Start 2P', monospace;
+        font-size: 1rem;
+        text-align: center;
+    }
+
+    .app-content {
+        display: none;
+    }
+}
+
+@media (min-width: 768px) {
+    .rotate-prompt {
+        display: none;
+    }
+}
+
+
+

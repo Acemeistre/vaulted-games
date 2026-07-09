@@ -85,6 +85,11 @@ function App() {
 
  return (
   <div className="App">
+      <div className="rotate-prompt">
+    <p>Please rotate to landscape view :)</p><br></br>
+    <p>Note: this app is optimised for tablet and desktop use only.</p>
+  </div>
+  <div className="app-content">
     <Header />
     <EntryBar 
       selectedPlatform={selectedPlatform}
@@ -120,14 +125,15 @@ function App() {
       savedRatings={savedRatings}
     />
     <GameList
-    platforms={platforms}
-    genres={genres}
-    games={filteredGames}
-    removeGame={removeGame}
-    editingId={editingId}
-    setEditingId={setEditingId}
-    saveEdit={saveEdit}
+      platforms={platforms}
+      genres={genres}
+      games={filteredGames}
+      removeGame={removeGame}
+      editingId={editingId}
+      setEditingId={setEditingId}
+      saveEdit={saveEdit}
     />
+    </div>
   </div>
  )
 }

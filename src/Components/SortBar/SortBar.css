@@ -33,7 +33,9 @@ h2 {
 }
 
 h3 {
-    margin-top: 1rem;
+    margin-top: 1rem; 
+    margin-left: 1.5rem;  
+   
     font-size: .9rem;
     color: white;
 }
@@ -57,6 +59,9 @@ select, input, button {
    h2{
     font-size: .75rem;
    }
+   h3 {
+    margin-left: 1.5rem;  
+   }
 }
 
 @media (max-width: 1120px) {
@@ -64,7 +69,7 @@ select, input, button {
         column-gap: .5rem;
         padding: .5rem;
         height: 2rem;
-        margin-bottom: 20rem;
+        margin-bottom: 16rem;
     }
     button {
       width: 100%;
