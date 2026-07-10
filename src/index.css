@@ -15,7 +15,9 @@ h1, h2, h3 {
 .game__rating,
 .game__rank,
 .game__edit,
-.game__remove {
+.game__remove,
+.field-wrapper,
+.ratings-key__wrapper {
     position: relative;
 }
 
@@ -38,20 +40,40 @@ h1, h2, h3 {
         transparent 1px,
         transparent 3px
     ),
-radial-gradient(ellipse at center, transparent 50%, rgba(0,0,0,0.4) 100%),
-    repeating-linear-gradient(
+radial-gradient(ellipse at center, transparent 50%, rgba(0,0,0,0.4) 100%);
+}
+
+.field-wrapper::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+    background:  repeating-linear-gradient(
         0deg,
         rgba(0, 0, 0, 0.15) 0px,
         rgba(0, 0, 0, 0.15) 1px,
         transparent 1px,
         transparent 3px
-    );
+    ),
+radial-gradient(ellipse at center, transparent 50%, rgba(0,0,0,0.4) 100%);
 }
 
-.
-
-
-
+.ratings-key__wrapper::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+    background:  repeating-linear-gradient(
+        0deg,
+        rgba(0, 0, 0, 0.15) 0px,
+        rgba(0, 0, 0, 0.15) 1px,
+        transparent 1px,
+        transparent 3px
+    ),
+radial-gradient(ellipse at center, transparent 50%, rgba(0,0,0,0.4) 100%);
+}
 
 @media (max-width: 767px) {
     .rotate-prompt {

@@ -17,6 +17,8 @@ function EntryBar ({platforms, genres, selectedPlatform, year, title, selectedGe
         <h2>Rating</h2>
         <h2>Rank</h2>
         <div></div>
+
+        <div className='field-wrapper'>
         <select className='platform-select' onChange={(e) => onPlatformChange(e.target.value)}>
             <option value="">-Platform-</option>
             {platforms.map(item => (
@@ -34,8 +36,17 @@ function EntryBar ({platforms, genres, selectedPlatform, year, title, selectedGe
                 </optgroup>    
                 ))}
         </select>
+        </div>
+        
+        <div className='field-wrapper'>
         <input className="entry-bar__year-row" min="1970" max={currentYear} type="number" placeholder="Year" onChange={(e) => onYearChange(e.target.value)}/>
+        </div>
+        
+        <div className='field-wrapper'>
         <input className="entry-bar__title-row" type="text" placeholder="Title" onChange={(e) => onTitleChange(e.target.value)}/>
+        </div>
+
+        <div className='field-wrapper'>
         <select className='genre-select' onChange={(e) => onGenreChange(e.target.value)}>
             <option value="">-Genre-</option>
             {genres.map(item => (
@@ -53,6 +64,9 @@ function EntryBar ({platforms, genres, selectedPlatform, year, title, selectedGe
                 </optgroup>    
                 ))}
         </select>
+        </div>
+        
+        <div className='field-wrapper'>
         <select className='rating-select' onChange={(e) => onRatingChange(e.target.value)}>
             <option value="">-Rating-</option> 
             <option value="Top 10">Top 10</option>
@@ -63,8 +77,9 @@ function EntryBar ({platforms, genres, selectedPlatform, year, title, selectedGe
             <option value="Meh">Forgettable</option>
             <option value="DNF">DNF</option>
         </select>
-
+        </div>
         
+        <div className='field-wrapper'>
         <select
             value={selectedRank ?? ''}  
             className='rank-select'
@@ -75,9 +90,10 @@ function EntryBar ({platforms, genres, selectedPlatform, year, title, selectedGe
         <option key={i + 1} value={i + 1}> {i + 1}</option>
         ))}
         </select>
-            
+        </div>
 
-              <button 
+        <div className='field-wrapper'>
+        <button 
         className={`continue-btn ${isReadyToContinue ? 'continue-btn--active' : 'continue-btn--disabled'}`}
         onClick={isReadyToContinue ? addGame : null}
             disabled={!isReadyToContinue}
@@ -93,6 +109,7 @@ function EntryBar ({platforms, genres, selectedPlatform, year, title, selectedGe
           >
             +
           </button>
+          </div>
         </div>    
     </div>
   );
