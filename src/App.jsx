@@ -60,7 +60,7 @@ function App() {
       }, 50)
       const endTimeout = setTimeout(() => {
         setIsAnimating(false)
-      }, 2000 + (filteredGames.length * 1000))
+      }, 2000 + (filteredGames.length * 600) + 2000 + 3000 + 2500)
       return () => { 
         clearTimeout(startTimeout)
         clearTimeout(endTimeout)

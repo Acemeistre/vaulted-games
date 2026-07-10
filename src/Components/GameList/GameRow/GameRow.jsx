@@ -1,5 +1,6 @@
 import './GameRow.css'
 import { useState } from 'react'
+import useTypewriter from '../../../hooks/useTypewriter'
 
 const genreIcons = {
   Action: 'Action_v1_crossed-swords',
@@ -31,6 +32,13 @@ const ratingColour = {
 
 function GameRow ({platforms, genres, game, removeGame, editingId, setEditingId, saveEdit, isAnimating, setIsAnimating, index, isLoading }) {
 
+    const displayedPlatform = useTypewriter({ text: String(game.platform), isActive: isAnimating || isLoading, delay: ((index + 1) * 0.6) + 2 + (0 * 0.5) })
+    const displayedYear = useTypewriter({ text: String(game.year), isActive: isAnimating || isLoading, delay: ((index + 1) * 0.6) + 2 + (1 * 0.5)})
+    const displayedTitle = useTypewriter({ text: String(game.title), isActive: isAnimating || isLoading, delay: ((index + 1) * 0.6) + 2 + (2 * 0.5)})
+    const displayedGenre = useTypewriter({ text: String(game.genre), isActive: isAnimating || isLoading, delay: ((index + 1) * 0.6) + 2 + (6 * 0.5)})
+    const displayedRating = useTypewriter({ text: String(game.rating), isActive: isAnimating || isLoading, delay: ((index + 1) * 0.6) + 2 + (7.5 * 0.5)})
+    const displayedRank = useTypewriter({ text: game.rank !== null ? String(game.rank) : '', isActive: isAnimating || isLoading, delay: ((index + 1) * 0.6) + 2 + (9 * 0.5)})
+
     const currentYear = new Date().getFullYear()
 
     const genrePixelArt = (subgenre) => {     
@@ -51,7 +59,7 @@ function GameRow ({platforms, genres, game, removeGame, editingId, setEditingId,
     })
     
     return (
-        <div className={`game-row ${isAnimating || isLoading ? 'row-flicker' : ''}`} style={{'--rating-colour': ratingColour[game.rating], animationDelay: isLoading ? `${7 + ((index + 1) * 0.6)}s` : `${(index + 1) * 1.6}s`}}>
+        <div className={`game-row ${isAnimating || isLoading ? 'row-flicker' : ''}`} style={{'--rating-colour': ratingColour[game.rating], animationDelay: `${(index + 1) * 0.6}s`}}>
             {isEditing ? 
             (
             <>    
@@ -126,18 +134,16 @@ function GameRow ({platforms, genres, game, removeGame, editingId, setEditingId,
         </>
             ) : (
                 <>
-            <span className="game__platform">{game.platform}</span>
-            <span className="game__year">{game.year}</span>
-            <span className="game__title">{game.title}</span>
+            <span className="game__platform">{displayedPlatform}</span>
+            <span className="game__year">{displayedYear}</span>
+            <span className="game__title">{displayedTitle}</span>
             <span className="game__genre">
-                <img src={`/src/assets/${iconFile}.png`} />
-                {game.genre}</span>
-            <span className="game__rating">{game.rating}</span>
-            <span className="game__rank">{game.rank}</span>
+                {displayedGenre.length > 0 && <img src={`/src/assets/${iconFile}.png`} />}
+                {displayedGenre}</span>
+            <span className="game__rating">{displayedRating}</span>
+            <span className="game__rank">{displayedRank}</span>
             <button className="game__edit" onClick={() => setEditingId(game.id)}>/</button>
             <button className="game__remove" onClick={() => removeGame(game.id)}>X</button>
-
-    
     </>
             )}
             </div>
