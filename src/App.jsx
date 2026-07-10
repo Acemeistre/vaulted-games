@@ -24,6 +24,8 @@ function App() {
 
     const [editingId, setEditingId] = useState(null);
 
+    const [isAnimating, setIsAnimating] = useState(false)
+
     const [games, setGames] = useState(() => {
       const saved = localStorage.getItem('games')
       return saved ? JSON.parse(saved) :gameData
@@ -37,6 +39,14 @@ function App() {
     useEffect(() => {
       localStorage.setItem('games', JSON.stringify(games))
     }, [games])
+
+    useEffect(() => {
+      setIsAnimating(true)
+      const timeout = setTimeout(() => {
+        setIsAnimating(false)
+      }, filteredGames.length * 300 + 1000)
+      return () => clearTimeout(timeout)
+    }, [sortPlatform, sortYear, sortTitle, sortGenre, sortRating])
 
     const filteredGames = games.filter(game => {
       return (sortPlatform === null ? true : sortPlatform === game.platform) && 
@@ -132,6 +142,8 @@ function App() {
       editingId={editingId}
       setEditingId={setEditingId}
       saveEdit={saveEdit}
+      isAnimating={isAnimating}
+      setIsAnimating={setIsAnimating}
     />
     </div>
   </div>
