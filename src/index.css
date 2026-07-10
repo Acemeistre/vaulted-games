@@ -8,6 +8,51 @@ h1, h2, h3 {
   font-family: 'Press Start 2P', serif;
 }
 
+.game__platform,
+.game__year,
+.game__title,
+.game__genre,
+.game__rating,
+.game__rank,
+.game__edit,
+.game__remove {
+    position: relative;
+}
+
+.game__platform::after,
+.game__year::after,
+.game__title::after,
+.game__genre::after,
+.game__rating::after,
+.game__rank::after,
+.game__edit::after,
+.game__remove::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: repeating-linear-gradient(
+        0deg,
+        rgba(0, 0, 0, 0.15) 0px,
+        rgba(0, 0, 0, 0.15) 1px,
+        transparent 1px,
+        transparent 3px
+    ),
+radial-gradient(ellipse at center, transparent 50%, rgba(0,0,0,0.4) 100%),
+    repeating-linear-gradient(
+        0deg,
+        rgba(0, 0, 0, 0.15) 0px,
+        rgba(0, 0, 0, 0.15) 1px,
+        transparent 1px,
+        transparent 3px
+    );
+}
+
+.
+
+
+
+
 @media (max-width: 767px) {
     .rotate-prompt {
         display: flex;
