@@ -18,6 +18,17 @@ const genreIcons = {
   Shooter: 'Shooter_v1_machine-gun'
 }
 
+const ratingColour = {
+   'Top 10': '#5A1C8F',
+   'Top 20': '#2475B7',
+    Amazing: '#2A6917',
+    Great: '#87C837',
+    Ok: '#AFAB26',
+    Meh: '#BE7022',
+    DNF: '#6C2418'
+}
+
+
 function GameRow ({platforms, genres, game, removeGame, editingId, setEditingId, saveEdit}) {
 
     const currentYear = new Date().getFullYear()
@@ -40,7 +51,7 @@ function GameRow ({platforms, genres, game, removeGame, editingId, setEditingId,
     })
     
     return (
-        <div className="game-row">
+        <div className="game-row" style={{'--rating-colour': ratingColour[game.rating]}}>
             {isEditing ? 
             (
             <>    

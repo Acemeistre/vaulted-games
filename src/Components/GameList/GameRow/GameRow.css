@@ -16,6 +16,7 @@
 .game__rank,
 .game__edit,
 .game__remove {
+    box-shadow: inset 0 -4px 0 var(--rating-colour);
     background-color: #595959;
     color: white;
     border: 4px solid #3D3D3D;
@@ -52,6 +53,7 @@
     .game__edit,
     .game__remove  {
      font-size: .8rem;
+     box-shadow: inset 0 -2px 0 var(--rating-colour);
    }
    .game__rank {
     overflow: hidden;
