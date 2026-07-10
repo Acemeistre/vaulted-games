@@ -1,13 +1,13 @@
 import './EntryBar.css'
 
-function EntryBar ({platforms, genres, selectedPlatform, year, title, selectedGenre, selectedRating, selectedRank, onPlatformChange, onYearChange, onTitleChange, onGenreChange, onRankChange, onRatingChange, addGame}) {
+function EntryBar ({platforms, genres, selectedPlatform, year, title, selectedGenre, selectedRating, selectedRank, onPlatformChange, onYearChange, onTitleChange, onGenreChange, onRankChange, onRatingChange, addGame, isLoading }) {
   
     const isReadyToContinue = selectedPlatform !== null && year !== '' && title !== '' && selectedGenre !== null && (selectedRating === 'Top 10' || selectedRating === 'Top 20' ? selectedRank !== null : true)
     
     const currentYear = new Date().getFullYear()
 
     return (
-    <div className='section-wrapper'>
+    <div className={`section-wrapper ${isLoading ? 'row-flicker' : ''}`} style={{animationDelay: '4.3s'}}>
     <h3>Entry</h3>
     <div className="entry-bar_container">
         <h2>Platform</h2>    

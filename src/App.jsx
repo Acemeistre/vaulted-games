@@ -24,6 +24,7 @@ function App() {
 
     const [editingId, setEditingId] = useState(null);
 
+    const [isLoading, setIsLoading] = useState(false);
     const [isAnimating, setIsAnimating] = useState(false)
 
     const [games, setGames] = useState(() => {
@@ -41,13 +42,25 @@ function App() {
     }, [games])
 
     useEffect(() => {
+      const hasVisited = localStorage.getItem('hasVisited')
+      if (!hasVisited) {
+        setIsLoading(true)
+        localStorage.setItem('hasVisited', 'true')
+      const timeout = setTimeout(() => {
+        setIsLoading(false)
+      }, 6300 + (filteredGames.length * 600) + 2000)
+      return () => clearTimeout(timeout)
+      }
+    }, [])
+
+    useEffect(() => {
       setIsAnimating(false)
       const startTimeout = setTimeout(() => {
         setIsAnimating(true)
       }, 50)
       const endTimeout = setTimeout(() => {
         setIsAnimating(false)
-      }, filteredGames.length * 1200 + 1000)
+      }, 2000 + (filteredGames.length * 1000))
       return () => { 
         clearTimeout(startTimeout)
         clearTimeout(endTimeout)
@@ -106,7 +119,9 @@ function App() {
     <p>Note: this app is optimised for tablet and desktop use only.</p>
   </div>
   <div className="app-content">
-    <Header />
+    <Header 
+      isLoading={isLoading}
+    />
     <EntryBar 
       selectedPlatform={selectedPlatform}
       onPlatformChange={setSelectedPlatform}
@@ -123,6 +138,7 @@ function App() {
       platforms={platforms}
       genres={genres}
       addGame={addGame}
+      isLoading={isLoading}
     />
     <SortBar 
       sortPlatform={sortPlatform}
@@ -139,6 +155,7 @@ function App() {
       savedYears={savedYears}
       savedGenres={savedGenres}
       savedRatings={savedRatings}
+      isLoading={isLoading}
     />
     <GameList
       platforms={platforms}
@@ -150,6 +167,7 @@ function App() {
       saveEdit={saveEdit}
       isAnimating={isAnimating}
       setIsAnimating={setIsAnimating}
+      isLoading={isLoading}
     />
     </div>
   </div>

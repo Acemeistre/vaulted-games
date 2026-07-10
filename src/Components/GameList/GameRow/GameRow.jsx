@@ -29,7 +29,7 @@ const ratingColour = {
 }
 
 
-function GameRow ({platforms, genres, game, removeGame, editingId, setEditingId, saveEdit, isAnimating, setIsAnimating, index }) {
+function GameRow ({platforms, genres, game, removeGame, editingId, setEditingId, saveEdit, isAnimating, setIsAnimating, index, isLoading }) {
 
     const currentYear = new Date().getFullYear()
 
@@ -51,7 +51,7 @@ function GameRow ({platforms, genres, game, removeGame, editingId, setEditingId,
     })
     
     return (
-        <div className={`game-row ${isAnimating ? 'row-flicker' : ''}`} style={{'--rating-colour': ratingColour[game.rating], animationDelay: `${(index + 1) * 1.2}s`}}>
+        <div className={`game-row ${isAnimating || isLoading ? 'row-flicker' : ''}`} style={{'--rating-colour': ratingColour[game.rating], animationDelay: isLoading ? `${7 + ((index + 1) * 0.6)}s` : `${(index + 1) * 1.6}s`}}>
             {isEditing ? 
             (
             <>    

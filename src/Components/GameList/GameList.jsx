@@ -1,7 +1,7 @@
 import GameRow from './GameRow/GameRow'
 import './GameList.css'
 
-function GameList ({ platforms, genres, games, removeGame, editingId, setEditingId, saveEdit, isAnimating, setIsAnimating }) {
+function GameList ({ platforms, genres, games, removeGame, editingId, setEditingId, saveEdit, isAnimating, setIsAnimating, isLoading }) {
 
 return (
     <div className="games-list__wrapper">
@@ -20,6 +20,7 @@ return (
             isAnimating={isAnimating}
             setIsAnimating={setIsAnimating}
             index={index}
+            isLoading={isLoading}
             />
             )
         })}

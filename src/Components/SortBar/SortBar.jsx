@@ -2,12 +2,12 @@ import RatingsKey from './RatingsKey/RatingsKey';
 import './SortBar.css';
 import { useState } from 'react';
 
-function SortBar({savedPlatforms, savedYears, savedGenres, savedRatings, sortPlatform, onSortPlatformChange, sortYear, onSortYearChange, sortTitle, onSortTitleChange, sortGenre, onSortGenreChange, sortRating, onSortRatingChange}) {
+function SortBar({savedPlatforms, savedYears, savedGenres, savedRatings, sortPlatform, onSortPlatformChange, sortYear, onSortYearChange, sortTitle, onSortTitleChange, sortGenre, onSortGenreChange, sortRating, onSortRatingChange, isLoading }) {
     
     const currentYear = new Date().getFullYear()
     
     return (
-    <div className='section-wrapper'>
+    <div className={`section-wrapper ${isLoading ? 'row-flicker' : ''}`} style={{animationDelay: '6.3s'}}>
         <h3>Sort</h3>
     <div className="sort-bar_container">
         <h2>Platform</h2>    
@@ -72,7 +72,9 @@ function SortBar({savedPlatforms, savedYears, savedGenres, savedRatings, sortPla
             <option value="DNF">DNF</option>
         </select>
         </div>
-         <RatingsKey />
+         <RatingsKey 
+         isLoading={isLoading}
+         />
         </div>    
     </div>
   );

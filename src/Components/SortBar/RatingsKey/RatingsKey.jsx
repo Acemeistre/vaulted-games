@@ -1,8 +1,8 @@
 import './RatingsKey.css'
 
-function RatingsKey  () {
+function RatingsKey  ({ isLoading }) {
     return (
-        <div className='ratings-key__wrapper'>
+        <div className={`ratings-key__wrapper ${isLoading ? 'row-flicker' : ''}`} style={{animationDelay: '6.3s'}}>
             <div className="ratings-key__names">
                 <div className='ratings-key__row'><p>Top 10</p><div className="purple rating-swatch"></div></div>
                 <div className='ratings-key__row'><p>Top 20</p><div className="blue rating-swatch"></div></div>

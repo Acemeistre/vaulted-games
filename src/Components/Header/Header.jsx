@@ -1,8 +1,8 @@
 import './Header.css'
 
-function Header () {
+function Header ({ isLoading }) {
     return (
-        <header className="container">
+        <header className={`container ${isLoading ? 'row-flicker' : ''}`} style={{animationDelay: '0.3s'}}>
             <div className='field-wrapper'>
                 <div className="header__title">
                     <h1 className="header__title-text">
