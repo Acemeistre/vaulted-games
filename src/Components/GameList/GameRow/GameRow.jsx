@@ -51,7 +51,7 @@ function GameRow ({platforms, genres, game, removeGame, editingId, setEditingId,
     })
     
     return (
-        <div className={`game-row ${isAnimating ? 'row-flicker' : ''}`} style={{'--rating-colour': ratingColour[game.rating], animationDelay: `${(index + 1) * 0.30}s`}}>
+        <div className={`game-row ${isAnimating ? 'row-flicker' : ''}`} style={{'--rating-colour': ratingColour[game.rating], animationDelay: `${(index + 1) * 1.2}s`}}>
             {isEditing ? 
             (
             <>    

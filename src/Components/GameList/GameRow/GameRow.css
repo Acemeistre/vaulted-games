@@ -86,16 +86,22 @@
         }
 }
 
-@keyframes flicker {
+@keyframes flicker {    
     0%   { opacity: 0; }
-    20%  { opacity: 1; }
-    40%  { opacity: 0; }
-    60%  { opacity: 1; }
-    80%  { opacity: 0; }
+    10%  { opacity: 0.5; }
+    15%  { opacity: 0.2; }
+    25%  { opacity: 0.7; }
+    30%  { opacity: 0.4; }
+    45%  { opacity: 0.8; }
+    50%  { opacity: 0.5; }
+    65%  { opacity: 0.9; }
+    75%  { opacity: 0.7; }
+    85%  { opacity: 0.95; }
+    95%  { opacity: 0.85; }
     100% { opacity: 1; }
 }
 
 .row-flicker {
     opacity: 0;
-    animation: flicker 1s steps(1) forwards;
+    animation: flicker 2s forwards;
 }

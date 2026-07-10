@@ -41,11 +41,17 @@ function App() {
     }, [games])
 
     useEffect(() => {
-      setIsAnimating(true)
-      const timeout = setTimeout(() => {
+      setIsAnimating(false)
+      const startTimeout = setTimeout(() => {
+        setIsAnimating(true)
+      }, 50)
+      const endTimeout = setTimeout(() => {
         setIsAnimating(false)
-      }, filteredGames.length * 300 + 1000)
-      return () => clearTimeout(timeout)
+      }, filteredGames.length * 1200 + 1000)
+      return () => { 
+        clearTimeout(startTimeout)
+        clearTimeout(endTimeout)
+      }
     }, [sortPlatform, sortYear, sortTitle, sortGenre, sortRating])
 
     const filteredGames = games.filter(game => {
