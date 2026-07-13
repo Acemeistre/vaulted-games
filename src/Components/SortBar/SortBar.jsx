@@ -7,9 +7,8 @@ function SortBar({savedPlatforms, savedYears, savedGenres, savedRatings, sortPla
     
     const currentYear = new Date().getFullYear()
     
-    const staticEffect1 = useStaticEffect ({ isActive: true })
-    const staticEffect2 = useStaticEffect ({ isActive: true })
-
+    const staticEffect1 = useStaticEffect ({ isActive: true, fieldCount: 6 })
+    const staticEffect2 = useStaticEffect ({ isActive: true, fieldCount: 6 })
     return (
     <div className={`section-wrapper ${isLoading ? 'row-flicker' : ''}`} style={{animationDelay: '6.3s'}}>
         <h3>Sort</h3>
@@ -23,7 +22,7 @@ function SortBar({savedPlatforms, savedYears, savedGenres, savedRatings, sortPla
         <h2>Rating</h2>
         <h2>Ratings key:</h2>
         
-        <div className={`field-wrapper ${staticEffect1 ? 'static-lines' : ''} ${staticEffect2 ? 'static-colour' : ''}`}>
+        <div className={`field-wrapper ${staticEffect1 === 0 ? 'static-lines' : ''} ${staticEffect2 === 0 ? 'static-colour' : ''}`}>
         <select className='platform-select' onChange={(e) => onSortPlatformChange(e.target.value === '' ? null : e.target.value)}>
             <option value="">-Platform-</option>
                 {savedPlatforms.map(platform => (
@@ -32,7 +31,7 @@ function SortBar({savedPlatforms, savedYears, savedGenres, savedRatings, sortPla
         </select>
         </div>
 
-        <div className='field-wrapper'>
+        <div className={`field-wrapper ${staticEffect1 === 1 ? 'static-lines' : ''} ${staticEffect2 === 1 ? 'static-colour' : ''}`}>
         <select className='year-select' onChange={(e) => onSortYearChange(e.target.value === '' ? null : Number(e.target.value))}>
             <option value="">-Year-</option>
                 {savedYears.map(year => (
@@ -41,13 +40,13 @@ function SortBar({savedPlatforms, savedYears, savedGenres, savedRatings, sortPla
         </select>
         </div>
 
-        <div className='field-wrapper'>
+        <div className={`field-wrapper ${staticEffect1 === 2 ? 'static-lines' : ''} ${staticEffect2 === 2 ? 'static-colour' : ''}`}>
         <button className='alphabet-sort' onClick={() => onSortTitleChange('a-z')}>
             A-Z
         </button>
         </div>
 
-        <div className='field-wrapper'>
+        <div className={`field-wrapper ${staticEffect1 === 3 ? 'static-lines' : ''} ${staticEffect2 === 3 ? 'static-colour' : ''}`}>
         <button className='alphabet-sort' value="alphabet-sort__reverse" onClick={() => onSortTitleChange('z-a')}>
             Z-A
         </button>
@@ -55,7 +54,7 @@ function SortBar({savedPlatforms, savedYears, savedGenres, savedRatings, sortPla
 
 
         <div>/</div>
-        <div className='field-wrapper'>
+        <div className={`field-wrapper ${staticEffect1 === 4 ? 'static-lines' : ''} ${staticEffect2 === 4 ? 'static-colour' : ''}`}>
         <select className='genre-select' onChange={(e) => onSortGenreChange(e.target.value === '' ? null : e.target.value)}>
             <option value="">-Genre-</option>
                 {savedGenres.map(genre => (
@@ -64,7 +63,7 @@ function SortBar({savedPlatforms, savedYears, savedGenres, savedRatings, sortPla
         </select>
         </div>
         
-        <div className='field-wrapper'>
+        <div className={`field-wrapper ${staticEffect1 === 5 ? 'static-lines' : ''} ${staticEffect2 === 5 ? 'static-colour' : ''}`}>
         <select className='rating-select' onChange={(e) => onSortRatingChange(e.target.value === '' ? null : e.target.value)}>
             <option value="">-Rating-</option> 
             <option value="Top 10">Top 10</option>

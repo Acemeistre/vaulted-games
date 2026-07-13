@@ -1,6 +1,7 @@
 import './GameRow.css'
 import { useState } from 'react'
 import useTypewriter from '../../../hooks/useTypewriter'
+import useStaticEffect from '../../../hooks/useStaticEffect'
 
 const genreIcons = {
   Action: 'Action_v1_crossed-swords',
@@ -57,6 +58,9 @@ function GameRow ({platforms, genres, game, removeGame, editingId, setEditingId,
         rating: game.rating,
         rank: game.rank
     })
+
+    const staticEffect1 = useStaticEffect ({ isActive: true, fieldCount: 8, minDelay: 40000, maxDelay: 80000 })
+    const staticEffect2 = useStaticEffect ({ isActive: true, fieldCount: 8, minDelay: 40000, maxDelay: 80000 })
     
     return (
         <div className={`game-row ${isAnimating || isLoading ? 'row-flicker' : ''}`} style={{'--rating-colour': ratingColour[game.rating], animationDelay: `${isLoading ? 8 + ((index + 1) * 0.6) : (index + 1) * 0.6}s`}}>
@@ -134,16 +138,16 @@ function GameRow ({platforms, genres, game, removeGame, editingId, setEditingId,
         </>
             ) : (
                 <>
-            <span className="game__platform">{displayedPlatform}</span>
-            <span className="game__year">{displayedYear}</span>
-            <span className="game__title">{displayedTitle}</span>
-            <span className="game__genre">
+            <span className={`game__platform ${staticEffect1 === 0 ? 'static-lines' : ''} ${staticEffect2 === 0 ? 'static-colour' : ''}`}>{displayedPlatform}</span>
+            <span className={`game__year ${staticEffect1 === 1 ? 'static-lines' : ''} ${staticEffect2 === 1 ? 'static-colour' : ''}`}>{displayedYear}</span>
+            <span className={`game__title ${staticEffect1 === 2 ? 'static-lines' : ''} ${staticEffect2 === 2 ? 'static-colour' : ''}`}>{displayedTitle}</span>
+            <span className={`game__genre ${staticEffect1 === 3 ? 'static-lines' : ''} ${staticEffect2 === 3 ? 'static-colour' : ''}`}>
                 {displayedGenre.length > 0 && <img src={`/src/assets/${iconFile}.png`} />}
                 {displayedGenre}</span>
-            <span className="game__rating">{displayedRating}</span>
-            <span className="game__rank">{displayedRank}</span>
-            <button className="game__edit" onClick={() => setEditingId(game.id)}>/</button>
-            <button className="game__remove" onClick={() => removeGame(game.id)}>X</button>
+            <span className={`game__rating ${staticEffect1 === 4 ? 'static-lines' : ''} ${staticEffect2 === 4 ? 'static-colour' : ''}`}>{displayedRating}</span>
+            <span className={`game__rank ${staticEffect1 === 5 ? 'static-lines' : ''} ${staticEffect2 === 5 ? 'static-colour' : ''}`}>{displayedRank}</span>
+            <button className={`game__edit ${staticEffect1 === 6 ? 'static-lines' : ''} ${staticEffect2 === 6 ? 'static-colour' : ''}`} onClick={() => setEditingId(game.id)}>/</button>
+            <button className={`game__remove ${staticEffect1 === 7 ? 'static-lines' : ''} ${staticEffect2 === 7 ? 'static-colour' : ''}`} onClick={() => removeGame(game.id)}>X</button>
     </>
             )}
             </div>

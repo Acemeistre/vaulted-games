@@ -50,6 +50,7 @@ select, input, button {
 
 .sort-bar__hidden-header {
     color: transparent;
+    text-shadow: none;
 }
 
 @media (max-width: 1600px) {

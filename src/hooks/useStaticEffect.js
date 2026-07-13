@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-function useStaticEffect({ isActive, fieldCount }) {
+function useStaticEffect({ isActive, fieldCount, minDelay = 20000, maxDelay = 40000 }) {
     const [activeField, setActiveField] = useState(null);
 
     useEffect(() => {
@@ -9,7 +9,8 @@ function useStaticEffect({ isActive, fieldCount }) {
         let timeout
     
         const cycle = () => {
-        const randomDelay = (Math.random() * 40000) + 20000
+            console.log('cycle firing in useStaticEffect')
+        const randomDelay = (Math.random() * (maxDelay - minDelay)) + minDelay
         const randomDuration = (Math.random() * 4000) + 2000
             timeout = setTimeout(() => {
                 const randomField = Math.floor(Math.random() * fieldCount)

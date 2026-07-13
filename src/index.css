@@ -8,6 +8,24 @@ h1, h2, h3 {
   font-family: 'Press Start 2P', serif;
 }
 
+h1, h2 {
+      text-shadow:
+        0 0 4px #80FF10,
+        0 0 10px #39ff14;
+}
+
+h3 {
+    text-shadow:
+        0 0 4px white,
+        0 0 10px white;
+}
+
+.header__description {
+    text-shadow:
+    0 0 4px white,
+    0 0 10px white;
+}
+
 .game__platform,
 .game__year,
 .game__title,
@@ -19,6 +37,7 @@ h1, h2, h3 {
 .field-wrapper,
 .ratings-key__wrapper {
     position: relative;
+    width: 100%;
 }
 
 .game__platform::after,
@@ -110,13 +129,13 @@ radial-gradient(ellipse at center, transparent 50%, rgba(0,0,0,0.4) 100%);
 }
 
 .static-colour {
-    animation: colourshift 0.15s steps(3) infinite;
+    animation: colourshift 0.25s steps(3) infinite;
 }
 
 @keyframes colourshift {
     0%   { filter: brightness(1) hue-rotate(0deg); }
-    33%  { filter: hue-rotate(90deg) brightness(1.3); }
-    66%  { filter: hue-rotate(-45deg) brightness(0.8); }
+    33%  { filter: hue-rotate(45deg) brightness(1.1); }
+    66%  { filter: hue-rotate(-20deg) brightness(0.9); }
     100% { filter: brightness(1) hue-rotate(0deg); }
 }
 

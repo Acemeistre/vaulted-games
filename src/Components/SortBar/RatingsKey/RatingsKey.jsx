@@ -1,8 +1,12 @@
 import './RatingsKey.css'
+import useStaticEffect from '../../../hooks/useStaticEffect'
 
 function RatingsKey  ({ isLoading }) {
+
+    const staticEffect1 = useStaticEffect ({ isActive: true, fieldCount: 1 })
+    const staticEffect2 = useStaticEffect ({ isActive: true, fieldCount: 1 })
     return (
-        <div className={`ratings-key__wrapper ${isLoading ? 'row-flicker' : ''}`} style={{animationDelay: '6.3s'}}>
+        <div className={`ratings-key__wrapper ${staticEffect1 === 0 ? 'static-lines' : ''} ${staticEffect2 === 0 ? 'static-colour' : ''} ${isLoading ? 'row-flicker' : ''}`} style={{animationDelay: '6.3s'}}>
             <div className="ratings-key__names">
                 <div className='ratings-key__row'><p>Top 10</p><div className="purple rating-swatch"></div></div>
                 <div className='ratings-key__row'><p>Top 20</p><div className="blue rating-swatch"></div></div>

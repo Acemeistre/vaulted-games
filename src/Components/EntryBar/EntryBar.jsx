@@ -41,7 +41,6 @@ function EntryBar ({platforms, genres, selectedPlatform, year, title, selectedGe
                 ))}
         </select>
         </div>
-        </div>
         
         <div className={`field-wrapper ${staticEffect1 === 1 ? 'static-lines' : ''} ${staticEffect2 === 1 ? 'static-colour' : ''}`}>
         <input className="entry-bar__year-row" min="1970" max={currentYear} type="number" placeholder="Year" onChange={(e) => onYearChange(e.target.value)}/>
@@ -96,7 +95,7 @@ function EntryBar ({platforms, genres, selectedPlatform, year, title, selectedGe
         ))}
         </select>
         </div>
-
+        
         <div className={`field-wrapper ${staticEffect1 === 6 ? 'static-lines' : ''} ${staticEffect2 === 6 ? 'static-colour' : ''}`}>
         <button 
         className={`continue-btn ${isReadyToContinue ? 'continue-btn--active' : 'continue-btn--disabled'}`}
@@ -114,6 +113,7 @@ function EntryBar ({platforms, genres, selectedPlatform, year, title, selectedGe
           >
             +
           </button>
+          </div>
           </div>
         </div>    
   );

@@ -2,12 +2,12 @@ import './Header.css'
 import useStaticEffect from '../../hooks/useStaticEffect.js'
 
 function Header ({ isLoading }) {
-    const staticEffect1 = useStaticEffect ({ isActive: true })
-    const staticEffect2 = useStaticEffect ({ isActive: true })
+    const staticEffect1 = useStaticEffect ({ isActive: true, fieldCount: 1 })
+    const staticEffect2 = useStaticEffect ({ isActive: true, fieldCount: 1 })
 
     return (
         <header className={`container ${isLoading ? 'row-flicker' : ''}`} style={{animationDelay: '0.3s'}}>
-            <div className={`field-wrapper ${staticEffect1 ? 'static-lines' : ''} ${staticEffect2 ? 'static-colour' : ''}`}>
+            <div className={`field-wrapper ${staticEffect1 === 0 ? 'static-lines' : ''} ${staticEffect2 === 0 ? 'static-colour' : ''}`}>
                 <div className="header__title">
                     <h1 className="header__title-text">
                     Vaulted Games
