@@ -7,8 +7,8 @@ function EntryBar ({platforms, genres, selectedPlatform, year, title, selectedGe
     
     const currentYear = new Date().getFullYear()
 
-    const staticEffect1 = useStaticEffect ({ isActive: true })
-    const staticEffect2 = useStaticEffect ({ isActive: true })
+    const staticEffect1 = useStaticEffect ({ isActive: true, fieldCount: 7 })
+    const staticEffect2 = useStaticEffect ({ isActive: true, fieldCount: 7 })
 
     return (
     <div className={`section-wrapper ${isLoading ? 'row-flicker' : ''}`} style={{animationDelay: '4.3s'}}>
@@ -22,7 +22,7 @@ function EntryBar ({platforms, genres, selectedPlatform, year, title, selectedGe
         <h2>Rank</h2>
         <div></div>
 
-        <div className={`field-wrapper ${staticEffect1 ? 'static-lines' : ''} ${staticEffect2 ? 'static-colour' : ''}`}>
+        <div className={`field-wrapper ${staticEffect1 === 0 ? 'static-lines' : ''} ${staticEffect2 === 0 ? 'static-colour' : ''}`}>
         <select className='platform-select' onChange={(e) => onPlatformChange(e.target.value)}>
             <option value="">-Platform-</option>
             {platforms.map(item => (
@@ -41,16 +41,17 @@ function EntryBar ({platforms, genres, selectedPlatform, year, title, selectedGe
                 ))}
         </select>
         </div>
+        </div>
         
-        <div className='field-wrapper'>
+        <div className={`field-wrapper ${staticEffect1 === 1 ? 'static-lines' : ''} ${staticEffect2 === 1 ? 'static-colour' : ''}`}>
         <input className="entry-bar__year-row" min="1970" max={currentYear} type="number" placeholder="Year" onChange={(e) => onYearChange(e.target.value)}/>
         </div>
         
-        <div className='field-wrapper'>
+        <div className={`field-wrapper ${staticEffect1 === 2 ? 'static-lines' : ''} ${staticEffect2 === 2 ? 'static-colour' : ''}`}>
         <input className="entry-bar__title-row" type="text" placeholder="Title" onChange={(e) => onTitleChange(e.target.value)}/>
         </div>
 
-        <div className='field-wrapper'>
+        <div className={`field-wrapper ${staticEffect1 === 3 ? 'static-lines' : ''} ${staticEffect2 === 3 ? 'static-colour' : ''}`}>
         <select className='genre-select' onChange={(e) => onGenreChange(e.target.value)}>
             <option value="">-Genre-</option>
             {genres.map(item => (
@@ -70,7 +71,7 @@ function EntryBar ({platforms, genres, selectedPlatform, year, title, selectedGe
         </select>
         </div>
         
-        <div className='field-wrapper'>
+        <div className={`field-wrapper ${staticEffect1 === 4 ? 'static-lines' : ''} ${staticEffect2 === 4 ? 'static-colour' : ''}`}>
         <select className='rating-select' onChange={(e) => onRatingChange(e.target.value)}>
             <option value="">-Rating-</option> 
             <option value="Top 10">Top 10</option>
@@ -83,7 +84,7 @@ function EntryBar ({platforms, genres, selectedPlatform, year, title, selectedGe
         </select>
         </div>
         
-        <div className='field-wrapper'>
+        <div className={`field-wrapper ${staticEffect1 === 5 ? 'static-lines' : ''} ${staticEffect2 === 5 ? 'static-colour' : ''}`}>
         <select
             value={selectedRank ?? ''}  
             className='rank-select'
@@ -96,7 +97,7 @@ function EntryBar ({platforms, genres, selectedPlatform, year, title, selectedGe
         </select>
         </div>
 
-        <div className='field-wrapper'>
+        <div className={`field-wrapper ${staticEffect1 === 6 ? 'static-lines' : ''} ${staticEffect2 === 6 ? 'static-colour' : ''}`}>
         <button 
         className={`continue-btn ${isReadyToContinue ? 'continue-btn--active' : 'continue-btn--disabled'}`}
         onClick={isReadyToContinue ? addGame : null}
@@ -115,7 +116,6 @@ function EntryBar ({platforms, genres, selectedPlatform, year, title, selectedGe
           </button>
           </div>
         </div>    
-    </div>
   );
 }
 

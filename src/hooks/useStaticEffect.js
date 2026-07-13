@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
-function useStaticEffect({ isActive }) {
-    const [staticEffect, setStaticEffect] = useState(false);
+function useStaticEffect({ isActive, fieldCount }) {
+    const [activeField, setActiveField] = useState(null);
 
     useEffect(() => {
         if (!isActive) return
@@ -12,9 +12,10 @@ function useStaticEffect({ isActive }) {
         const randomDelay = (Math.random() * 40000) + 20000
         const randomDuration = (Math.random() * 4000) + 2000
             timeout = setTimeout(() => {
-                setStaticEffect(true)
+                const randomField = Math.floor(Math.random() * fieldCount)
+                setActiveField(randomField)
                 setTimeout(() => {
-                    setStaticEffect(false)
+                    setActiveField(null)
                     cycle()
                 }, randomDuration)
             }, randomDelay)       
@@ -24,7 +25,7 @@ function useStaticEffect({ isActive }) {
         return () => clearTimeout(timeout)
     }, [isActive])
 
-    return staticEffect
+    return activeField
 }
 
 export default useStaticEffect
