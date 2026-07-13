@@ -1,11 +1,15 @@
 import RatingsKey from './RatingsKey/RatingsKey';
 import './SortBar.css';
 import { useState } from 'react';
+import useStaticEffect from '../../hooks/useStaticEffect';
 
 function SortBar({savedPlatforms, savedYears, savedGenres, savedRatings, sortPlatform, onSortPlatformChange, sortYear, onSortYearChange, sortTitle, onSortTitleChange, sortGenre, onSortGenreChange, sortRating, onSortRatingChange, isLoading }) {
     
     const currentYear = new Date().getFullYear()
     
+    const staticEffect1 = useStaticEffect ({ isActive: true })
+    const staticEffect2 = useStaticEffect ({ isActive: true })
+
     return (
     <div className={`section-wrapper ${isLoading ? 'row-flicker' : ''}`} style={{animationDelay: '6.3s'}}>
         <h3>Sort</h3>
@@ -19,7 +23,7 @@ function SortBar({savedPlatforms, savedYears, savedGenres, savedRatings, sortPla
         <h2>Rating</h2>
         <h2>Ratings key:</h2>
         
-        <div className='field-wrapper'>
+        <div className={`field-wrapper ${staticEffect1 ? 'static-lines' : ''} ${staticEffect2 ? 'static-colour' : ''}`}>
         <select className='platform-select' onChange={(e) => onSortPlatformChange(e.target.value === '' ? null : e.target.value)}>
             <option value="">-Platform-</option>
                 {savedPlatforms.map(platform => (

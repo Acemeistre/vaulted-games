@@ -1,10 +1,14 @@
 import './EntryBar.css'
+import useStaticEffect from '../../hooks/useStaticEffect'
 
 function EntryBar ({platforms, genres, selectedPlatform, year, title, selectedGenre, selectedRating, selectedRank, onPlatformChange, onYearChange, onTitleChange, onGenreChange, onRankChange, onRatingChange, addGame, isLoading }) {
   
     const isReadyToContinue = selectedPlatform !== null && year !== '' && title !== '' && selectedGenre !== null && (selectedRating === 'Top 10' || selectedRating === 'Top 20' ? selectedRank !== null : true)
     
     const currentYear = new Date().getFullYear()
+
+    const staticEffect1 = useStaticEffect ({ isActive: true })
+    const staticEffect2 = useStaticEffect ({ isActive: true })
 
     return (
     <div className={`section-wrapper ${isLoading ? 'row-flicker' : ''}`} style={{animationDelay: '4.3s'}}>
@@ -18,7 +22,7 @@ function EntryBar ({platforms, genres, selectedPlatform, year, title, selectedGe
         <h2>Rank</h2>
         <div></div>
 
-        <div className='field-wrapper'>
+        <div className={`field-wrapper ${staticEffect1 ? 'static-lines' : ''} ${staticEffect2 ? 'static-colour' : ''}`}>
         <select className='platform-select' onChange={(e) => onPlatformChange(e.target.value)}>
             <option value="">-Platform-</option>
             {platforms.map(item => (
