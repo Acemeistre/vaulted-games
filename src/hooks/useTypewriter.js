@@ -3,9 +3,13 @@ import { useEffect, useState } from "react";
 function useTypewriter ({ text, isActive, delay = 0 }) {
     const [displayedText, setDisplayedText] = useState('');
 
+
 useEffect(() => {
-    if (!isActive) return
-    
+    if (!isActive) {
+        setDisplayedText(text)
+    return
+    }
+
     setDisplayedText('')
     const startTimeout = setTimeout(() => {
         const interval = setInterval(() => { 

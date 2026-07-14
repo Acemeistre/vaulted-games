@@ -1,16 +1,22 @@
 import './Header.css'
 import useStaticEffect from '../../hooks/useStaticEffect.js'
+import useLetterFlicker from '../../hooks/useLetterFlicker.js'
 
 function Header ({ isLoading }) {
     const staticEffect1 = useStaticEffect ({ isActive: true, fieldCount: 1 })
     const staticEffect2 = useStaticEffect ({ isActive: true, fieldCount: 1 })
+    const flickerIndex = useLetterFlicker ({ text: 'Vaulted Games', isActive: true })
 
     return (
         <header className={`container ${isLoading ? 'row-flicker' : ''}`} style={{animationDelay: '0.3s'}}>
             <div className={`field-wrapper ${staticEffect1 === 0 ? 'static-lines' : ''} ${staticEffect2 === 0 ? 'static-colour' : ''}`}>
                 <div className="header__title">
                     <h1 className="header__title-text">
-                    Vaulted Games
+                      {'Vaulted Games'.split('').map((char, i) => (
+                        <span key={i} className={flickerIndex === i ? 'letter-dim' : ''}>
+                        {char === ' ' ? '\u00A0' : char}
+                        </span>
+                        ))}
                     </h1>
                 </div>
             </div>

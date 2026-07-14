@@ -2,6 +2,7 @@ import RatingsKey from './RatingsKey/RatingsKey';
 import './SortBar.css';
 import { useState } from 'react';
 import useStaticEffect from '../../hooks/useStaticEffect';
+import useLetterFlicker from '../../hooks/useLetterFlicker';
 
 function SortBar({savedPlatforms, savedYears, savedGenres, savedRatings, sortPlatform, onSortPlatformChange, sortYear, onSortYearChange, sortTitle, onSortTitleChange, sortGenre, onSortGenreChange, sortRating, onSortRatingChange, isLoading }) {
     

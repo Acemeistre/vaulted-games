@@ -1,7 +1,8 @@
 import './GameRow.css'
-import { useState } from 'react'
+import { useState, useEffect, useMemo } from 'react'
 import useTypewriter from '../../../hooks/useTypewriter'
 import useStaticEffect from '../../../hooks/useStaticEffect'
+
 
 const genreIcons = {
   Action: 'Action_v1_crossed-swords',
@@ -33,18 +34,27 @@ const ratingColour = {
 
 function GameRow ({platforms, genres, game, removeGame, editingId, setEditingId, saveEdit, isAnimating, setIsAnimating, index, isLoading }) {
 
-    const displayedPlatform = useTypewriter({ text: String(game.platform), isActive: isAnimating || isLoading, delay: ((index + 1) * 0.6) + 2 + (0 * 0.5) })
-    const displayedYear = useTypewriter({ text: String(game.year), isActive: isAnimating || isLoading, delay: ((index + 1) * 0.6) + 2 + (1 * 0.5)})
-    const displayedTitle = useTypewriter({ text: String(game.title), isActive: isAnimating || isLoading, delay: ((index + 1) * 0.6) + 2 + (2 * 0.5)})
-    const displayedGenre = useTypewriter({ text: String(game.genre), isActive: isAnimating || isLoading, delay: ((index + 1) * 0.6) + 2 + (6 * 0.5)})
-    const displayedRating = useTypewriter({ text: String(game.rating), isActive: isAnimating || isLoading, delay: ((index + 1) * 0.6) + 2 + (7.5 * 0.5)})
-    const displayedRank = useTypewriter({ text: game.rank !== null ? String(game.rank) : '', isActive: isAnimating || isLoading, delay: ((index + 1) * 0.6) + 2 + (9 * 0.5)})
+    const [isMounted, setIsMounted] = useState(false)
+
+useEffect(() => {
+    setIsMounted(true)
+}, [])
+
+    const rowDelay = useMemo(() => isLoading ? (8 + ((index + 1) * 0.6)) + 2 : ((index + 1) * 0.6) + 2, [index, isLoading])
+    console.log('platform delay:', rowDelay + (0 * 0.5))
+    const displayedPlatform = useTypewriter({ text: String(game.platform), isActive: isAnimating || isLoading || isMounted, delay: rowDelay + (0 * 0.5) })
+    const displayedYear = useTypewriter({ text: String(game.year), isActive: isAnimating || isLoading || isMounted, delay: rowDelay + (1 * 0.5)})
+    const displayedTitle = useTypewriter({ text: String(game.title), isActive: isAnimating || isLoading || isMounted, delay: rowDelay + (2 * 0.5)})
+    const displayedGenre = useTypewriter({ text: String(game.genre), isActive: isAnimating || isLoading || isMounted, delay: rowDelay + (6 * 0.5)})
+    const displayedRating = useTypewriter({ text: String(game.rating), isActive: isAnimating || isLoading || isMounted, delay: rowDelay + (7.5 * 0.5)})
+    const displayedRank = useTypewriter({ text: game.rank !== null ? String(game.rank) : '', isActive: isAnimating || isLoading || isMounted, delay: rowDelay + (9 * 0.5)})
+
 
     const currentYear = new Date().getFullYear()
 
     const genrePixelArt = (subgenre) => {     
-      const matchedCategory = genres.find(genre => genre.subgenres.includes(subgenre)) 
-    return matchedCategory ? matchedCategory.category : null
+    const matchedCategory = genres.find(genre => genre.subgenres.includes(subgenre)) 
+        return matchedCategory ? matchedCategory.category : null
     }
 
     const iconFile = genreIcons[genrePixelArt(game.genre)]

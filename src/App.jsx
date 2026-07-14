@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useMemo } from 'react'
 import './App.css'
 import Header from './Components/Header/Header'
 import EntryBar from './Components/EntryBar/EntryBar'
@@ -24,7 +24,7 @@ function App() {
 
     const [editingId, setEditingId] = useState(null);
 
-    const [isLoading, setIsLoading] = useState(false);
+
     const [isAnimating, setIsAnimating] = useState(false)
 
     const [games, setGames] = useState(() => {
@@ -41,19 +41,20 @@ function App() {
       localStorage.setItem('games', JSON.stringify(games))
     }, [games])
 
-    useEffect(() => {
-      const hasVisited = localStorage.getItem('hasVisited')
-      if (!hasVisited) {
-        setIsLoading(true)
-        localStorage.setItem('hasVisited', 'true')
-      const timeout = setTimeout(() => {
-        setIsLoading(false)
-      }, 6300 + (filteredGames.length * 600) + 2000)
-      return () => clearTimeout(timeout)
-      }
-    }, [])
+    const filteredGames = useMemo(() => games.filter(game => {
+      return (sortPlatform === null ? true : sortPlatform === game.platform) && 
+             (sortYear === null ? true : Number(sortYear) === game.year) && 
+             (sortGenre === null ? true : sortGenre === game.genre) && 
+             (sortRating === null ? true : (sortRating === 'Top 20' ? game.rating === 'Top 20' || game.rating === 'Top 10' : sortRating === game.rating))
+          }) 
+        .sort((a, b) => {
+        if (sortTitle === 'a-z') return a.title.localeCompare(b.title)
+        if (sortTitle === 'z-a') return b.title.localeCompare(a.title)
+      return 0
+    }), [games, sortPlatform, sortYear, sortTitle, sortGenre, sortRating])
 
     useEffect(() => {
+      if (sortPlatform === null && sortYear === null && sortTitle === null && sortGenre === null && sortRating === null) return
       setIsAnimating(false)
       const startTimeout = setTimeout(() => {
         setIsAnimating(true)
@@ -67,17 +68,26 @@ function App() {
       }
     }, [sortPlatform, sortYear, sortTitle, sortGenre, sortRating])
 
-    const filteredGames = games.filter(game => {
-      return (sortPlatform === null ? true : sortPlatform === game.platform) && 
-             (sortYear === null ? true : Number(sortYear) === game.year) && 
-             (sortGenre === null ? true : sortGenre === game.genre) && 
-             (sortRating === null ? true : (sortRating === 'Top 20' ? game.rating === 'Top 20' || game.rating === 'Top 10' : sortRating === game.rating))
-          }) 
-        .sort((a, b) => {
-        if (sortTitle === 'a-z') return a.title.localeCompare(b.title)
-        if (sortTitle === 'z-a') return b.title.localeCompare(a.title)
-      return 0
-    })
+const [isLoading, setIsLoading] = useState(() => {
+  return !localStorage.getItem('hasVisited')
+})
+
+useEffect(() => {
+  if (!localStorage.getItem('hasVisited')) {
+    const animatingTimeout = setTimeout(() => {
+      localStorage.setItem('hasVisited', 'true')
+      setIsAnimating(true)
+    }, 6300)
+    const loadingTimeout = setTimeout(() => {
+      setIsLoading(false)
+      setIsAnimating(false)
+    }, 6300 + (filteredGames.length * 600) + 2000 + 3000 + 2500)
+    return () => {
+      clearTimeout(animatingTimeout)
+      clearTimeout(loadingTimeout)
+    }
+  }
+}, [])
 
     const saveEdit = (updatedGame) => {
         setGames(games.map(game => game.id === updatedGame.id ? updatedGame : game))

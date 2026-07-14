@@ -1,5 +1,6 @@
 import './EntryBar.css'
 import useStaticEffect from '../../hooks/useStaticEffect'
+import useLetterFlicker from '../../hooks/useLetterFlicker'
 
 function EntryBar ({platforms, genres, selectedPlatform, year, title, selectedGenre, selectedRating, selectedRank, onPlatformChange, onYearChange, onTitleChange, onGenreChange, onRankChange, onRatingChange, addGame, isLoading }) {
   

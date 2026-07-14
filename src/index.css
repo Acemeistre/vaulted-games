@@ -114,6 +114,12 @@ radial-gradient(ellipse at center, transparent 50%, rgba(0,0,0,0.4) 100%);
     animation: flicker 2s forwards;
 }
 
+.letter-dim {
+    opacity: 0.2;
+    text-shadow: none;
+    transition: opacity 0.05s, text-shadow 0.05s;
+}
+
 .static-lines::after {
     content: '';
     position: absolute;
