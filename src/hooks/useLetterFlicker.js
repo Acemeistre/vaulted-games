@@ -1,18 +1,20 @@
 import { useEffect, useState } from "react";
 
-function useLetterFlicker({ text, isActive }) {
+function useLetterFlicker({ text, isActive, minDelay = 2000, maxDelay = 4000 }) {
     const [activeField, setActiveField] = useState(null);
 
     useEffect(() => {
+        console.log('useLetterFlicker useEffect fired, isActive:', isActive)
         if (!isActive) return
 
         let timeout
     
         const cycle = () => {
             
-        const randomDelay = (Math.random() * 3000) + 500
-        const randomDuration = (Math.random() * 500) + 75
+        const randomDelay = (Math.random() * (maxDelay - minDelay)) + minDelay
+        const randomDuration = (Math.random() * 600) + 100
             timeout = setTimeout(() => {
+                console.log('setTimeout fired')
                 const randomField = Math.floor(Math.random() * text.length)
                 setActiveField(randomField)
                 setTimeout(() => {
@@ -24,7 +26,7 @@ function useLetterFlicker({ text, isActive }) {
         cycle()
     
         return () => clearTimeout(timeout)
-    }, [isActive])
+    }, [])
 
     return activeField
 }

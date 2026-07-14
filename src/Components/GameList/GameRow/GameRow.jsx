@@ -41,7 +41,6 @@ useEffect(() => {
 }, [])
 
     const rowDelay = useMemo(() => isLoading ? (8 + ((index + 1) * 0.6)) + 2 : ((index + 1) * 0.6) + 2, [index, isLoading])
-    console.log('platform delay:', rowDelay + (0 * 0.5))
     const displayedPlatform = useTypewriter({ text: String(game.platform), isActive: isAnimating || isLoading || isMounted, delay: rowDelay + (0 * 0.5) })
     const displayedYear = useTypewriter({ text: String(game.year), isActive: isAnimating || isLoading || isMounted, delay: rowDelay + (1 * 0.5)})
     const displayedTitle = useTypewriter({ text: String(game.title), isActive: isAnimating || isLoading || isMounted, delay: rowDelay + (2 * 0.5)})

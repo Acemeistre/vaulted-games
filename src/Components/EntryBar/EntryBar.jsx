@@ -10,17 +10,59 @@ function EntryBar ({platforms, genres, selectedPlatform, year, title, selectedGe
 
     const staticEffect1 = useStaticEffect ({ isActive: true, fieldCount: 7 })
     const staticEffect2 = useStaticEffect ({ isActive: true, fieldCount: 7 })
+    const flickerPlatform = useLetterFlicker({ text: 'Platform', isActive: true, minDelay: 4000, maxDelay: 8000 })
+    const flickerYear = useLetterFlicker({ text: 'Year', isActive: true, minDelay: 4000, maxDelay: 8000 })
+    const flickerTitle = useLetterFlicker({ text: 'Title', isActive: true, minDelay: 4000, maxDelay: 8000 })
+    const flickerGenre = useLetterFlicker({ text: 'Genre', isActive: true, minDelay: 4000, maxDelay: 8000 })
+    const flickerRating = useLetterFlicker({ text: 'Rating', isActive: true, minDelay: 4000, maxDelay: 8000 })
+    const flickerRank = useLetterFlicker({ text: 'Rank', isActive: true, minDelay: 4000, maxDelay: 8000 })
 
     return (
     <div className={`section-wrapper ${isLoading ? 'row-flicker' : ''}`} style={{animationDelay: '4.3s'}}>
     <h3>Entry</h3>
     <div className="entry-bar_container">
-        <h2>Platform</h2>    
-        <h2>Year</h2>     
-        <h2>Title</h2>        
-        <h2>Genre</h2>  
-        <h2>Rating</h2>
-        <h2>Rank</h2>
+        <h2>
+          {'Platform'.split('').map((char, i) => (
+            <span key={i} className={flickerPlatform === i ? 'letter-dim' : ''}>
+                {char === ' ' ? '\u00A0' : char}
+            </span>
+            ))}
+        </h2>    
+        <h2>
+          {'Year'.split('').map((char, i) => (
+            <span key={i} className={flickerYear === i ? 'letter-dim' : ''}>
+                {char === ' ' ? '\u00A0' : char}
+            </span>
+            ))}
+        </h2>     
+                <h2>
+          {'Title'.split('').map((char, i) => (
+            <span key={i} className={flickerTitle === i ? 'letter-dim' : ''}>
+                {char === ' ' ? '\u00A0' : char}
+            </span>
+            ))}
+        </h2>        
+                <h2>
+          {'Genre'.split('').map((char, i) => (
+            <span key={i} className={flickerGenre === i ? 'letter-dim' : ''}>
+                {char === ' ' ? '\u00A0' : char}
+            </span>
+            ))}
+        </h2>  
+                <h2>
+          {'Rating'.split('').map((char, i) => (
+            <span key={i} className={flickerRating === i ? 'letter-dim' : ''}>
+                {char === ' ' ? '\u00A0' : char}
+            </span>
+            ))}
+        </h2>
+                <h2>
+          {'Rank'.split('').map((char, i) => (
+            <span key={i} className={flickerRank === i ? 'letter-dim' : ''}>
+                {char === ' ' ? '\u00A0' : char}
+            </span>
+            ))}
+        </h2>
         <div></div>
 
         <div className={`field-wrapper ${staticEffect1 === 0 ? 'static-lines' : ''} ${staticEffect2 === 0 ? 'static-colour' : ''}`}>

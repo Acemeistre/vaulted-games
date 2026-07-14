@@ -10,18 +10,61 @@ function SortBar({savedPlatforms, savedYears, savedGenres, savedRatings, sortPla
     
     const staticEffect1 = useStaticEffect ({ isActive: true, fieldCount: 6 })
     const staticEffect2 = useStaticEffect ({ isActive: true, fieldCount: 6 })
+    const flickerPlatform = useLetterFlicker({ text: 'Platform', isActive: true, minDelay: 4000, maxDelay: 8000 })
+    const flickerYear = useLetterFlicker({ text: 'Year', isActive: true, minDelay: 4000, maxDelay: 8000 })
+    const flickerTitle = useLetterFlicker({ text: 'Title', isActive: true, minDelay: 4000, maxDelay: 8000 })
+    const flickerGenre = useLetterFlicker({ text: 'Genre', isActive: true, minDelay: 4000, maxDelay: 8000 })
+    const flickerRating = useLetterFlicker({ text: 'Rating', isActive: true, minDelay: 4000, maxDelay: 8000 })
+    const flickerRatingsKey = useLetterFlicker({ text: 'Ratings key:', isActive: true, minDelay: 4000, maxDelay: 8000 })
+
     return (
     <div className={`section-wrapper ${isLoading ? 'row-flicker' : ''}`} style={{animationDelay: '6.3s'}}>
         <h3>Sort</h3>
     <div className="sort-bar_container">
-        <h2>Platform</h2>    
-        <h2>Year</h2>     
-        <h2>Title</h2>        
+                <h2>
+          {'Platform'.split('').map((char, i) => (
+            <span key={i} className={flickerPlatform === i ? 'letter-dim' : ''}>
+                {char === ' ' ? '\u00A0' : char}
+            </span>
+            ))}
+        </h2>    
+                <h2>
+          {'Year'.split('').map((char, i) => (
+            <span key={i} className={flickerYear === i ? 'letter-dim' : ''}>
+                {char === ' ' ? '\u00A0' : char}
+            </span>
+            ))}
+        </h2>     
+                <h2>
+          {'Title'.split('').map((char, i) => (
+            <span key={i} className={flickerTitle === i ? 'letter-dim' : ''}>
+                {char === ' ' ? '\u00A0' : char}
+            </span>
+            ))}
+        </h2>        
         <h2 className="sort-bar__hidden-header">Title</h2>
         <h2></h2>  
-        <h2>Genre</h2>
-        <h2>Rating</h2>
-        <h2>Ratings key:</h2>
+                <h2>
+          {'Genre'.split('').map((char, i) => (
+            <span key={i} className={flickerGenre === i ? 'letter-dim' : ''}>
+                {char === ' ' ? '\u00A0' : char}
+            </span>
+            ))}
+        </h2>
+                <h2>
+          {'Rating'.split('').map((char, i) => (
+            <span key={i} className={flickerRating === i ? 'letter-dim' : ''}>
+                {char === ' ' ? '\u00A0' : char}
+            </span>
+            ))}
+        </h2>
+                <h2>
+          {'Ratings key:'.split('').map((char, i) => (
+            <span key={i} className={flickerRatingsKey === i ? 'letter-dim' : ''}>
+                {char === ' ' ? '\u00A0' : char}
+            </span>
+            ))}
+        </h2>
         
         <div className={`field-wrapper ${staticEffect1 === 0 ? 'static-lines' : ''} ${staticEffect2 === 0 ? 'static-colour' : ''}`}>
         <select className='platform-select' onChange={(e) => onSortPlatformChange(e.target.value === '' ? null : e.target.value)}>
