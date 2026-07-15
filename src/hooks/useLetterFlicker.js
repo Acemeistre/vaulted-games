@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-function useLetterFlicker({ text, isActive, minDelay = 2000, maxDelay = 4000 }) {
+function useLetterFlicker({ text, isActive, minDelay = 4000, maxDelay = 8000 }) {
     const [activeField, setActiveField] = useState(null);
 
     useEffect(() => {
