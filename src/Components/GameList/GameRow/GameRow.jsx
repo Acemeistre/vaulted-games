@@ -31,6 +31,16 @@ const ratingColour = {
     DNF: '#6C2418'
 }
 
+const platformColours = {
+  Nintendo: { bg: '#E4000F', text: '#FFD700' },
+  PlayStation: { bg: '#00439C', text: '#ffffff' },
+  Xbox: { bg: '#107C10', text: '#ffffff' },
+  PC: { bg: '#6A0DAD', text: '#ffffff' },
+  Sega: { bg: '#1a4b9c', text: '#ffffff' },
+  Atari: { bg: '#FF6B00', text: '#0000FF' },
+  Mobile: { bg: '#D3D3D3', text: '#000000' },
+  Other: { bg: '#FFD700', text: '#FF0000' }
+}
 
 function GameRow ({platforms, genres, game, removeGame, editingId, setEditingId, saveEdit, isAnimating, setIsAnimating, index, isLoading }) {
 
@@ -56,10 +66,16 @@ useEffect(() => {
         return matchedCategory ? matchedCategory.category : null
     }
 
+    const brandColours = (consoles) => {
+        const matchedPlatform = platforms.find(b => b.consoles.includes(consoles))
+        return matchedPlatform ? matchedPlatform.brand : null
+    }
+
     const iconFile = genreIcons[genrePixelArt(game.genre)]
 
     const isEditing = editingId === game.id
     const [editData, setEditData] = useState({
+        id: game.id,
         platform: game.platform,
         year: game.year,
         title: game.title,
@@ -147,7 +163,12 @@ useEffect(() => {
         </>
             ) : (
                 <>
-            <span className={`game__platform ${staticEffect1 === 0 ? 'static-lines' : ''} ${staticEffect2 === 0 ? 'static-colour' : ''}`}>{displayedPlatform}</span>
+            <span className={`game__platform ${staticEffect1 === 0 ? 'static-lines' : ''} ${staticEffect2 === 0 ? 'static-colour' : ''}`}
+                style={{
+                    backgroundColor: platformColours[brandColours(game.platform)]?.bg,
+                    color:platformColours[brandColours(game.platform)]?.text
+                    }}
+            >{displayedPlatform}</span>
             <span className={`game__year ${staticEffect1 === 1 ? 'static-lines' : ''} ${staticEffect2 === 1 ? 'static-colour' : ''}`}>{displayedYear}</span>
             <span className={`game__title ${staticEffect1 === 2 ? 'static-lines' : ''} ${staticEffect2 === 2 ? 'static-colour' : ''}`}>{displayedTitle}</span>
             <span className={`game__genre ${staticEffect1 === 3 ? 'static-lines' : ''} ${staticEffect2 === 3 ? 'static-colour' : ''}`}>

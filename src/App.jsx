@@ -24,7 +24,6 @@ function App() {
 
     const [editingId, setEditingId] = useState(null);
 
-
     const [isAnimating, setIsAnimating] = useState(false)
 
     const [games, setGames] = useState(() => {
