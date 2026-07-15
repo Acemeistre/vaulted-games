@@ -33,10 +33,10 @@ const ratingColour = {
 
 const platformColours = {
   Nintendo: { bg: '#E4000F', text: '#FFD700' },
-  PlayStation: { bg: '#00439C', text: '#ffffff' },
+  PlayStation: { bg: '#003087', text: '#ffffff' },
   Xbox: { bg: '#107C10', text: '#ffffff' },
   PC: { bg: '#6A0DAD', text: '#ffffff' },
-  Sega: { bg: '#1a4b9c', text: '#ffffff' },
+  Sega: { bg: '#2563EB', text: '#ffffff' },
   Atari: { bg: '#FF6B00', text: '#0000FF' },
   Mobile: { bg: '#D3D3D3', text: '#000000' },
   Other: { bg: '#FFD700', text: '#FF0000' }
@@ -50,7 +50,12 @@ useEffect(() => {
     setIsMounted(true)
 }, [])
 
-    const rowDelay = useMemo(() => isLoading ? (8 + ((index + 1) * 0.6)) + 2 : ((index + 1) * 0.6) + 2, [index, isLoading])
+   const rowDelay = useMemo(() => {
+  if (!isAnimating && !isLoading) return 0
+  return isLoading ? (8 + ((index + 1) * 0.6)) + 2 : ((index + 1) * 0.6) + 2
+}, [index, isLoading, isAnimating])
+    
+    
     const displayedPlatform = useTypewriter({ text: String(game.platform), isActive: isAnimating || isLoading || isMounted, delay: rowDelay + (0 * 0.5) })
     const displayedYear = useTypewriter({ text: String(game.year), isActive: isAnimating || isLoading || isMounted, delay: rowDelay + (1 * 0.5)})
     const displayedTitle = useTypewriter({ text: String(game.title), isActive: isAnimating || isLoading || isMounted, delay: rowDelay + (2 * 0.5)})
