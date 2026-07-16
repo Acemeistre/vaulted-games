@@ -38,7 +38,11 @@ function App() {
     const savedYears = Array.from(new Set(games.map(game => game.year)));
 
     useEffect(() => {
+      try {
       localStorage.setItem('games', JSON.stringify(games))
+      } catch (e) {
+        console.error('localStorage unavailable:', e)
+      }
     }, [games])
 
     const filteredGames = useMemo(() => games.filter(game => {
@@ -73,9 +77,14 @@ const [isLoading, setIsLoading] = useState(() => {
 })
 
 useEffect(() => {
+  try{
   if (!localStorage.getItem('hasVisited')) {
     const animatingTimeout = setTimeout(() => {
+      try {
       localStorage.setItem('hasVisited', 'true')
+      } catch (e) {
+        console.error('localStorage unavailable:', e)
+      }
       setIsAnimating(true)
     }, 6300)
     const loadingTimeout = setTimeout(() => {
@@ -85,7 +94,10 @@ useEffect(() => {
     return () => {
       clearTimeout(animatingTimeout)
       clearTimeout(loadingTimeout)
+      }
     }
+  } catch (e) {
+    console.error('localStorage unavailable:', e)
   }
 }, [])
 
@@ -178,6 +190,7 @@ useEffect(() => {
       isAnimating={isAnimating}
       setIsAnimating={setIsAnimating}
       isLoading={isLoading}
+      totalGames={games.length}
     />
     <MarginDecoration 
       games={filteredGames.length}

@@ -1,12 +1,15 @@
 import GameRow from './GameRow/GameRow'
 import './GameList.css'
 
-function GameList ({ platforms, genres, games, removeGame, editingId, setEditingId, saveEdit, isAnimating, setIsAnimating, isLoading }) {
+function GameList ({ platforms, genres, games, removeGame, editingId, setEditingId, saveEdit, isAnimating, setIsAnimating, isLoading, totalGames }) {
 
 return (
     <div className="games-list__wrapper">
-        {games.length === 0 ? <p className='no-results'>No games match the current filter parameters</p> :
-        games.map((game, index) => {
+        {totalGames === 0 
+        ? <p className='no-results'>Your library is currently empty — add your first game above :)</p>
+        : games.length === 0 
+        ? <p className='no-results'>No games match the current filter parameters</p>
+        : games.map((game, index) => {
     return (
         <GameRow
             key={game.id}

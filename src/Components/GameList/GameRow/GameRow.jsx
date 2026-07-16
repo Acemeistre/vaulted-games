@@ -177,7 +177,7 @@ useEffect(() => {
             <span className={`game__year ${staticEffect1 === 1 ? 'static-lines' : ''} ${staticEffect2 === 1 ? 'static-colour' : ''}`}>{displayedYear}</span>
             <span className={`game__title ${staticEffect1 === 2 ? 'static-lines' : ''} ${staticEffect2 === 2 ? 'static-colour' : ''}`}>{displayedTitle}</span>
             <span className={`game__genre ${staticEffect1 === 3 ? 'static-lines' : ''} ${staticEffect2 === 3 ? 'static-colour' : ''}`}>
-                {displayedGenre.length > 0 && <img src={`/src/assets/${iconFile}.png`} />}
+                {displayedGenre.length > 0 && <img src={`/src/assets/${iconFile}.png`} onError={(e) => e.target.style.display = 'none'} />}
                 {displayedGenre}</span>
             <span className={`game__rating ${staticEffect1 === 4 ? 'static-lines' : ''} ${staticEffect2 === 4 ? 'static-colour' : ''}`}>{displayedRating}</span>
             <span className={`game__rank ${staticEffect1 === 5 ? 'static-lines' : ''} ${staticEffect2 === 5 ? 'static-colour' : ''}`}>{displayedRank}</span>

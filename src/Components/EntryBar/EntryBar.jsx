@@ -4,9 +4,9 @@ import useLetterFlicker from '../../hooks/useLetterFlicker'
 
 function EntryBar ({platforms, genres, selectedPlatform, year, title, selectedGenre, selectedRating, selectedRank, onPlatformChange, onYearChange, onTitleChange, onGenreChange, onRankChange, onRatingChange, addGame, isLoading }) {
   
-    const isReadyToContinue = selectedPlatform !== null && year !== '' && title !== '' && selectedGenre !== null && (selectedRating === 'Top 10' || selectedRating === 'Top 20' ? selectedRank !== null : true)
-    
     const currentYear = new Date().getFullYear()
+
+    const isReadyToContinue = selectedPlatform !== null && year !== '' && Number(year) >= 1970 && Number(year) <= currentYear && title !== '' && selectedGenre !== null && (selectedRating === 'Top 10' || selectedRating === 'Top 20' ? selectedRank !== null : true)
 
     const staticEffect1 = useStaticEffect ({ isActive: true, fieldCount: 7 })
     const staticEffect2 = useStaticEffect ({ isActive: true, fieldCount: 7 })
@@ -90,7 +90,7 @@ function EntryBar ({platforms, genres, selectedPlatform, year, title, selectedGe
         </div>
         
         <div className={`field-wrapper ${staticEffect1 === 2 ? 'static-lines' : ''} ${staticEffect2 === 2 ? 'static-colour' : ''}`}>
-        <input className="entry-bar__title-row" type="text" placeholder="Title" onChange={(e) => onTitleChange(e.target.value)}/>
+        <input className="entry-bar__title-row" type="text" maxLength={50} placeholder="Title" onChange={(e) => onTitleChange(e.target.value)}/>
         </div>
 
         <div className={`field-wrapper ${staticEffect1 === 3 ? 'static-lines' : ''} ${staticEffect2 === 3 ? 'static-colour' : ''}`}>
@@ -147,6 +147,7 @@ function EntryBar ({platforms, genres, selectedPlatform, year, title, selectedGe
             title={
             !selectedPlatform ? 'Please select a platform first' :
             !year ? 'Please select a year' :
+            Number(year) < 1970 || Number(year) > currentYear ? 'Please enter a valid year between 1970 and ' + currentYear :
             !title ? 'Please enter a game title' :
             !selectedGenre ? 'Please select a genre' :
             !selectedRating ? 'Please select a rating' :
