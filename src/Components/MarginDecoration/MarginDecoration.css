@@ -45,11 +45,11 @@
 }
 
 .wave-odd {
-    animation: wave-odd 4s ease-in-out infinite;
+    animation: wave-odd 4.5s ease-in-out infinite;
 }
 
 .wave-even {
-    animation: wave-even 4s ease-in-out infinite;
+    animation: wave-even 4.5s ease-in-out infinite;
 }
 
 @media (max-width: 1679px) {
