@@ -58,6 +58,14 @@
     text-justify: center;
 }
 
+.game__edit:active,
+.game__remove:active,
+.game__save:active,
+.game__cancel:active {
+    box-shadow: inset 0 0 8px rgba(0,0,0,0.5);
+    filter: brightness(0.9);
+}
+
 @media (max-width: 1600px) {
     .game__platform,
     .game__year,

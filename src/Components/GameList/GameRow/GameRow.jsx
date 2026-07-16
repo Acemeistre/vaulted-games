@@ -97,7 +97,7 @@ const rowDelay = useMemo(() => {
     const staticEffect2 = useStaticEffect ({ isActive: true, fieldCount: 8, minDelay: 40000, maxDelay: 80000 })
     
     return (
-        <div className={`game-row ${isAnimating || isLoading ? 'row-flicker' : ''}`} style={{'--rating-colour': ratingColour[game.rating], animationDelay: `${isLoading ? 8 + ((index + 1) * 0.6) : (index + 1) * 0.6}s`}}>
+        <div className={`game-row ${isAnimating || isLoading || isMounted ? 'row-flicker' : ''}`} style={{'--rating-colour': ratingColour[game.rating], animationDelay: `${isLoading ? 8 + ((index + 1) * 0.6) : (index + 1) * 0.6}s`}}>
             {isEditing ? 
             (
             <>    
@@ -167,8 +167,8 @@ const rowDelay = useMemo(() => {
         ))}
         
         </select>
-        <button onClick={() => saveEdit(editData)}>✓</button>
-        <button onClick={() => setEditingId(null)}>✗</button>
+        <button className="game__save" onClick={() => saveEdit(editData)}>✓</button>
+        <button className="game__cancel" onClick={() => setEditingId(null)}>✗</button>
         </>
             ) : (
                 <>

@@ -19,8 +19,8 @@
     margin-bottom: 18rem;
 }
 
-select:has(option[value=""]:checked) {
-  color: #888;
+.sort-bar_container select:has(option[value=""]:checked) {
+  color: white;
 }
 
 h2 {
@@ -35,7 +35,6 @@ h2 {
 h3 {
     margin-top: 1rem; 
     margin-left: 1.5rem;  
-   
     font-size: .9rem;
     color: white;
 }
@@ -45,12 +44,18 @@ select, input, button {
     color: white;
     border: 4px solid #3D3D3D;
     padding: 0.5rem;
+    height: 3rem;
     width: 100%;
 }
 
 .sort-bar__hidden-header {
     color: transparent;
     text-shadow: none;
+}
+
+.alphabet-sort:active {
+    box-shadow: inset 0 0 8px rgba(0,0,0,0.5);
+    filter: brightness(0.9);
 }
 
 @media (max-width: 1600px) {

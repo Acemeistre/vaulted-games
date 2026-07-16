@@ -40,8 +40,17 @@ select, input, button {
     width: 100%;
 }
 
+.entry-bar_container select:has(option[value=""]:checked) {
+    color: #888;
+}
+
 select, input {
     font-style: italic;
+}
+
+.continue-btn:active {
+    box-shadow: inset 0 0 8px rgba(0,0,0,0.5);
+    filter: brightness(0.8);
 }
 
 @media (max-width: 1600px) {
