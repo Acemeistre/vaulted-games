@@ -179,7 +179,9 @@ useEffect(() => {
       setIsAnimating={setIsAnimating}
       isLoading={isLoading}
     />
-    <MarginDecoration />
+    <MarginDecoration 
+      games={filteredGames.length}
+    />
     </div>
   </div>
  )
