@@ -51,3 +51,10 @@
 .wave-even {
     animation: wave-even 4s ease-in-out infinite;
 }
+
+@media (max-width: 1679px) {
+    .margin-left,
+    .margin-right {
+        display: none;
+    }
+}
