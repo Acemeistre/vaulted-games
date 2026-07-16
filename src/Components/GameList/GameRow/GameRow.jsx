@@ -1,5 +1,5 @@
 import './GameRow.css'
-import { useState, useEffect, useMemo } from 'react'
+import { useState, useEffect, useMemo, useRef } from 'react'
 import useTypewriter from '../../../hooks/useTypewriter'
 import useStaticEffect from '../../../hooks/useStaticEffect'
 
@@ -44,17 +44,21 @@ const platformColours = {
 
 function GameRow ({platforms, genres, game, removeGame, editingId, setEditingId, saveEdit, isAnimating, setIsAnimating, index, isLoading }) {
 
-    const [isMounted, setIsMounted] = useState(false)
+const [isMounted, setIsMounted] = useState(false)
+const wasLoading = useRef(isLoading)
 
 useEffect(() => {
-    setIsMounted(true)
+    console.log('wasLoading:', wasLoading.current)
+    if (!wasLoading.current) {
+        setIsMounted(true)
+    }
 }, [])
 
-   const rowDelay = useMemo(() => {
-  if (!isAnimating && !isLoading) return 0
-  return isLoading ? (8 + ((index + 1) * 0.6)) + 2 : ((index + 1) * 0.6) + 2
+const rowDelay = useMemo(() => {
+    if (isLoading) return (8 + ((index + 1) * 0.6)) + 2
+    if (isAnimating) return ((index + 1) * 0.6) + 2
+    return (index + 1) * 0.6
 }, [index, isLoading, isAnimating])
-    
     
     const displayedPlatform = useTypewriter({ text: String(game.platform), isActive: isAnimating || isLoading || isMounted, delay: rowDelay + (0 * 0.5) })
     const displayedYear = useTypewriter({ text: String(game.year), isActive: isAnimating || isLoading || isMounted, delay: rowDelay + (1 * 0.5)})
