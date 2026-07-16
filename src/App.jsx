@@ -7,6 +7,7 @@ import platforms from './Data/platforms.js'
 import genres from './Data/genres.js'
 import gameData from './Data/gameData.json'
 import GameList from './Components/GameList/GameList'
+import MarginDecoration from './Components/MarginDecoration/MarginDecoration.jsx'
 
 function App() {
     const [selectedPlatform, setSelectedPlatform] = useState(null);
@@ -178,6 +179,7 @@ useEffect(() => {
       setIsAnimating={setIsAnimating}
       isLoading={isLoading}
     />
+    <MarginDecoration />
     </div>
   </div>
  )
