@@ -44,11 +44,12 @@ const platformColours = {
 
 function GameRow ({platforms, genres, game, removeGame, editingId, setEditingId, saveEdit, isAnimating, setIsAnimating, index, isLoading }) {
 
-const [isMounted, setIsMounted] = useState(false)
+const isNewGame = Date.now() - game.id < 30000
+const [isMounted, setIsMounted] = useState(isNewGame)
 const wasLoading = useRef(isLoading)
 
 useEffect(() => {
-    if (!wasLoading.current) {
+    if (!wasLoading.current && !isNewGame) {
         setIsMounted(true)
     }
 }, [])
@@ -59,12 +60,12 @@ const rowDelay = useMemo(() => {
     return (index + 1) * 0.6
 }, [index, isLoading, isAnimating])
     
-    const displayedPlatform = useTypewriter({ text: String(game.platform), isActive: isAnimating || isLoading || isMounted, delay: rowDelay + (0 * 0.5) })
-    const displayedYear = useTypewriter({ text: String(game.year), isActive: isAnimating || isLoading || isMounted, delay: rowDelay + (1 * 0.5)})
-    const displayedTitle = useTypewriter({ text: String(game.title), isActive: isAnimating || isLoading || isMounted, delay: rowDelay + (2 * 0.5)})
-    const displayedGenre = useTypewriter({ text: String(game.genre), isActive: isAnimating || isLoading || isMounted, delay: rowDelay + (6 * 0.5)})
-    const displayedRating = useTypewriter({ text: String(game.rating), isActive: isAnimating || isLoading || isMounted, delay: rowDelay + (7.5 * 0.5)})
-    const displayedRank = useTypewriter({ text: game.rank !== null ? String(game.rank) : '', isActive: isAnimating || isLoading || isMounted, delay: rowDelay + (9 * 0.5)})
+    const displayedPlatform = useTypewriter({ text: String(game.platform), isActive: isAnimating || isLoading || isMounted, delay: isNewGame ? 2 : rowDelay })
+    const displayedYear = useTypewriter({ text: String(game.year), isActive: isAnimating || isLoading || isMounted, delay: isNewGame ? 3 : rowDelay + 1 })
+    const displayedTitle = useTypewriter({ text: String(game.title), isActive: isAnimating || isLoading || isMounted, delay: isNewGame ? 4 : rowDelay + 2 })
+    const displayedGenre = useTypewriter({ text: String(game.genre), isActive: isAnimating || isLoading || isMounted, delay: isNewGame ? 5.5 : rowDelay + 3.5 })
+    const displayedRating = useTypewriter({ text: String(game.rating), isActive: isAnimating || isLoading || isMounted, delay: isNewGame ? 6.5 : rowDelay + 4.5 })
+    const displayedRank = useTypewriter({ text: game.rank !== null ? String(game.rank) : '', isActive: isAnimating || isLoading || isMounted, delay: isNewGame ? 7.5 : rowDelay + 5.5 })
 
 
     const currentYear = new Date().getFullYear()
@@ -96,7 +97,9 @@ const rowDelay = useMemo(() => {
     const staticEffect2 = useStaticEffect ({ isActive: true, fieldCount: 8, minDelay: 40000, maxDelay: 80000 })
     
     return (
-        <div className={`game-row ${isAnimating || isLoading || isMounted ? 'row-flicker' : ''}`} style={{'--rating-colour': ratingColour[game.rating], animationDelay: `${isLoading ? 8 + ((index + 1) * 0.6) : (index + 1) * 0.6}s`}}>
+        <div className={`game-row ${isAnimating || isLoading || isMounted ? 'row-flicker' : ''}`} 
+            style={{'--rating-colour': ratingColour[game.rating], 
+            animationDelay: `${isNewGame ? 0 : isLoading ? 8 + ((index + 1) * 0.6) : (index + 1) * 0.6}s`}}>
             {isEditing ? 
             (
             <>    

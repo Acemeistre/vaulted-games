@@ -1,25 +1,8 @@
-# React + Vite
-
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
-
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
-
 <p align="center">
 <img src="./src/assets/Banner_desktop_v2.2.png">
 </p>
 
-[![Static Badge](https://img.shields.io/badge/Version%3A-1.1.06.26-darkgreen)](#)
+[![Static Badge](https://img.shields.io/badge/Version%3A-1.1-darkgreen)](#)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](#)
 [![Codecademy](https://img.shields.io/badge/Codecademy-%2321759B.svg?logo=codecademy&logoColor=white)](https://www.codecademy.com/profiles/Acemeistre)
 [![GitHub](https://img.shields.io/badge/GitHub-repo-blue?logo=github
@@ -35,8 +18,8 @@ If you are developing a production application, we recommend using TypeScript wi
 
 
 
-# ⛳ Golf Sweepstake app
-An app to use for enhanced enjoyment of golf's 4 major championships.
+# 🎮 Vaulted Games app
+An app used to track, store and organize any person's history of video game experiences.
 
 ## Table of contents
 - [Overview](#overview)
@@ -52,18 +35,16 @@ An app to use for enhanced enjoyment of golf's 4 major championships.
 - [License](#license)
 
 ## 📖 Overview
-The Major Sweepstake is a three-stage web app that lets groups of friends run a sweepstake across any one of golf's four major championships.
+'Vaulted games' is an app that lets users record any and all video games that they may have played, completed or competed in.
 
-The overall idea is for users to be able to choose which of the 4 golf majors they want to enter into a sweepstake with their friends (can be for 2 to 8 participants), by entering their name, choosing a colour to represent their assigned professional players (drawn in stage 2 of the app) and choose which way they want the professional golfers to be drawn by (odds or rank).
+The overall idea is for users to be able to log any game title, combined with choice of year and platform they played, as well as being able to rate and rank those gaming experiences.
 
-After confirmation of options the app then proceeds to the 2nd stage, which could be viewed as “the main event” where there’s a scrollable list showing every golf player in the chosen tournament’s field, a spinner with button to randomly assign players to participants and then a draw results column showing the result of the group in which players are assigned to their participants for the “current” round and its “previous round”, which dynamically updates as the draw progresses.
+Maximum flexibilty as to how users can view and organize their game titles has been designed through a sort bar mechanism so that they can choose from the aforementioned platforms, years, ratings and rankings, as well as genres, a-z, z-a, oldest and newest entries.
 
-Once the full draw is complete users can then progress to the final stage of the app, where they’ll be able to see a live leaderboard of the real tournament taking place. This is where they can track their assigned players via the colours they chose in stage one - each participant’s respectively assigned players will have their selection represented by their chosen colour being set as the background colour of the player’s row of data (position, national flag, name, current hole and current score).
-The leaderboard updates every 15 minutes via API polling and can be paused via a polling button for edge scenarios like weather interruptions, etc.
-There’s also a little plus “+” button below the leaderboard for any late entries in case of the withdrawal of other players before the tournament began.
+This is all presented in a retro-gaming aesthetic, with plenty of animations designed, to add a sense of interactivity and dynamism to the app's appeal.
 
 ## 📋 Disclaimer
-This app is intended purely for fun and enhanced enjoyment of golf's four major championships.<br> No real money is required or encouraged — any sweepstake financial arrangements are entirely at the discretion of the participants and outside the scope of this app.
+This app uses flashing visual effects, that could potentially be hazardous to some users who can suffer from photo-sensitive epilepsy. Please use with caution.
 
 ## 📸 Screenshots 
 

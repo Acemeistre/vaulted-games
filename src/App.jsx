@@ -197,6 +197,7 @@ function App() {
     <MarginDecoration 
       games={filteredGames.length}
     />
+    </div>
       <footer>
         <div className="footer">
           <span className='footer__version'>v1.1</span>
@@ -204,7 +205,7 @@ function App() {
           <span className="footer__pixel-art">Pixel Art courtesy of <a href="https://kenney.nl/assets/input-prompts">kenny.nl/assets/input-prompts</a></span>
         </div>
       </footer>
-    </div>
+    
   </div>
  )
 }
