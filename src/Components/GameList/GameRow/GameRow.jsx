@@ -185,8 +185,8 @@ const rowDelay = useMemo(() => {
                 {displayedGenre}</span>
             <span className={`game__rating ${staticEffect1 === 4 ? 'static-lines' : ''} ${staticEffect2 === 4 ? 'static-colour' : ''}`}>{displayedRating}</span>
             <span className={`game__rank ${staticEffect1 === 5 ? 'static-lines' : ''} ${staticEffect2 === 5 ? 'static-colour' : ''}`}>{displayedRank}</span>
-            <button className={`game__edit ${staticEffect1 === 6 ? 'static-lines' : ''} ${staticEffect2 === 6 ? 'static-colour' : ''}`} onClick={() => setEditingId(game.id)}>/</button>
-            <button className={`game__remove ${staticEffect1 === 7 ? 'static-lines' : ''} ${staticEffect2 === 7 ? 'static-colour' : ''}`} onClick={() => removeGame(game.id)}>X</button>
+            <button className={`game__edit ${staticEffect1 === 6 ? 'static-lines' : ''} ${staticEffect2 === 6 ? 'static-colour' : ''}`} title="Edit this game entry" onClick={() => setEditingId(game.id)}>/</button>
+            <button className={`game__remove ${staticEffect1 === 7 ? 'static-lines' : ''} ${staticEffect2 === 7 ? 'static-colour' : ''}`} title="Delete this game entry" onClick={() => removeGame(game.id)}>X</button>
     </>
             )}
             </div>
