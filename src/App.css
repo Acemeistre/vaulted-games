@@ -3,3 +3,30 @@
     background: black
 }
 
+.footer {
+    margin-top: 2rem;
+        position: relative;
+    z-index: 1;
+    color: white;
+    position: sticky;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    font-size: .8rem;
+}
+
+.footer__version {
+    position: absolute;
+    left: 0;
+}
+
+.footer__pixel-art {
+    position: absolute;
+    right: 0;
+}
+
+a {
+    color: lightblue;
+    text-decoration: underline;
+}

@@ -8,14 +8,14 @@ function SortBar({savedPlatforms, savedYears, savedGenres, savedRatings, sortPla
     
     const currentYear = new Date().getFullYear()
     
-    const staticEffect1 = useStaticEffect ({ isActive: true, fieldCount: 6 })
-    const staticEffect2 = useStaticEffect ({ isActive: true, fieldCount: 6 })
-    const flickerPlatform = useLetterFlicker({ text: 'Platform', isActive: true, minDelay: 8000, maxDelay: 16000 })
-    const flickerYear = useLetterFlicker({ text: 'Year', isActive: true, minDelay: 8000, maxDelay: 16000 })
-    const flickerTitle = useLetterFlicker({ text: 'Title', isActive: true, minDelay: 8000, maxDelay: 16000 })
-    const flickerGenre = useLetterFlicker({ text: 'Genre', isActive: true, minDelay: 8000, maxDelay: 16000 })
-    const flickerRating = useLetterFlicker({ text: 'Rating', isActive: true, minDelay: 8000, maxDelay: 16000 })
-    const flickerRatingsKey = useLetterFlicker({ text: 'Ratings key:', isActive: true, minDelay: 8000, maxDelay: 16000 })
+    const staticEffect1 = useStaticEffect ({ isActive: true, fieldCount: 6, minDelay: 8000, maxDelay: 16000 })
+    const staticEffect2 = useStaticEffect ({ isActive: true, fieldCount: 6, minDelay: 8000, maxDelay: 16000 })
+    const flickerPlatform = useLetterFlicker({ text: 'Platform', isActive: true, minDelay: 12000, maxDelay: 20000 })
+    const flickerYear = useLetterFlicker({ text: 'Year', isActive: true, minDelay: 12000, maxDelay: 20000 })
+    const flickerTitle = useLetterFlicker({ text: 'Title', isActive: true, minDelay: 12000, maxDelay: 20000 })
+    const flickerGenre = useLetterFlicker({ text: 'Genre', isActive: true, minDelay: 12000, maxDelay: 20000 })
+    const flickerRating = useLetterFlicker({ text: 'Rating', isActive: true, minDelay: 12000, maxDelay: 20000 })
+    const flickerRatingsKey = useLetterFlicker({ text: 'Ratings key:', isActive: true, minDelay: 12000, maxDelay: 20000 })
 
     return (
     <div className={`section-wrapper ${isLoading ? 'row-flicker' : ''}`} style={{animationDelay: '6.3s'}}>

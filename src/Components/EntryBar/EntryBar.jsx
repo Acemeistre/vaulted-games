@@ -8,14 +8,14 @@ function EntryBar ({platforms, genres, selectedPlatform, year, title, selectedGe
 
     const isReadyToContinue = selectedPlatform !== null && year !== '' && Number(year) >= 1970 && Number(year) <= currentYear && title !== '' && selectedGenre !== null && (selectedRating === 'Top 10' || selectedRating === 'Top 20' ? selectedRank !== null : true)
 
-    const staticEffect1 = useStaticEffect ({ isActive: true, fieldCount: 7 })
-    const staticEffect2 = useStaticEffect ({ isActive: true, fieldCount: 7 })
-    const flickerPlatform = useLetterFlicker({ text: 'Platform', isActive: true, minDelay: 8000, maxDelay: 16000 })
-    const flickerYear = useLetterFlicker({ text: 'Year', isActive: true, minDelay: 8000, maxDelay: 16000 })
-    const flickerTitle = useLetterFlicker({ text: 'Title', isActive: true, minDelay: 8000, maxDelay: 16000 })
-    const flickerGenre = useLetterFlicker({ text: 'Genre', isActive: true, minDelay: 8000, maxDelay: 16000 })
-    const flickerRating = useLetterFlicker({ text: 'Rating', isActive: true, minDelay: 8000, maxDelay: 16000 })
-    const flickerRank = useLetterFlicker({ text: 'Rank', isActive: true, minDelay: 8000, maxDelay: 16000 })
+    const staticEffect1 = useStaticEffect ({ isActive: true, fieldCount: 7, minDelay: 8000, maxDelay: 16000 })
+    const staticEffect2 = useStaticEffect ({ isActive: true, fieldCount: 7, minDelay: 8000, maxDelay: 16000 })
+    const flickerPlatform = useLetterFlicker({ text: 'Platform', isActive: true, minDelay: 12000, maxDelay: 20000 })
+    const flickerYear = useLetterFlicker({ text: 'Year', isActive: true, minDelay: 12000, maxDelay: 20000 })
+    const flickerTitle = useLetterFlicker({ text: 'Title', isActive: true, minDelay: 12000, maxDelay: 20000 })
+    const flickerGenre = useLetterFlicker({ text: 'Genre', isActive: true, minDelay: 12000, maxDelay: 20000 })
+    const flickerRating = useLetterFlicker({ text: 'Rating', isActive: true, minDelay: 12000, maxDelay: 20000 })
+    const flickerRank = useLetterFlicker({ text: 'Rank', isActive: true, minDelay: 12000, maxDelay: 20000 })
 
     return (
     <div className={`section-wrapper ${isLoading ? 'row-flicker' : ''}`} style={{animationDelay: '4.3s'}}>
