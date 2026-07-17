@@ -47,13 +47,15 @@ function App() {
 
     const filteredGames = useMemo(() => games.filter(game => {
       return (sortPlatform === null ? true : sortPlatform === game.platform) && 
-             (sortYear === null ? true : Number(sortYear) === game.year) && 
+             (sortYear === null || sortYear === 'newest' || sortYear === 'oldest' ? true : Number(sortYear) === game.year) && 
              (sortGenre === null ? true : sortGenre === game.genre) && 
              (sortRating === null ? true : (sortRating === 'Top 20' ? game.rating === 'Top 20' || game.rating === 'Top 10' : sortRating === game.rating))
           }) 
         .sort((a, b) => {
         if (sortTitle === 'a-z') return a.title.localeCompare(b.title)
         if (sortTitle === 'z-a') return b.title.localeCompare(a.title)
+        if (sortYear === 'newest') return b.year - a.year
+        if (sortYear === 'oldest') return a.year - b.year
       return 0
     }), [games, sortPlatform, sortYear, sortTitle, sortGenre, sortRating])
 
@@ -72,34 +74,34 @@ function App() {
       }
     }, [sortPlatform, sortYear, sortTitle, sortGenre, sortRating])
 
-const [isLoading, setIsLoading] = useState(() => {
-  return !localStorage.getItem('hasVisited')
-})
+    const [isLoading, setIsLoading] = useState(() => {
+      return !localStorage.getItem('hasVisited')
+    })
 
-useEffect(() => {
-  try{
-  if (!localStorage.getItem('hasVisited')) {
-    const animatingTimeout = setTimeout(() => {
-      try {
-      localStorage.setItem('hasVisited', 'true')
-      } catch (e) {
+    useEffect(() => {
+      try{
+      if (!localStorage.getItem('hasVisited')) {
+        const animatingTimeout = setTimeout(() => {
+          try {
+          localStorage.setItem('hasVisited', 'true')
+          } catch (e) {
+          console.error('localStorage unavailable:', e)
+          }
+          setIsAnimating(true)
+          }, 6300)
+        const loadingTimeout = setTimeout(() => {
+          setIsLoading(false)
+          setIsAnimating(false)
+        }, 6300 + (filteredGames.length * 600) + 2000 + 3000 + 2500)
+        return () => {
+          clearTimeout(animatingTimeout)
+          clearTimeout(loadingTimeout)
+          }
+        }
+        } catch (e) {
         console.error('localStorage unavailable:', e)
-      }
-      setIsAnimating(true)
-    }, 6300)
-    const loadingTimeout = setTimeout(() => {
-      setIsLoading(false)
-      setIsAnimating(false)
-    }, 6300 + (filteredGames.length * 600) + 2000 + 3000 + 2500)
-    return () => {
-      clearTimeout(animatingTimeout)
-      clearTimeout(loadingTimeout)
-      }
-    }
-  } catch (e) {
-    console.error('localStorage unavailable:', e)
-  }
-}, [])
+        }
+      }, [])
 
     const saveEdit = (updatedGame) => {
         setGames(games.map(game => game.id === updatedGame.id ? updatedGame : game))

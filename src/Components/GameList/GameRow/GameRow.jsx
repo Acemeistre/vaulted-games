@@ -48,7 +48,6 @@ const [isMounted, setIsMounted] = useState(false)
 const wasLoading = useRef(isLoading)
 
 useEffect(() => {
-    console.log('wasLoading:', wasLoading.current)
     if (!wasLoading.current) {
         setIsMounted(true)
     }

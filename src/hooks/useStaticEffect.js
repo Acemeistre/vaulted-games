@@ -9,7 +9,7 @@ function useStaticEffect({ isActive, fieldCount, minDelay = 20000, maxDelay = 40
         let timeout
     
         const cycle = () => {
-            console.log('cycle firing in useStaticEffect')
+            
         const randomDelay = (Math.random() * (maxDelay - minDelay)) + minDelay
         const randomDuration = (Math.random() * 4000) + 2000
             timeout = setTimeout(() => {

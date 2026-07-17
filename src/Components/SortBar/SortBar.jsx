@@ -76,8 +76,15 @@ function SortBar({savedPlatforms, savedYears, savedGenres, savedRatings, sortPla
         </div>
 
         <div className={`field-wrapper ${staticEffect1 === 1 ? 'static-lines' : ''} ${staticEffect2 === 1 ? 'static-colour' : ''}`}>
-        <select className='year-select' onChange={(e) => onSortYearChange(e.target.value === '' ? null : Number(e.target.value))}>
+        <select className='year-select' onChange={(e) => {
+                                        const val = e.target.value
+                                        if (val === '') onSortYearChange (null)
+                                        else if (val === 'newest' || val === 'oldest') onSortYearChange (val)
+                                        else onSortYearChange (Number(val))
+                                        }}>
             <option value="">-Year-</option>
+            <option value="newest">Newest</option>
+            <option value="oldest">Oldest</option>
                 {savedYears.map(year => (
             <option key={year} value={year}>{year}</option>
             ))}
