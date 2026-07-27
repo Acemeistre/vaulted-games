@@ -10,138 +10,143 @@ import GameList from './Components/GameList/GameList'
 import MarginDecoration from './Components/MarginDecoration/MarginDecoration.jsx'
 
 function App() {
-    const [selectedPlatform, setSelectedPlatform] = useState(null);
-    const [year, setYear] = useState('');
-    const [title, setTitle] = useState ('');
-    const [selectedGenre, setSelectedGenre] = useState(null);
-    const [selectedRating, setSelectedRating] = useState(null);
-    const [selectedRank, setSelectedRank] = useState(null);
+  const [selectedPlatform, setSelectedPlatform] = useState(null);
+  const [year, setYear] = useState('');
+  const [title, setTitle] = useState('');
+  const [selectedGenre, setSelectedGenre] = useState(null);
+  const [selectedRating, setSelectedRating] = useState(null);
+  const [selectedRank, setSelectedRank] = useState(null);
 
-    const [sortPlatform, setSortPlatform] = useState(null);
-    const [sortYear, setSortYear] = useState(null);
-    const [sortTitle, setSortTitle] = useState(null);
-    const [sortGenre, setSortGenre] = useState(null);
-    const [sortRating, setSortRating] = useState(null);
+  const [sortPlatform, setSortPlatform] = useState(null);
+  const [sortYear, setSortYear] = useState(null);
+  const [sortTitle, setSortTitle] = useState(null);
+  const [sortGenre, setSortGenre] = useState(null);
+  const [sortRating, setSortRating] = useState(null);
 
-    const [editingId, setEditingId] = useState(null);
+  const [editingId, setEditingId] = useState(null);
 
-    const [isAnimating, setIsAnimating] = useState(false)
+  const [isAnimating, setIsAnimating] = useState(false)
 
-    const [games, setGames] = useState(() => {
-      const saved = localStorage.getItem('games')
-      return saved ? JSON.parse(saved) :gameData
-    });
+  const [games, setGames] = useState(() => {
+    const saved = localStorage.getItem('games')
+    return saved ? JSON.parse(saved) : gameData
+  });
 
-    const savedPlatforms = Array.from(new Set(games.map(game => game.platform)));
-    const savedGenres = Array.from(new Set(games.map(game => game.genre)));
-    const savedRatings = Array.from(new Set(games.map(game => game.rating)));
-    const savedYears = Array.from(new Set(games.map(game => game.year)));
+  const [isLoading, setIsLoading] = useState(() => {
+    return !localStorage.getItem('hasVisited')
+  })
 
-    useEffect(() => {
+  const savedPlatforms = Array.from(new Set(games.map(game => game.platform)));
+  const savedGenres = Array.from(new Set(games.map(game => game.genre)));
+  const savedRatings = Array.from(new Set(games.map(game => game.rating)));
+  const savedYears = Array.from(new Set(games.map(game => game.year)));
+
+  useEffect(() => {
+    try {
+    localStorage.setItem('games', JSON.stringify(games))
+    } catch (e) {
+      console.error('localStorage unavailable:', e)
+    }
+  }, [games])
+
+  const filteredGames = useMemo(() => games.filter(game => {
+    return (sortPlatform === null ? true : sortPlatform === game.platform) && 
+           (sortYear === null || sortYear === 'newest' || sortYear === 'oldest' ? true : Number(sortYear) === game.year) && 
+           (sortGenre === null ? true : sortGenre === game.genre) && 
+           (sortRating === null ? true : (sortRating === 'Top 20' ? game.rating === 'Top 20' || game.rating === 'Top 10' : sortRating === game.rating))
+        }) 
+      .sort((a, b) => {
+      if (sortTitle === 'a-z') return a.title.localeCompare(b.title)
+      if (sortTitle === 'z-a') return b.title.localeCompare(a.title)
+      if (sortYear === 'newest') return b.year - a.year
+      if (sortYear === 'oldest') return a.year - b.year
+    return 0
+  }), [games, sortPlatform, sortYear, sortTitle, sortGenre, sortRating])
+
+  useEffect(() => {
+    if (sortPlatform === null && sortYear === null && sortTitle === null && sortGenre === null && sortRating === null) return
+    setIsAnimating(false)
+    const startTimeout = setTimeout(() => {
+      setIsAnimating(true)
+    }, 50)
+    const endTimeout = setTimeout(() => {
+      setIsAnimating(false)
+    }, 2000 + (filteredGames.length * 600) + 7500)
+    return () => { 
+      clearTimeout(startTimeout)
+      clearTimeout(endTimeout)
+    }
+  }, [sortPlatform, sortYear, sortTitle, sortGenre, sortRating])
+
+  useEffect(() => {
+    try{
+    if (!localStorage.getItem('hasVisited')) {
+      const animatingTimeout = setTimeout(() => {
       try {
-      localStorage.setItem('games', JSON.stringify(games))
+      localStorage.setItem('hasVisited', 'true')
       } catch (e) {
         console.error('localStorage unavailable:', e)
-      }
-    }, [games])
-
-    const filteredGames = useMemo(() => games.filter(game => {
-      return (sortPlatform === null ? true : sortPlatform === game.platform) && 
-             (sortYear === null || sortYear === 'newest' || sortYear === 'oldest' ? true : Number(sortYear) === game.year) && 
-             (sortGenre === null ? true : sortGenre === game.genre) && 
-             (sortRating === null ? true : (sortRating === 'Top 20' ? game.rating === 'Top 20' || game.rating === 'Top 10' : sortRating === game.rating))
-          }) 
-        .sort((a, b) => {
-        if (sortTitle === 'a-z') return a.title.localeCompare(b.title)
-        if (sortTitle === 'z-a') return b.title.localeCompare(a.title)
-        if (sortYear === 'newest') return b.year - a.year
-        if (sortYear === 'oldest') return a.year - b.year
-      return 0
-    }), [games, sortPlatform, sortYear, sortTitle, sortGenre, sortRating])
-
-    useEffect(() => {
-      if (sortPlatform === null && sortYear === null && sortTitle === null && sortGenre === null && sortRating === null) return
-      setIsAnimating(false)
-      const startTimeout = setTimeout(() => {
+        }
         setIsAnimating(true)
-      }, 50)
-      const endTimeout = setTimeout(() => {
+        }, 6300)
+      const loadingTimeout = setTimeout(() => {
+        setIsLoading(false)
         setIsAnimating(false)
-      }, 2000 + (filteredGames.length * 600) + 2000 + 3000 + 2500)
-      return () => { 
-        clearTimeout(startTimeout)
-        clearTimeout(endTimeout)
+      }, 6300 + (filteredGames.length * 600) + 2000 + 3000 + 2500)
+      return () => {
+        clearTimeout(animatingTimeout)
+        clearTimeout(loadingTimeout)
+        }
       }
-    }, [sortPlatform, sortYear, sortTitle, sortGenre, sortRating])
-
-    const [isLoading, setIsLoading] = useState(() => {
-      return !localStorage.getItem('hasVisited')
-    })
-
-    useEffect(() => {
-      try{
-      if (!localStorage.getItem('hasVisited')) {
-        const animatingTimeout = setTimeout(() => {
-          try {
-          localStorage.setItem('hasVisited', 'true')
-          } catch (e) {
-          console.error('localStorage unavailable:', e)
-          }
-          setIsAnimating(true)
-          }, 6300)
-        const loadingTimeout = setTimeout(() => {
-          setIsLoading(false)
-          setIsAnimating(false)
-        }, 6300 + (filteredGames.length * 600) + 2000 + 3000 + 2500)
-        return () => {
-          clearTimeout(animatingTimeout)
-          clearTimeout(loadingTimeout)
-          }
-        }
-        } catch (e) {
-        console.error('localStorage unavailable:', e)
-        }
-      }, [])
-
-    const saveEdit = (updatedGame) => {
-        setGames(games.map(game => game.id === updatedGame.id ? updatedGame : game))
-      setEditingId(null)
+    } catch (e) {
+    console.error('localStorage unavailable:', e)
     }
+  }, [])
 
-    const addGame = () => {
-      const newGame = {
-        id: Date.now(),
-        platform: selectedPlatform,
-        year: year,
-        title: title,
-        genre: selectedGenre,
-        rating: selectedRating,
-        rank: (selectedRating === 'Top 10' || selectedRating === 'Top 20' ? selectedRank : null)
-        }
-      setGames(prev => ([...prev, newGame]))
-      console.log(newGame)
-    }
-
-    const removeGame = (id) => {
-      const confirmed = window.confirm("Are you certain? This will permenantly delete this game from your library")
-      if (!confirmed) return
-      setGames(prev => prev.filter(game => game.id !== id))
-    }
-
-    const handleRatingChange = (rating) => {
-      setSelectedRating(rating);
-        if (rating !== 'Top 10' && rating !== 'Top 20') {
-      setSelectedRank(null);
-    }
+  const saveEdit = (updatedGame) => {
+    setGames(games.map(game => game.id === updatedGame.id ? updatedGame : game))
+    setEditingId(null)
   }
+
+  const addGame = () => {
+    const newGame = {
+      id: Date.now(),
+      platform: selectedPlatform,
+      year: year,
+      title: title,
+      genre: selectedGenre,
+      rating: selectedRating,
+      rank: (selectedRating === 'Top 10' || selectedRating === 'Top 20' ? selectedRank : null)
+      }
+    setGames(prev => ([...prev, newGame]))
+    setSelectedPlatform(null)
+    setYear('')
+    setTitle('')
+    setSelectedGenre(null)
+    setSelectedRating(null)
+    setSelectedRank(null)
+  }
+
+  const removeGame = (id) => {
+    const confirmed = window.confirm("Are you certain? This will permanently delete this game from your library")
+    if (!confirmed) return
+    setGames(prev => prev.filter(game => game.id !== id))
+  }
+
+  const handleRatingChange = (rating) => {
+    setSelectedRating(rating);
+    if (rating !== 'Top 10' && rating !== 'Top 20') {
+    setSelectedRank(null);
+  }
+}
 
 
  return (
   <div className="App">
-      <div className="rotate-prompt">
-    <p>Please rotate to landscape view :)</p><br></br>
-    <p>Note: this app is optimised for tablet and desktop use only.</p>
-  </div>
+    <div className="rotate-prompt">
+      <p>Please rotate to landscape view :)</p><br />
+      <p>Note: this app is optimised for tablet and desktop use only.</p>
+    </div>
   <div className="app-content">
     <Header 
       isLoading={isLoading}
@@ -197,14 +202,14 @@ function App() {
     <MarginDecoration 
       games={filteredGames.length}
     />
-    </div>
-      <footer>
-        <div className="footer">
-          <span className='footer__version'>v1.1</span>
-            <p className="footer__credit">Designed and coded by Glenn Niblett (aka Acemeistre)</p>          
-          <span className="footer__pixel-art">Pixel Art courtesy of <a href="https://kenney.nl/assets/input-prompts">kenny.nl/assets/input-prompts</a></span>
-        </div>
-      </footer>
+  </div>
+    <footer>
+      <div className="footer">
+        <span className='footer__version'>v1.1</span>
+          <p className="footer__credit">Designed and coded by Glenn Niblett (aka Acemeistre)</p>          
+        <span className="footer__pixel-art">Pixel Art courtesy of <a href="https://kenney.nl/assets/input-prompts">kenney.nl/assets/input-prompts</a></span>
+      </div>
+    </footer>
     
   </div>
  )
