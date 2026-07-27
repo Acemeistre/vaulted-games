@@ -1,5 +1,5 @@
 <p align="center">
-<img src="./src/assets/Banner_desktop_v2.2.png">
+<img src="./src/assets/Screenshots/Vaulted games_README-Header.gif">
 </p>
 
 [![Static Badge](https://img.shields.io/badge/Version%3A-1.1-darkgreen)](#)
@@ -48,32 +48,28 @@ This app uses flashing visual effects, that could potentially be hazardous to so
 
 ## 📸 Screenshots 
 
-#### Stage 1 - Tournament & Participant Selection
-<img src="./src/assets/screenshots/Stage 1_options.jpg" width="600">
+#### Vaulted games - Screenshot
+<img src="./src/assets/screenshots/Vaulted games_screenshot.jpg" width="600">
 
-#### Stage 2 - The Draw
-<img src="./src/assets/screenshots/Stage 2_Draw.jpg" width="600">
-
-#### Stage 3 - Live Leaderboard
-*Screenshot coming soon - requires live tournament data*
+#### Vaulted games - demo
+<img src="./src/assets/screenshots/Vaulted games_demo.gif" width="600">
 
 ## ✨ Features
-* **Tournament selection** - allows you to choose from any 1 of golf's 4 major events. 
-* **Player sorter** - allows users to select how they sort the order that their golfers are drawn to participants, through either a professional golfer's ranking or their tournament odds.
-* **Participant entry** - where participants can enter their name and select from a choice of colours via a colour picker, that will represent their assigned players drawn in stage 2 and viewed on the live leaderboard in stage 3.
-* **Automated player assignment spinner** - allows participants to do a full draw of the tournament's golf pros with the simple click of a button that randomly lands on the app's spinner wheel canvas.
-* **Draw Results tracker** - view the results of the wheel spins in both the "current" round and "previous" round of player to participant assignment.
-* **Live leaderboard** - track live updates of every participant's player; including leaderboard position, live score and hole number as players proceed through the real major event. 
-* **Automated/Interactive polling** - keeps constant updates with calls to Slash Golf API every 15 minutes and can also be paused for unexpected events (such as inclement weather).
-* **Late Entry field** - allows users to enter any players who replaced tournament withdrawals after the app's main draw has taken place.
+* **Game Entry** - allows you to enter in platform, year, title, genre, rating and conditional rank (appears for Top 10/20 ratings) of new game titles.
+* **Smart filtering and Sorting** - allows users to select and filter games via platform, year, genre rating or alphabetically.
+* **Retro Animation System** 
+    * Terminal boot-up flicker on game rows (triggered by sort filter changes and page load)
+    * Typewriter text effect — fields type out character by character.
+    * Ambient letter flicker on headers. 
+    * Neon sign text css shadow effect.
+    * Random TV static on input fields
+    * Drifting pixel art controller icons in margins
 
 ## 🛠️ Tech Stack
 - **React** - components-based UI framework.
 - **Vite** - build tool and local development server.
-- **JavaScript** - core language code.
-- **Slash Golf API** - live leaderboard data via RapidAPI.
-- **The Odds API** - player odds data for draw sorting.
-- **Flagcdn.com** - flag images via free CDN.
+- **JavaScript (ES6+)** - app logic and custom hooks.
+- **CSS** - component-scoped styling.
 - **Vercel** - deployment and hosting.
 - **Figma** - UI design and prototyping.
 
@@ -86,20 +82,13 @@ This app uses flashing visual effects, that could potentially be hazardous to so
 
 ### Clone the repository
 ```bash
-git clone https://github.com/Acemeistre/Portfolio-Project_Golf-sweepstake-app.git
-cd Portfolio-Project_Golf-sweepstake-app
+git clone https://github.com/Acemeistre/vaulted-games.git
+cd vaulted-games
 ```
 
 ### Install dependencies
 ```bash
 npm install
-```
-
-### Environment variables
-Create a `.env` file in the root directory and add your API keys:
-```
-VITE_GOLF_SLASH_LEADERBOARDS_API_KEY=[your slash golf key]
-VITE_ODDS_API_KEY=[your odds api key]
 ```
 
 ### Run locally
@@ -108,70 +97,40 @@ npm run dev
 ```
 
 ### Or visit the live app
-[golf-sweepstake-app.vercel.app](https://golf-sweepstake-app.vercel.app/)
+[vaulted-games.vercel.app](https://vaulted-games.vercel.app/)
 
 ## ⚠️ Known limitations
-- This app currently only works on each individual’s own browser, using local storage persistence and has no back end that can share polling or API updates with other friend’s devices.
+#### Technical:
+- App is landscape-only for mobile — portrait mobile shows a rotate prompt by design (768px is the minimum supported viewport width).
+- Margin pixel art decoration only shows at a viewport width of 1680px and above.
+- Local storage only — data doesn't sync across devices or browsers.
 
-- The API quota for polling is currently exhausted from the App's build phase - live leaderboard data remains unavailable as this time, due to this limitation and will reset on the 15th of July, 2026.
+#### UX/Design:
+- Native 'select' elements limit styling of placeholder text colour.
+- Platform sort dropdown shows a flat list rather than brand-grouped options (in roadmap).
+- Occasional animation edge cases when adding new games or rapidly changing filters.
 
-- The data for odds also met it’s quota during the app build (resets on July 1st, 2026), so there currently is no data available for the odds sort option.
-
-- World rankings data is maintained via a static JSON file, last updated for the week of the U.S.Open 2026. 
-A paid API such as DataGolf or Sportradar would automate this in a production environment.
-
-- Automated polling windows are set to capture most of each tournament day, but may miss early day action (each day) due to limited API calls.
-
-- Once the polling button is clicked to pause, users must manually unpause on the same respective day as this will over-ride automated polling windows.
+#### Data:
+- Genre and platform lists are predefined — users can't add custom genres/platforms (intentional for data integrity)
+- No import/export functionality for the game library.
 
 
 ## 🗺️ Roadmap
 
-**The following points are the current pipeline of updates coming to future versions of the Golf Sweepstake app.**
+**The following points are the current pipeline of updates coming to future versions of the Vaulted Games app.**
 
-**JULY ONWARDS**:
-- Verify vite's hot reload feature stops firing the leaderboard API when making code updates.
-
-- Build the fetch command for one off call to odds API data, storing it to a JSON file and also adding a time check to disable the command after the first tee times on day 1 of each tournament.
-
-- Build "fetchField.js" script to grab the appropriate field of players for any given tournament.
-    - Update app to filter players by "fetchfield.js".
-
-- Odds restoration and fractional/decimal conversion.
-
-- Change file name "playerCountries.json" to "playerData.json" and add boolean data for each major.
-<br><br>
-
-**REST OF YEAR:**
-- Look into shared backend databases for sharing app/polling data on multiple devices.
-
-- Add in a component of a key in stage 3, that visually represents the participant's name with their chosen colour.
-
-- Add in a component that calculates the pay-out of a sweepstake break-down, based on total pot size and agreed placement pay-out amounts.
-
-- Build a clean-up script for "playerCountries.json" (*later named "playerData.json"*) — compare existing entries against a fresh top-1000 world rankings to pull and remove players absent from the top 1000 - run ideally at the start of a new year.
-    - Ensure previous major winner's data IS NOT wiped.
-
-- Revisit disclaimer wording once the sweepstake payout calculator component is built — ensure language clearly distinguishes between friendly sweepstake tracking and regulated gambling.
+- Platform brand grouping in sort bar (so N64, GameCube, Switch etc. group under Nintendo like in EntryBar)
+- Fix occasional animation edge cases on new game entries and filter changes
 
 ## 🔧 Maintenance Requirements
 
-- **Week leading to tournament** <br>
-    - Execute the fetchRankings.js command to update "worldRankings.json".
-    - Execute the fetchOdds.js command to update "oddsData.json" *(once built in July)*.
-    - Execute the fetchField.js to save to a new (*yet to be named*) json file.
-    - Manually add player's data to "playerCountries.json" (*later named "playerData.json"*) for those who get through regional qualification and outside the parameters of our saved data.
+**This app is low maintenance by design, for example; there are no external API dependencies.**
 
-- **Yearly**
-    - Update tournament dates & polling windows.
-    - Execute the clean-up script to refresh the data for "playerCountries.json" (*later named "playerData.json"*).
+- Local storage - if the data structure ever changes (new fields added etc.), existing saved data would need migrating.
+- Year cap — already auto-handled with new Date().getFullYear() ✅
 
 ## 🙏 Acknowledgements
-- [Slash Golf API](https://rapidapi.com/slashgolf/api/live-golf-data)
-- [The Odds API](https://the-odds-api.com/)
-- [Flagcdn.com](https://flagcdn.io/) / [Flagpedia.net](https://flagpedia.net/)
-- [Lucide React](https://lucide.dev/guide/react/) (icons)
-- [react-custom-roulette](https://www.npmjs.com/package/react-custom-roulette) (spinner)
+- [kenney.nl](https://kenney.nl/assets/input-prompts)
 
 ## 🔓 License
 This project is licensed under the [MIT License](https://opensource.org/licenses/MIT).
