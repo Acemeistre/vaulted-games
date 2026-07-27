@@ -23,7 +23,7 @@ function Header ({ isLoading }) {
             <p className="header__description">
                 Welcome to 'Vaulted Games'! <br/>The number 1 place to track, organize and store your history of video games that you've played - at any time, on any device, throughout your own gaming adventures!
             </p>
-        </header> 
+        </header>
     )
 }
 
