@@ -195,7 +195,6 @@ function App() {
       setEditingId={setEditingId}
       saveEdit={saveEdit}
       isAnimating={isAnimating}
-      setIsAnimating={setIsAnimating}
       isLoading={isLoading}
       totalGames={games.length}
     />

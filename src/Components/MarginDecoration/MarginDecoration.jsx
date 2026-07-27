@@ -1,5 +1,4 @@
 import './MarginDecoration.css'
-import React from 'react'
 
 const images = import.meta.glob('/src/assets/PixelArt/*.png', { eager: true })
 
@@ -23,30 +22,30 @@ function MarginDecoration({ games }) {
     return (
         <div className="margin-decoration">
             <div className="margin-left">
-            {leftIcons.map((src, i) => {
-                const row = Math.floor(i / 6)
-                const isEvenRow = row % 2 === 1
-            return (
-            <React.Fragment key={i}>
-                {i % 6 === 0 && isEvenRow && <div className="margin-empty" />}
-                <img src={src} className={`margin-icon ${isEvenRow ? 'wave-even' : 'wave-odd'}`} />
-                {!(i % 6 === 5 && isEvenRow) && <div className="margin-empty" />}
-            </React.Fragment>
-             )
-            })}
+                {leftIcons.map((src, i) => {
+                    const row = Math.floor(i / 6)
+                    const isEvenRow = row % 2 === 1
+                    return (
+                        <React.Fragment key={i}>
+                            {i % 6 === 0 && isEvenRow && <div className="margin-empty" />}
+                            <img src={src} className={`margin-icon ${isEvenRow ? 'wave-even' : 'wave-odd'}`} />
+                            {!(i % 6 === 5 && isEvenRow) && <div className="margin-empty" />}
+                        </React.Fragment>
+                    )
+                })}
             </div>
             <div className="margin-right">
                 {rightIcons.map((src, i) => {
-                const row = Math.floor(i / 6)
-                const isEvenRow = row % 2 === 1
-            return (
-            <React.Fragment key={i}>
-                {i % 6 === 0 && isEvenRow && <div className="margin-empty" />}
-                <img src={src} className={`margin-icon ${isEvenRow ? 'wave-even' : 'wave-odd'}`} />
-                {!(i % 6 === 5 && isEvenRow) && <div className="margin-empty" />}
-            </React.Fragment>
-            )
-            })}
+                    const row = Math.floor(i / 6)
+                    const isEvenRow = row % 2 === 1
+                    return (
+                        <React.Fragment key={i}>
+                            {i % 6 === 0 && isEvenRow && <div className="margin-empty" />}
+                            <img src={src} className={`margin-icon ${isEvenRow ? 'wave-even' : 'wave-odd'}`} />
+                            {!(i % 6 === 5 && isEvenRow) && <div className="margin-empty" />}
+                        </React.Fragment>
+                    )
+                })}
             </div>
         </div>
     )

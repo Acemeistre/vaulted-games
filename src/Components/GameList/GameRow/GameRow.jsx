@@ -3,7 +3,6 @@ import { useState, useEffect, useMemo, useRef } from 'react'
 import useTypewriter from '../../../hooks/useTypewriter'
 import useStaticEffect from '../../../hooks/useStaticEffect'
 
-
 const genreIcons = {
   Action: 'Action_v1_crossed-swords',
   Adventure: 'Adventure_v1_globe',
@@ -42,36 +41,35 @@ const platformColours = {
   Other: { bg: '#FFD700', text: '#FF0000' }
 }
 
-function GameRow ({platforms, genres, game, removeGame, editingId, setEditingId, saveEdit, isAnimating, setIsAnimating, index, isLoading }) {
+function GameRow ({platforms, genres, game, removeGame, editingId, setEditingId, saveEdit, isAnimating, index, isLoading }) {
 
-const isNewGame = Date.now() - game.id < 30000
-const [isMounted, setIsMounted] = useState(isNewGame)
-const wasLoading = useRef(isLoading)
+    const isNewGame = Date.now() - game.id < 30000
+    const [isMounted, setIsMounted] = useState(isNewGame)
+    const wasLoading = useRef(isLoading)
 
-useEffect(() => {
-    if (!wasLoading.current && !isNewGame) {
-        setIsMounted(true)
-    }
-}, [])
+    useEffect(() => {
+        if (!wasLoading.current && !isNewGame) {
+            setIsMounted(true)
+        }
+    }, [])
 
-const rowDelay = useMemo(() => {
-    if (isLoading) return (8 + ((index + 1) * 0.6)) + 2
-    if (isAnimating) return ((index + 1) * 0.6) + 2
-    return (index + 1) * 0.6
-}, [index, isLoading, isAnimating])
+    const rowDelay = useMemo(() => {
+        if (isLoading) return (8 + ((index + 1) * 0.6)) + 2
+        if (isAnimating) return ((index + 1) * 0.6) + 2
+        return (index + 1) * 0.6
+    }, [index, isLoading, isAnimating])
     
-    const displayedPlatform = useTypewriter({ text: String(game.platform), isActive: isAnimating || isLoading || isMounted, delay: isNewGame ? 2 : rowDelay })
-    const displayedYear = useTypewriter({ text: String(game.year), isActive: isAnimating || isLoading || isMounted, delay: isNewGame ? 3 : rowDelay + 1 })
-    const displayedTitle = useTypewriter({ text: String(game.title), isActive: isAnimating || isLoading || isMounted, delay: isNewGame ? 4 : rowDelay + 2 })
-    const displayedGenre = useTypewriter({ text: String(game.genre), isActive: isAnimating || isLoading || isMounted, delay: isNewGame ? 5.5 : rowDelay + 3.5 })
-    const displayedRating = useTypewriter({ text: String(game.rating), isActive: isAnimating || isLoading || isMounted, delay: isNewGame ? 6.5 : rowDelay + 4.5 })
-    const displayedRank = useTypewriter({ text: game.rank !== null ? String(game.rank) : '', isActive: isAnimating || isLoading || isMounted, delay: isNewGame ? 7.5 : rowDelay + 5.5 })
-
+    const displayedPlatform = useTypewriter ({ text: String(game.platform), isActive: isAnimating || isLoading || isMounted, delay: isNewGame ? 2 : rowDelay })
+    const displayedYear = useTypewriter ({ text: String(game.year), isActive: isAnimating || isLoading || isMounted, delay: isNewGame ? 3 : rowDelay + 1 })
+    const displayedTitle = useTypewriter ({ text: String(game.title), isActive: isAnimating || isLoading || isMounted, delay: isNewGame ? 4 : rowDelay + 2 })
+    const displayedGenre = useTypewriter ({ text: String(game.genre), isActive: isAnimating || isLoading || isMounted, delay: isNewGame ? 5.5 : rowDelay + 3.5 })
+    const displayedRating = useTypewriter ({ text: String(game.rating), isActive: isAnimating || isLoading || isMounted, delay: isNewGame ? 6.5 : rowDelay + 4.5 })
+    const displayedRank = useTypewriter ({ text: game.rank !== null ? String(game.rank) : '', isActive: isAnimating || isLoading || isMounted, delay: isNewGame ? 7.5 : rowDelay + 5.5 })
 
     const currentYear = new Date().getFullYear()
 
     const genrePixelArt = (subgenre) => {     
-    const matchedCategory = genres.find(genre => genre.subgenres.includes(subgenre)) 
+        const matchedCategory = genres.find(genre => genre.subgenres.includes(subgenre)) 
         return matchedCategory ? matchedCategory.category : null
     }
 
@@ -103,11 +101,11 @@ const rowDelay = useMemo(() => {
             {isEditing ? 
             (
             <>    
-        <select 
-        className='platform-select'
-        value={editData.platform} 
-        onChange={(e) => setEditData({...editData, platform: e.target.value})}
-        >
+            <select 
+            className='platform-select'
+            value={editData.platform} 
+            onChange={(e) => setEditData({...editData, platform: e.target.value})}
+            >
             <option value="">-Platform-</option>
             {platforms.map(item => (
                 <optgroup 
@@ -125,9 +123,9 @@ const rowDelay = useMemo(() => {
                 ))}
             </select>
                 
-        <input className="entry-bar__year-row" min="1970" max={currentYear} type="number" placeholder="Year" value={editData.year} onChange={(e) => setEditData({...editData, year:e.target.value})}/>
+        <input className="entry-bar__year-row" min="1970" max={currentYear} type="number" placeholder="Year" value={editData.year} onChange={(e) => setEditData({...editData, year: Number(e.target.value)})}/>
         
-        <input className="entry-bar__title-row" type="text" placeholder="Title" value={editData.title} onChange={(e) => setEditData({...editData, title: e.target.value})}/>
+        <input className="entry-bar__title-row" type="text" maxLength={50} placeholder="Title" value={editData.title} onChange={(e) => setEditData({...editData, title: e.target.value})}/>
     
         <select className='genre-select' value={editData.genre} onChange={(e) => setEditData({...editData, genre: e.target.value})}>
             <option value="">-Genre-</option>
@@ -154,7 +152,7 @@ const rowDelay = useMemo(() => {
             <option value="Amazing">Amazing</option>
             <option value="Great">Great</option>
             <option value="Ok">Ok</option>
-            <option value="Forgettable">Meh..</option>
+            <option value="Meh">Meh</option>
             <option value="DNF">DNF</option>
         </select>
 
@@ -163,35 +161,51 @@ const rowDelay = useMemo(() => {
             className='rank-select'
             disabled={!(editData.rating === 'Top 10' || editData.rating === 'Top 20')} 
             onChange={(e) => setEditData({...editData, rank: e.target.value})}>
-        <option value="">-Rank-</option>
-            {Array.from({ length: editData.rating === 'Top 10' ? 10 : 20 }, (_, i) => (
-        <option key={i + 1} value={i + 1}> {i + 1}</option>
-        ))}
-        
+                <option value="">-Rank-</option>
+                    {Array.from({ length: editData.rating === 'Top 10' ? 10 : 20 }, (_, i) => (
+                <option key={i + 1} value={i + 1}>{i + 1}</option>
+            ))}
         </select>
+        
         <button className="game__save" onClick={() => saveEdit(editData)}>✓</button>
         <button className="game__cancel" onClick={() => setEditingId(null)}>✗</button>
         </>
-            ) : (
-                <>
+        ) : (
+        <>
             <span className={`game__platform ${staticEffect1 === 0 ? 'static-lines' : ''} ${staticEffect2 === 0 ? 'static-colour' : ''}`}
                 style={{
                     backgroundColor: platformColours[brandColours(game.platform)]?.bg,
-                    color:platformColours[brandColours(game.platform)]?.text
-                    }}
-            >{displayedPlatform}</span>
-            <span className={`game__year ${staticEffect1 === 1 ? 'static-lines' : ''} ${staticEffect2 === 1 ? 'static-colour' : ''}`}>{displayedYear}</span>
-            <span className={`game__title ${staticEffect1 === 2 ? 'static-lines' : ''} ${staticEffect2 === 2 ? 'static-colour' : ''}`}>{displayedTitle}</span>
+                    color: platformColours[brandColours(game.platform)]?.text
+                }}>
+            {displayedPlatform}</span>
+            
+            <span className={`game__year ${staticEffect1 === 1 ? 'static-lines' : ''} ${staticEffect2 === 1 ? 'static-colour' : ''}`}>
+            {displayedYear}</span>
+            
+            <span className={`game__title ${staticEffect1 === 2 ? 'static-lines' : ''} ${staticEffect2 === 2 ? 'static-colour' : ''}`}>
+            {displayedTitle}</span>
+            
             <span className={`game__genre ${staticEffect1 === 3 ? 'static-lines' : ''} ${staticEffect2 === 3 ? 'static-colour' : ''}`}>
-                {displayedGenre.length > 0 && <img src={`/src/assets/${iconFile}.png`} onError={(e) => e.target.style.display = 'none'} />}
-                {displayedGenre}</span>
-            <span className={`game__rating ${staticEffect1 === 4 ? 'static-lines' : ''} ${staticEffect2 === 4 ? 'static-colour' : ''}`}>{displayedRating}</span>
-            <span className={`game__rank ${staticEffect1 === 5 ? 'static-lines' : ''} ${staticEffect2 === 5 ? 'static-colour' : ''}`}>{displayedRank}</span>
-            <button className={`game__edit ${staticEffect1 === 6 ? 'static-lines' : ''} ${staticEffect2 === 6 ? 'static-colour' : ''}`} title="Edit this game entry" onClick={() => setEditingId(game.id)}>/</button>
-            <button className={`game__remove ${staticEffect1 === 7 ? 'static-lines' : ''} ${staticEffect2 === 7 ? 'static-colour' : ''}`} title="Delete this game entry" onClick={() => removeGame(game.id)}>X</button>
-    </>
-            )}
-            </div>
+            {displayedGenre.length > 0 && <img src={`/src/assets/${iconFile}.png`} onError={(e) => e.target.style.display = 'none'} />}
+            {displayedGenre}</span>
+            
+            <span className={`game__rating ${staticEffect1 === 4 ? 'static-lines' : ''} ${staticEffect2 === 4 ? 'static-colour' : ''}`}>
+            {displayedRating}</span>
+            
+            <span className={`game__rank ${staticEffect1 === 5 ? 'static-lines' : ''} ${staticEffect2 === 5 ? 'static-colour' : ''}`}>
+            {displayedRank}</span>
+            
+            <button className={`game__edit ${staticEffect1 === 6 ? 'static-lines' : ''} ${staticEffect2 === 6 ? 'static-colour' : ''}`} 
+                    title="Edit this game entry" 
+                    onClick={() => setEditingId(game.id)}
+            >/</button>
+            <button className={`game__remove ${staticEffect1 === 7 ? 'static-lines' : ''} ${staticEffect2 === 7 ? 'static-colour' : ''}`} 
+                    title="Delete this game entry" 
+                    onClick={() => removeGame(game.id)}
+            >X</button>
+            </>
+        )}
+        </div>
     )
 }
 
