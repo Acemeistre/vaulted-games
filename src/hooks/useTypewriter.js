@@ -3,12 +3,11 @@ import { useEffect, useState } from "react";
 function useTypewriter ({ text, isActive, delay = 0 }) {
     const [displayedText, setDisplayedText] = useState('');
 
-
-useEffect(() => {
-    if (!isActive) {
-        setDisplayedText(text)
-    return
-    }
+    useEffect(() => {
+        if (!isActive) {
+            setDisplayedText(text)
+            return
+        }
 
     setDisplayedText('')
     const startTimeout = setTimeout(() => {
@@ -24,7 +23,7 @@ useEffect(() => {
     }, delay * 1000)
     
     return () => clearTimeout(startTimeout)
-}, [isActive, text, delay])
+    }, [isActive, text, delay])
 
     return displayedText
 }
