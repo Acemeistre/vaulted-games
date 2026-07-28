@@ -1,15 +1,27 @@
+// React core imports:
+// import useState to track changes to data, 
+// useEffect to run code that has side effects outside of the app render (such as reading/writing to local storage, APIs, setting timers, etc),
+// useMemo to both cache calculated values and only recalculate when specific dependencies change, preventing unnecessary re-renders 
+// and also recognize when arrays or objects are referenced from the same place in our code's memory to keep array references stable. 
 import { useState, useEffect, useMemo } from 'react'
+
+// import styles
 import './App.css'
+
+// import components
 import Header from './Components/Header/Header'
 import EntryBar from './Components/EntryBar/EntryBar'
 import SortBar from './Components/SortBar/SortBar'
-import platforms from './Data/platforms.js'
-import genres from './Data/genres.js'
-import gameData from './Data/gameData.json'
 import GameList from './Components/GameList/GameList'
 import MarginDecoration from './Components/MarginDecoration/MarginDecoration.jsx'
 
+// import data
+import platforms from './Data/platforms.js'
+import genres from './Data/genres.js'
+import gameData from './Data/gameData.json'
+
 function App() {
+  // Entry form state - track current values of each field used in EntryBar (selectedPlatform, year, title, etc).
   const [selectedPlatform, setSelectedPlatform] = useState(null);
   const [year, setYear] = useState('');
   const [title, setTitle] = useState('');
@@ -17,30 +29,40 @@ function App() {
   const [selectedRating, setSelectedRating] = useState(null);
   const [selectedRank, setSelectedRank] = useState(null);
 
+  // Sort/filter state - tracks currently active sort and filter selections used in SortBar (sortPlatform, sortYear, etc).
   const [sortPlatform, setSortPlatform] = useState(null);
   const [sortYear, setSortYear] = useState(null);
   const [sortTitle, setSortTitle] = useState(null);
   const [sortGenre, setSortGenre] = useState(null);
   const [sortRating, setSortRating] = useState(null);
 
+  // edit state - tracks the editing ID in order to recognize which game to update when editing any game. 
   const [editingId, setEditingId] = useState(null);
 
+  // animating state - triggers and tracks the animation sequence for both row flicker and the typewriter effect, that fires when a sort filter changes. 
   const [isAnimating, setIsAnimating] = useState(false)
 
+  // games state - initialises with data from localStorage if it exists, otherwise falls back to any potential data in gameData.json on first page load.
   const [games, setGames] = useState(() => {
     const saved = localStorage.getItem('games')
     return saved ? JSON.parse(saved) : gameData
   });
 
+  // loading state - intialises as true for first time users (check localStorage is not equal to the string 'hasVisted'),
+  // triggering the staggered component flicker for all components on page load of first time users and skips top of page components, but still results in gameRows animating
   const [isLoading, setIsLoading] = useState(() => {
     return !localStorage.getItem('hasVisited')
   })
 
+  // derive unique values (no duplicates) from games data to populate SortBar filter dropdowns, 
+  // using the Array.from method from the 'new Set' JS data structure to ensure only platforms/genres/ratings/years that exist within the user's library are selectable as filter options for each respective field.
   const savedPlatforms = Array.from(new Set(games.map(game => game.platform)));
   const savedGenres = Array.from(new Set(games.map(game => game.genre)));
   const savedRatings = Array.from(new Set(games.map(game => game.rating)));
   const savedYears = Array.from(new Set(games.map(game => game.year)));
 
+  // set a useEffect block to save games (in the dependancy array) to the local storage, whenever the games state changes, 
+  // using the try/catch block to run code for potential errors such as local storage being unavailable/full
   useEffect(() => {
     try {
     localStorage.setItem('games', JSON.stringify(games))
@@ -49,34 +71,48 @@ function App() {
     }
   }, [games])
 
+  // use the useMemo hook to cache the result of filtering and sorting the games array and save it to the variable filteredGames.
   const filteredGames = useMemo(() => games.filter(game => {
+    // use the .filter method to return the list based on active platform, year, genre and rating
     return (sortPlatform === null ? true : sortPlatform === game.platform) && 
            (sortYear === null || sortYear === 'newest' || sortYear === 'oldest' ? true : Number(sortYear) === game.year) && 
            (sortGenre === null ? true : sortGenre === game.genre) && 
            (sortRating === null ? true : (sortRating === 'Top 20' ? game.rating === 'Top 20' || game.rating === 'Top 10' : sortRating === game.rating))
         }) 
+      // use the .sort method to order the results by title (both A-Z & Z-A) or year (newest first or oldest first)  
       .sort((a, b) => {
       if (sortTitle === 'a-z') return a.title.localeCompare(b.title)
       if (sortTitle === 'z-a') return b.title.localeCompare(a.title)
       if (sortYear === 'newest') return b.year - a.year
       if (sortYear === 'oldest') return a.year - b.year
+    // if no sort selected maintain original order
     return 0
+    // dependency array - useMemo only recalculates when any of these values change
   }), [games, sortPlatform, sortYear, sortTitle, sortGenre, sortRating])
 
+  // set a useEffect to watch for state changes in sortfilters and set timers for the setIsAnimating state.
   useEffect(() => {
+    // if no filters are active (all null), exit early to prevent animation firing on initial mount
     if (sortPlatform === null && sortYear === null && sortTitle === null && sortGenre === null && sortRating === null) return
+    // reset animation state before restarting the sequence
     setIsAnimating(false)
+    // set a timeout of 50 to ensure React processes our false state before setting setIsAnimating to true
     const startTimeout = setTimeout(() => {
       setIsAnimating(true)
     }, 50)
+    // set a call of setTimeout to a variable of endTimeout, calculating the animation duration, 
+    // the stagger delay between each row (using filteredGames.length) and a buffer for the typewriter effect to complete across all fields including the field stagger offsets.
     const endTimeout = setTimeout(() => {
       setIsAnimating(false)
     }, 2000 + (filteredGames.length * 600) + 7500)
+    // use a cleanup return for startTimeout and endTimeout to avoid setting multiple timeouts when either the component unmounts or when the useEffect re-runs due to a dependancy array change
     return () => { 
       clearTimeout(startTimeout)
       clearTimeout(endTimeout)
     }
+    // set the dependancy arrays, that fires when any of their values change
   }, [sortPlatform, sortYear, sortTitle, sortGenre, sortRating])
+
 
   useEffect(() => {
     try{
@@ -103,8 +139,11 @@ function App() {
     }
   }, [])
 
+  // set a function that uses updatedGame as an argument and save it to a variable of saveEdit
   const saveEdit = (updatedGame) => {
+    // use the method .map to map over the games array, replacing the game that is equal to updateGame.id, returning all other games unchanged
     setGames(games.map(game => game.id === updatedGame.id ? updatedGame : game))
+    // set the editingId back to 'null' to return the gameRow back to its displayed (non-edit) render
     setEditingId(null)
   }
 
