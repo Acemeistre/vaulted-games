@@ -113,30 +113,41 @@ function App() {
     // set the dependancy arrays, that fires when any of their values change
   }, [sortPlatform, sortYear, sortTitle, sortGenre, sortRating])
 
-
+  // set a useEffect to fire on page mounts
   useEffect(() => {
+    // call a timeout if the local storage does not have the item with a value string of 'hasVisited', saving the result to a variable of animatingTimeout and wrapped in a try-catch block. 
     try{
     if (!localStorage.getItem('hasVisited')) {
       const animatingTimeout = setTimeout(() => {
+      // set local storage's string value of 'hasVisited' to a value of 'true' and wrap it in another try-catch block, 
+      // printing any errors to the console by catching the error and displaying that with the text prefix of 'localStorage unavailable:'  
       try {
       localStorage.setItem('hasVisited', 'true')
       } catch (e) {
         console.error('localStorage unavailable:', e)
         }
+        // set setIsAnimating to true and set a calculated delay for the time taken for all components above gameRows to finish their flicker animations.
         setIsAnimating(true)
         }, 6300)
+      // call a timeout where we set setIsLoading and setIsAnimating to false saving it to a variable of loadingTimeout and set calculated delays for all component animation durations
       const loadingTimeout = setTimeout(() => {
         setIsLoading(false)
         setIsAnimating(false)
+      // set the initial component stagger offset
+      // set staggger per game row
+      // set values for flicker animation, typewriter and buffer for field stagger within each row
       }, 6300 + (filteredGames.length * 600) + 2000 + 3000 + 2500)
+      // set a cleanup block to avoid setting multiple timeouts when the component unmounts or overlaps due to re-runs
       return () => {
         clearTimeout(animatingTimeout)
         clearTimeout(loadingTimeout)
         }
       }
+    // close our outer catch block to write to the console if any errors if local storage is unavailable
     } catch (e) {
     console.error('localStorage unavailable:', e)
     }
+  // set an empty dependancy array as this useEffect just runs on a pageload and has no arrays to watch 
   }, [])
 
   // set a function that uses updatedGame as an argument and save it to a variable of saveEdit
@@ -147,16 +158,18 @@ function App() {
     setEditingId(null)
   }
 
+  // set a function for addGame, where we add the values of our editable EntryBar fields for a newGame in a variable of newGame
   const addGame = () => {
     const newGame = {
-      id: Date.now(),
+      id: Date.now(), // use timestamp as unique ID for each new game entry
       platform: selectedPlatform,
       year: year,
       title: title,
       genre: selectedGenre,
       rating: selectedRating,
-      rank: (selectedRating === 'Top 10' || selectedRating === 'Top 20' ? selectedRank : null)
+      rank: (selectedRating === 'Top 10' || selectedRating === 'Top 20' ? selectedRank : null) // only save rank for Top 10 or Top 20 ratings
       }
+    // set the setGames state to it's previous array plus the newGame values and set all field states back to their inital "blank" values
     setGames(prev => ([...prev, newGame]))
     setSelectedPlatform(null)
     setYear('')
@@ -166,14 +179,21 @@ function App() {
     setSelectedRank(null)
   }
 
+  // set a function to remove a game with the argument of id
   const removeGame = (id) => {
+    // use the window.confirm method to set a message and save it to the variable confirmed
     const confirmed = window.confirm("Are you certain? This will permanently delete this game from your library")
+    // exit the function if user does not confirm
     if (!confirmed) return
+    // on user confimation use the .filter method to retrun each game who's id is not equal to id and set it to the state setGames
     setGames(prev => prev.filter(game => game.id !== id))
   }
 
+  // set a function to handle a rating change with an argument of rating
   const handleRatingChange = (rating) => {
+    // set the state of setSelectedRating to our argument of rating
     setSelectedRating(rating);
+    // if the rating is not equal to top 10 or top 20 set the state of setSelectedRank to null as rank only applies to those two ratings
     if (rating !== 'Top 10' && rating !== 'Top 20') {
     setSelectedRank(null);
   }

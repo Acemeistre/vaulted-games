@@ -1,8 +1,20 @@
-import './GameRow.css'
+// React core imports:
+// import useState to track changes to data, 
+// useEffect to run code that has side effects outside of the app render (such as reading/writing to local storage, APIs, setting timers, etc),
+// useMemo to both cache calculated values and only recalculate when specific dependencies change, preventing unnecessary re-renders 
+// and also recognize when arrays or objects are referenced from the same place in our code's memory to keep array references stable. 
+// import useRef to store the value between page render, without causing re-renders before isLoading sets to true 
 import { useState, useEffect, useMemo, useRef } from 'react'
+
+// import styles
+import './GameRow.css'
+
+// import custom hooks
 import useTypewriter from '../../../hooks/useTypewriter'
 import useStaticEffect from '../../../hooks/useStaticEffect'
 
+// set arrays whose values never change between renders
+// set the value of each genre category to the name of each pixel art file and save to the object genreIcons
 const genreIcons = {
   Action: 'Action_v1_crossed-swords',
   Adventure: 'Adventure_v1_globe',
@@ -20,6 +32,7 @@ const genreIcons = {
   Shooter: 'Shooter_v1_machine-gun'
 }
 
+// set the value of each rating to its gameRow associated colour choices and save it to the object ratingColour
 const ratingColour = {
    'Top 10': '#5A1C8F',
    'Top 20': '#2475B7',
@@ -30,6 +43,7 @@ const ratingColour = {
     DNF: '#6C2418'
 }
 
+// set the value of the background and text colours of each platform brand and save it to the object platformColours
 const platformColours = {
   Nintendo: { bg: '#E4000F', text: '#FFD700' },
   PlayStation: { bg: '#003087', text: '#ffffff' },
@@ -41,24 +55,35 @@ const platformColours = {
   Other: { bg: '#FFD700', text: '#FF0000' }
 }
 
+// set the function for gameRow including all states passed from App.jsx in the function signature
 function GameRow ({platforms, genres, game, removeGame, editingId, setEditingId, saveEdit, isAnimating, index, isLoading }) {
-
+    // set variable isNewGame to Date.now, checking if game.id was created less than 30 seconds ago
     const isNewGame = Date.now() - game.id < 30000
+    // initialise isMounted state with isNewGame as its starting value
+    // (see useEffect below and useTypewriter calls for how this is used)
     const [isMounted, setIsMounted] = useState(isNewGame)
+    // save the isLoading variable to wasLoading using the useRef hook to prevent re-rendering
     const wasLoading = useRef(isLoading)
 
+    // set a useEffect to set setisMounted to true if not wasLoading.current and not isNewGame - used for return users
     useEffect(() => {
         if (!wasLoading.current && !isNewGame) {
             setIsMounted(true)
         }
     }, [])
 
+    // set a row Delay function and use the useMemo hook to watch for changes in the index, isLoading and isAnimating dependancy arrays
     const rowDelay = useMemo(() => {
+        // if isLoading is true return the stagger of each game row, calculating the intial components (header, entrybar, etc) delay, 
+        // the stagger delay between rows (using index + 1 for each row) and 2 secs for the flicker animation to complete
         if (isLoading) return (8 + ((index + 1) * 0.6)) + 2
+        // if isAnimating is true set the stagger of each game row when calculating the stagger delay between rows (using index + 1 for each row) and 2 secs for the flicker animation to complete
         if (isAnimating) return ((index + 1) * 0.6) + 2
+        // else return the stagger of each row
         return (index + 1) * 0.6
     }, [index, isLoading, isAnimating])
     
+
     const displayedPlatform = useTypewriter ({ text: String(game.platform), isActive: isAnimating || isLoading || isMounted, delay: isNewGame ? 2 : rowDelay })
     const displayedYear = useTypewriter ({ text: String(game.year), isActive: isAnimating || isLoading || isMounted, delay: isNewGame ? 3 : rowDelay + 1 })
     const displayedTitle = useTypewriter ({ text: String(game.title), isActive: isAnimating || isLoading || isMounted, delay: isNewGame ? 4 : rowDelay + 2 })
@@ -66,21 +91,31 @@ function GameRow ({platforms, genres, game, removeGame, editingId, setEditingId,
     const displayedRating = useTypewriter ({ text: String(game.rating), isActive: isAnimating || isLoading || isMounted, delay: isNewGame ? 6.5 : rowDelay + 4.5 })
     const displayedRank = useTypewriter ({ text: game.rank !== null ? String(game.rank) : '', isActive: isAnimating || isLoading || isMounted, delay: isNewGame ? 7.5 : rowDelay + 5.5 })
 
+    // set new Date using the .getFullYear method and save it to the variable currentYear
     const currentYear = new Date().getFullYear()
 
-    const genrePixelArt = (subgenre) => {     
-        const matchedCategory = genres.find(genre => genre.subgenres.includes(subgenre)) 
+    // set a function for genrePixelArt, using subgenre as its argument
+    const genrePixelArt = (subgenre) => {
+        // use the .find method to go through each genre in genres and use the .includes method to pass through the subgenres, saving it to a variable of matchedCategory     
+        const matchedCategory = genres.find(genre => genre.subgenres.includes(subgenre))
+        // return each category in matchedCategory using the matchedCategory variable, else return null 
         return matchedCategory ? matchedCategory.category : null
     }
 
+    // set a function for brandColours, using consoles as its argument
     const brandColours = (consoles) => {
-        const matchedPlatform = platforms.find(b => b.consoles.includes(consoles))
+        // use the .find method to go through each brand in platforms and use the .includes method to pass through the argument of consoles, saving it to a variable of matchedPlatform  
+        const matchedPlatform = platforms.find(brand => brand.consoles.includes(consoles))
+        // return each brand in matchedPlatform using the matchedPlatform variable, else return null
         return matchedPlatform ? matchedPlatform.brand : null
     }
 
+    // call the function of the genrePixelArt to get each category name value in subgenre, using game.genre, wrapped with genreIcons to look at the matching pixel art
+    // and save it to a variable of iconFile for rendering in the genre field
     const iconFile = genreIcons[genrePixelArt(game.genre)]
-
+    // set a variable to save game.id when it's equal to editingId(set in app.jsx) to isEditing
     const isEditing = editingId === game.id
+    // set the appropriate values of the editDate state using the keys and values passed down from the game prop in app.jsx
     const [editData, setEditData] = useState({
         id: game.id,
         platform: game.platform,
@@ -91,6 +126,8 @@ function GameRow ({platforms, genres, game, removeGame, editingId, setEditingId,
         rank: game.rank
     })
 
+    // set isActive to true, the number of fields (using fieldCount), a minDelay and a maxDelay, using the useStaticEffect state and save it to two different variables 
+    // - one for each static effect to take effect at different times on different fields
     const staticEffect1 = useStaticEffect ({ isActive: true, fieldCount: 8, minDelay: 40000, maxDelay: 80000 })
     const staticEffect2 = useStaticEffect ({ isActive: true, fieldCount: 8, minDelay: 40000, maxDelay: 80000 })
     
