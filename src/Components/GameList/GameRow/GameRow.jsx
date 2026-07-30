@@ -140,7 +140,7 @@ function GameRow ({platforms, genres, game, removeGame, editingId, setEditingId,
         <div 
             // use a template literal for className 'game-row' so the css can apply the animations for 'row-flicker' when either isAnimating, isLoading or isMounted is true
             className={`game-row ${isAnimating || isLoading || isMounted ? 'row-flicker' : ''}`}
-            // set the style property to '--rating-colour', using bracket notation of on the object ratingColour to look up each game rating, so as to be applied as an inset box shadow on each gamerow field 
+            // set the style property to '--rating-colour', using bracket notation on the object ratingColour to look up each game rating, so as to be applied as an inset box shadow on each gamerow field 
             style={{'--rating-colour': ratingColour[game.rating],
             // use a template literal to set the animation delay for isNewGame to 0, then for isLoading an 8 second delay before using index to calculate the row stagger, else just calculate row stagger
             animationDelay: `${isNewGame ? 0 : isLoading ? 8 + ((index + 1) * 0.6) : (index + 1) * 0.6}s`}}>
@@ -149,6 +149,7 @@ function GameRow ({platforms, genres, game, removeGame, editingId, setEditingId,
             pre-populated with the current game data from editData state*/}   
             {isEditing ? 
             (
+            // use a react fragment to wrap multiple elements without having anything additonal to render
             <>    
         
         <select 
@@ -244,35 +245,50 @@ function GameRow ({platforms, genres, game, removeGame, editingId, setEditingId,
         </>
         ) : (
         <>
+            {/* use a ternary element to add the css 'static-lines' to 'game__platform' when staticEffect1 is equal to 0 (0 being the index number of the platform field within each game row), else leave as an empty string. 
+            Repeat the same object logic for staticEffect 2 but with 'static-colour for the added css text value */}
             <span className={`game__platform ${staticEffect1 === 0 ? 'static-lines' : ''} ${staticEffect2 === 0 ? 'static-colour' : ''}`}
                   style={{
+                    // use bracket notation to match the selection of the game.platform value in brandColours (where the console names are held) to the background colour within the object of platformColours
+                    // we chain bg to the end to specify the key-value pair held within platformColours and prefix it with a ? to prevent errors if no matching brand is found
                     backgroundColor: platformColours[brandColours(game.platform)]?.bg,
-                    color: platformColours[brandColours(game.platform)]?.text
+                    color: platformColours[brandColours(game.platform)]?.text // apply the same logic as above, just with .text to select that key-value pair within platformColours
                 }}>
             {displayedPlatform}</span>
             
+            {/* see 'game__platform' comment for ternary element logic */}
             <span className={`game__year ${staticEffect1 === 1 ? 'static-lines' : ''} ${staticEffect2 === 1 ? 'static-colour' : ''}`}>
             {displayedYear}</span>
             
+            {/* see 'game__platform' comment for ternary element logic */}
             <span className={`game__title ${staticEffect1 === 2 ? 'static-lines' : ''} ${staticEffect2 === 2 ? 'static-colour' : ''}`}>
             {displayedTitle}</span>
             
+            {/* see 'game__platform' comment for ternary element logic */}
             <span className={`game__genre ${staticEffect1 === 3 ? 'static-lines' : ''} ${staticEffect2 === 3 ? 'static-colour' : ''}`}>
+            {/* only render the genre icon once displayedGenre has started typing (length > 0),
+            with onError handling to hide the image if the file fails to load */}
             {displayedGenre.length > 0 && <img src={`/src/assets/${iconFile}.png`} onError={(e) => e.target.style.display = 'none'} />}
             {displayedGenre}</span>
             
+            {/* see 'game__platform' comment for ternary element logic */}
             <span className={`game__rating ${staticEffect1 === 4 ? 'static-lines' : ''} ${staticEffect2 === 4 ? 'static-colour' : ''}`}>
             {displayedRating}</span>
             
+            {/* see 'game__platform' comment for ternary element logic */}
             <span className={`game__rank ${staticEffect1 === 5 ? 'static-lines' : ''} ${staticEffect2 === 5 ? 'static-colour' : ''}`}>
             {displayedRank}</span>
             
+            {/* see 'game__platform' comment for ternary element logic */}
             <button className={`game__edit ${staticEffect1 === 6 ? 'static-lines' : ''} ${staticEffect2 === 6 ? 'static-colour' : ''}`} 
                     title="Edit this game entry" 
                     onClick={() => setEditingId(game.id)}
             >/</button>
+
+            {/* see 'game__platform' comment for ternary element logic */}
             <button className={`game__remove ${staticEffect1 === 7 ? 'static-lines' : ''} ${staticEffect2 === 7 ? 'static-colour' : ''}`} 
-                    title="Delete this game entry" 
+                    title="Delete this game entry"
+                    // for property onClick call the function removeGame with game.id as its argument 
                     onClick={() => removeGame(game.id)}
             >X</button>
             </>
