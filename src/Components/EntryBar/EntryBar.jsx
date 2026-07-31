@@ -89,18 +89,23 @@ function EntryBar ({platforms, genres, selectedPlatform, year, title, selectedGe
         {/* Grid spacer for add button column header */}
         <div></div>
 
+        {/* set a ternary element to append static-lines to field-wrapper when staticEffect1 is equal to zero else leave as empty string when false 
+        and append static-colour when staticEffect2 is equal to zero else leave as an empty string when false */}    
         <div className={`field-wrapper ${staticEffect1 === 0 ? 'static-lines' : ''} ${staticEffect2 === 0 ? 'static-colour' : ''}`}>
+            {/* for the onChange set the event to target the onPlatformChange state value to update it to our selected platform */}
             <select className='platform-select' onChange={(e) => onPlatformChange(e.target.value)}>
                 <option value="">-Platform-</option>
+                {/* map each brand in platforms to render a optgroup, with a nested map to go through each console to render an option */} 
                 {platforms.map(item => (
                     <optgroup 
                         label={item.brand}
-                        key={item.brand}
+                        key={item.brand} // needed to let React know which item to re-render for brand optgroups when a user interacts with the list
                         >
+                        {/* map each console in brands to render each option */}  
                         {item.consoles.map(i => (
                         <option 
                             value={i}
-                            key={i}
+                            key={i} // needed to let React know which item to re-render for console options when a user interacts with the list
                             >{i}
                         </option>
                         ))}
@@ -109,14 +114,22 @@ function EntryBar ({platforms, genres, selectedPlatform, year, title, selectedGe
             </select>
         </div>
         
+        {/* see field-wrapper for staticEffect code logic */}
+        {/* see platform-select for onChange code logic */}
+        {/* autoComplete="off" prevents browser autofill interfering with the year input */}
         <div className={`field-wrapper ${staticEffect1 === 1 ? 'static-lines' : ''} ${staticEffect2 === 1 ? 'static-colour' : ''}`}>
             <input className="entry-bar__year-row" autoComplete="off" min="1970" max={currentYear} type="number" placeholder="Year" onChange={(e) => onYearChange(e.target.value)}/>
         </div>
         
+        {/* see fieldwrapper for staticEffect code logic */}
+        {/* see platform-select for onChange code logic */}
+        {/* autoComplete="off" prevents browser autofill interfering with the title input */}
         <div className={`field-wrapper ${staticEffect1 === 2 ? 'static-lines' : ''} ${staticEffect2 === 2 ? 'static-colour' : ''}`}>
             <input className="entry-bar__title-row" autoComplete="off" type="text" maxLength={50} placeholder="Title" onChange={(e) => onTitleChange(e.target.value)}/>
         </div>
-
+        
+        {/* see fieldwrapper for staticEffect code logic */}
+        {/* see platform-select for onChange code logic and .map logic */}
         <div className={`field-wrapper ${staticEffect1 === 3 ? 'static-lines' : ''} ${staticEffect2 === 3 ? 'static-colour' : ''}`}>
             <select className='genre-select' onChange={(e) => onGenreChange(e.target.value)}>
                 <option value="">-Genre-</option>
@@ -137,6 +150,8 @@ function EntryBar ({platforms, genres, selectedPlatform, year, title, selectedGe
             </select>
         </div>
         
+        {/* see fieldwrapper for staticEffect code logic */}
+        {/* see platform-select for onChange code logic */}
         <div className={`field-wrapper ${staticEffect1 === 4 ? 'static-lines' : ''} ${staticEffect2 === 4 ? 'static-colour' : ''}`}>
             <select className='rating-select' onChange={(e) => onRatingChange(e.target.value)}>
                 <option value="">-Rating-</option> 
@@ -150,6 +165,7 @@ function EntryBar ({platforms, genres, selectedPlatform, year, title, selectedGe
             </select>
         </div>
         
+        {/* see fieldwrapper for staticEffect code logic */}
         <div className={`field-wrapper ${staticEffect1 === 5 ? 'static-lines' : ''} ${staticEffect2 === 5 ? 'static-colour' : ''}`}>
             <select
                 value={selectedRank ?? ''}  
