@@ -1,15 +1,27 @@
+// import css and hooks
 import './EntryBar.css'
 import useStaticEffect from '../../hooks/useStaticEffect'
 import useLetterFlicker from '../../hooks/useLetterFlicker'
 
+// Function signature:
+// platforms and genre data for dropdowns, 
+// selectedPlatform, year, title, selectedGenre, selectedRating, selectedRank — controlled input values (needed to show current state)
+// onPlatformChange, onYearChange, onTitleChange, onGenreChange, onRankChange, onRatingChange — handlers to update state in App.jsx
+// addGame — the submit function
+// isLoading — for the boot-up animation
 function EntryBar ({platforms, genres, selectedPlatform, year, title, selectedGenre, selectedRating, selectedRank, onPlatformChange, onYearChange, onTitleChange, onGenreChange, onRankChange, onRatingChange, addGame, isLoading }) {
-  
+    
+    // call new Date on getFullYear and save to currentYear to set the max year for our year input
     const currentYear = new Date().getFullYear()
 
+    // set a variable to check that ALL EntryBar fields have data entered or selected and save it to isReadyToContinue
     const isReadyToContinue = selectedPlatform !== null && year !== '' && Number(year) >= 1970 && Number(year) <= currentYear && title !== '' && selectedGenre !== null && selectedRating !== null && (selectedRating === 'Top 10' || selectedRating === 'Top 20' ? selectedRank !== null : true)
 
+    // set isActive to true, the fieldCount number of our EntryBar and the min and max delays for the hook animation of useStaticEffect, 
+    // saving it to two variable instances of staticEffect (1 & 2) in order for each effect to run indepenently with their own random timers
     const staticEffect1 = useStaticEffect ({ isActive: true, fieldCount: 7, minDelay: 8000, maxDelay: 16000 })
     const staticEffect2 = useStaticEffect ({ isActive: true, fieldCount: 7, minDelay: 8000, maxDelay: 16000 })
+    // set text to the name of each EntryBar value, isActive to true and the min and max delays for the hook animation of useLetterFlicker 
     const flickerPlatform = useLetterFlicker ({ text: 'Platform', isActive: true, minDelay: 12000, maxDelay: 20000 })
     const flickerYear = useLetterFlicker ({ text: 'Year', isActive: true, minDelay: 12000, maxDelay: 20000 })
     const flickerTitle = useLetterFlicker ({ text: 'Title', isActive: true, minDelay: 12000, maxDelay: 20000 })
@@ -18,37 +30,46 @@ function EntryBar ({platforms, genres, selectedPlatform, year, title, selectedGe
     const flickerRank = useLetterFlicker ({ text: 'Rank', isActive: true, minDelay: 12000, maxDelay: 20000 })
 
     return (
+    // set a ternary element to append row-flicker to section-wrapper when isLoading is true else leave is empty string when false and apply animation delay to allow Header to animate
     <div className={`section-wrapper ${isLoading ? 'row-flicker' : ''}`} style={{animationDelay: '4.3s'}}>
     <h3>Entry</h3>
     <div className="entry-bar_container">
+        {/* use .split on our text, then use.map so that each character has an index to it.
+        Inside it's function we have a span which takes the index numbers as its keys and then when flickerPlatform (with all it's instructions) is equal to index we apply css 'letter-dim'
+        to apply the letterFlicker animation else we return an empty string for the css name.
+        If the character render is an empty space we render unicode charcter '\u00A0' (for any text with spaces) else we leave the character as is normally displayed.*/}
         <h2>
           {'Platform'.split('').map((char, i) => (
             <span key={i} className={flickerPlatform === i ? 'letter-dim' : ''}>
                 {char === ' ' ? '\u00A0' : char}
             </span>
             ))}
-        </h2>    
+        </h2>
+        {/* see platform h2 for full code breakdown */}    
         <h2>
           {'Year'.split('').map((char, i) => (
             <span key={i} className={flickerYear === i ? 'letter-dim' : ''}>
                 {char === ' ' ? '\u00A0' : char}
             </span>
             ))}
-        </h2>     
+        </h2>
+        {/* see platform h2 for full code breakdown */}        
         <h2>
           {'Title'.split('').map((char, i) => (
             <span key={i} className={flickerTitle === i ? 'letter-dim' : ''}>
                 {char === ' ' ? '\u00A0' : char}
             </span>
             ))}
-        </h2>        
+        </h2>
+        {/* see platform h2 for full code breakdown */}   
         <h2>
           {'Genre'.split('').map((char, i) => (
             <span key={i} className={flickerGenre === i ? 'letter-dim' : ''}>
                 {char === ' ' ? '\u00A0' : char}
             </span>
             ))}
-        </h2>  
+        </h2>
+        {/* see platform h2 for full code breakdown */}   
         <h2>
           {'Rating'.split('').map((char, i) => (
             <span key={i} className={flickerRating === i ? 'letter-dim' : ''}>
@@ -56,6 +77,7 @@ function EntryBar ({platforms, genres, selectedPlatform, year, title, selectedGe
             </span>
             ))}
         </h2>
+        {/* see platform h2 for full code breakdown */}   
         <h2>
           {'Rank'.split('').map((char, i) => (
             <span key={i} className={flickerRank === i ? 'letter-dim' : ''}>
