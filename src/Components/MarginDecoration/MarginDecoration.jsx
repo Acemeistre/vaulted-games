@@ -75,4 +75,4 @@ function MarginDecoration({ games }) {
     )
 }
 
-export default MarginDecoration
+export default MarginDecoration;
