@@ -55,10 +55,9 @@ function App() {
   })
 
   // derive unique values (no duplicates) from games data to populate SortBar filter dropdowns, 
-  // using the Array.from method from the 'new Set' JS data structure to ensure only platforms/genres/ratings/years that exist within the user's library are selectable as filter options for each respective field.
+  // using the Array.from method from the 'new Set' JS data structure to ensure only platforms/genres/years that exist within the user's library are selectable as filter options for each respective field.
   const savedPlatforms = Array.from(new Set(games.map(game => game.platform)));
   const savedGenres = Array.from(new Set(games.map(game => game.genre)));
-  const savedRatings = Array.from(new Set(games.map(game => game.rating)));
   const savedYears = Array.from(new Set(games.map(game => game.year)));
 
   // set a useEffect block to save games (in the dependancy array) to the local storage, whenever the games state changes, 
@@ -241,7 +240,6 @@ function App() {
       savedPlatforms={savedPlatforms}
       savedYears={savedYears}
       savedGenres={savedGenres}
-      savedRatings={savedRatings}
       isLoading={isLoading}
     />
     <GameList
