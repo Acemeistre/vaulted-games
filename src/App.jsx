@@ -199,7 +199,6 @@ function App() {
   }
 }
 
-
  return (
   <div className="App">
     <div className="rotate-prompt">

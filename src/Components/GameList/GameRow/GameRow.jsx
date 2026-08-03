@@ -228,7 +228,7 @@ function GameRow ({platforms, genres, game, removeGame, editingId, setEditingId,
             disabled={!(editData.rating === 'Top 10' || editData.rating === 'Top 20')} // field remains disabled if rating is not equal to top 10 or top 20
             onChange={(e) => setEditData({...editData, rank: e.target.value})}> {/* spread all existing editData values along with targeting the value of the rank property to update it to our selected rank */}
                 <option value="">-Rank-</option>
-                    {/* use a ternary operator to take an array from the length property of the rating in editData if it's equal to 'top 10' to create 10 items else creat 20 items,
+                    {/* use a ternary operator to take an array from the length property of the rating in editData if it's equal to 'top 10' to create 10 items else create 20 items,
                     call this with _ convention (to discard the parameter) and its index */}
                     {Array.from({ length: editData.rating === 'Top 10' ? 10 : 20 }, (_, i) => (
                 <option 

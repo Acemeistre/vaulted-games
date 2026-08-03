@@ -170,20 +170,32 @@ function EntryBar ({platforms, genres, selectedPlatform, year, title, selectedGe
             <select
                 value={selectedRank ?? ''}  
                 className='rank-select'
-                disabled={!(selectedRating === 'Top 10' || selectedRating === 'Top 20')} 
+                disabled={!(selectedRating === 'Top 10' || selectedRating === 'Top 20')} // we only this field available when a selected rating is either 'Top 10' or 'Top 20'
                 onChange={(e) => onRankChange(e.target.value)}>
             <option value="">-Rank-</option>
+                {/* use a ternary operator to take an array from the length property of selectedRating, if it's equal to 'Top 10' to create 10 items else create 20 items 
+                call this with the _ convetion (to discard the parameter) and its index*/}
                 {Array.from({ length: selectedRating === 'Top 10' ? 10 : 20 }, (_, i) => (
-            <option key={i + 1} value={i + 1}>{i + 1}</option>
+            <option 
+                key={i + 1} // add 1 to index to give the correct representation of our top 10/20 to react
+                value={i + 1} // add 1 to index to give the correct value of our top 10/20
+            >
+                {i + 1} {/* add 1 to index to render the correct number of our top 10/20 */}
+            </option>
             ))}
             </select>
         </div>
-        
+
+        {/* see the fieldwrapper above 'platform-select' for staticEffect code logic */}
         <div className={`field-wrapper ${staticEffect1 === 6 ? 'static-lines' : ''} ${staticEffect2 === 6 ? 'static-colour' : ''}`}>
-            <button 
+            <button
+                // use a ternary to apply 'continue-btn--active' or 'continue-btn--disabled' css based on isReadyToContinue
                 className={`continue-btn ${isReadyToContinue ? 'continue-btn--active' : 'continue-btn--disabled'}`}
+                // set a ternary operator to check if isReadyToContinue is true - if yes addGame else return no data (null)
                 onClick={isReadyToContinue ? addGame : null}
+                // disable button if isReadyToContinue is false
                 disabled={!isReadyToContinue}
+                // set titles using a chained ternary operator to determin whether data is correctly provided, using the not operator to set an appropriate string response for each field 
                 title={
                 !selectedPlatform ? 'Please select a platform first' :
                 !year ? 'Please select a year' :
