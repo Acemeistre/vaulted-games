@@ -1,5 +1,8 @@
+// import child component GameRow 
 import GameRow from './GameRow/GameRow'
+// import styles
 import './GameList.css'
+
 
 function GameList ({ platforms, genres, games, removeGame, editingId, setEditingId, saveEdit, isAnimating, isLoading, totalGames }) {
 
