@@ -35,7 +35,7 @@ function useTypewriter ({ text, isActive, delay = 0 }) {
         }, delay * 1000)
         // set a cleanup return for startTimeout to avoid setting multiple timeouts when the component unmounts or the effect re-runs
         return () => clearTimeout(startTimeout)
-        // watch for changes in isActive, text and delay in the dependancy array
+        // watch for changes in isActive, text and delay in the dependency array
         }, [isActive, text, delay])
     // return the displayedText so that the component calling the typewriter hook knows which field the effect is applied to
     return displayedText

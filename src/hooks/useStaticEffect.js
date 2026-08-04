@@ -39,7 +39,7 @@ function useStaticEffect({ isActive, fieldCount, minDelay = 20000, maxDelay = 40
         cycle()
         // set a cleanup return for timeout avoid setting multiple timeouts when the component unmounts or the effect re-runs
         return () => clearTimeout(timeout)
-        // watch for changes to isActive in the dependancy array
+        // watch for changes to isActive in the dependency array
     }, [isActive])
 
     // return the activeField so that the component calling the static effect hook knows which field the effect is applied to

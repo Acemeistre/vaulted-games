@@ -48,8 +48,9 @@ function App() {
     return saved ? JSON.parse(saved) : gameData
   });
 
-  // loading state - intialises as true for first time users (check localStorage is not equal to the string 'hasVisted'),
-  // triggering the staggered component flicker for all components on page load of first time users and skips top of page components, but still results in gameRows animating
+  // loading state - intialises as true for first time users (check localStorage is not equal to the string 'hasVisited'),
+  // triggering the staggered component flicker for all components on page load of first time users 
+  // and skips the animations of the "top of page components", but still results in gameRows animating for return users
   const [isLoading, setIsLoading] = useState(() => {
     return !localStorage.getItem('hasVisited')
   })
@@ -60,7 +61,7 @@ function App() {
   const savedGenres = Array.from(new Set(games.map(game => game.genre)));
   const savedYears = Array.from(new Set(games.map(game => game.year)));
 
-  // set a useEffect block to save games (in the dependancy array) to the local storage, whenever the games state changes, 
+  // set a useEffect block to save games (in the dependency array) to the local storage, whenever the games state changes, 
   // using the try/catch block to run code for potential errors such as local storage being unavailable/full
   useEffect(() => {
     try {
@@ -104,12 +105,12 @@ function App() {
     const endTimeout = setTimeout(() => {
       setIsAnimating(false)
     }, 2000 + (filteredGames.length * 600) + 7500)
-    // use a cleanup return for startTimeout and endTimeout to avoid setting multiple timeouts when either the component unmounts or when the useEffect re-runs due to a dependancy array change
+    // use a cleanup return for startTimeout and endTimeout to avoid setting multiple timeouts when either the component unmounts or when the useEffect re-runs due to a dependency array change
     return () => { 
       clearTimeout(startTimeout)
       clearTimeout(endTimeout)
     }
-    // set the dependancy arrays, that fires when any of their values change
+    // set the dependency arrays, that fires when any of their values change
   }, [sortPlatform, sortYear, sortTitle, sortGenre, sortRating])
 
   // set a useEffect to fire on page mounts
@@ -133,7 +134,7 @@ function App() {
         setIsLoading(false)
         setIsAnimating(false)
       // set the initial component stagger offset
-      // set staggger per game row
+      // set stagger per game row
       // set values for flicker animation, typewriter and buffer for field stagger within each row
       }, 6300 + (filteredGames.length * 600) + 2000 + 3000 + 2500)
       // set a cleanup block to avoid setting multiple timeouts when the component unmounts or overlaps due to re-runs
@@ -142,11 +143,11 @@ function App() {
         clearTimeout(loadingTimeout)
         }
       }
-    // close our outer catch block to write to the console if any errors if local storage is unavailable
+    // close our outer catch block to write to the console if local storage is unavailable
     } catch (e) {
     console.error('localStorage unavailable:', e)
     }
-  // set an empty dependancy array as this useEffect just runs on a pageload and has no arrays to watch 
+  // set an empty dependency array as this useEffect just runs on a pageload and has no arrays to watch 
   }, [])
 
   // set a function that uses updatedGame as an argument and save it to a variable of saveEdit
@@ -184,7 +185,7 @@ function App() {
     const confirmed = window.confirm("Are you certain? This will permanently delete this game from your library")
     // exit the function if user does not confirm
     if (!confirmed) return
-    // on user confimation use the .filter method to retrun each game who's id is not equal to id and set it to the state setGames
+    // on user confirmation use the .filter method to return each game who's id is not equal to id and set it to the state setGames
     setGames(prev => prev.filter(game => game.id !== id))
   }
 

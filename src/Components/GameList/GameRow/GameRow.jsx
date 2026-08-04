@@ -72,7 +72,7 @@ function GameRow ({platforms, genres, game, removeGame, editingId, setEditingId,
         }
     }, [])
 
-    // set a row Delay function and use the useMemo hook to watch for changes in the index, isLoading and isAnimating dependancy arrays
+    // set a row Delay function and use the useMemo hook to watch for changes in the index, isLoading and isAnimating dependency arrays
     const rowDelay = useMemo(() => {
         // if isLoading is true return the stagger of each game row, calculating the intial components (header, entrybar, etc) delay, 
         // the stagger delay between rows (using index + 1 for each row) and 2 secs for the flicker animation to complete
