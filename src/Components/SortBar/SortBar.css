@@ -1,9 +1,9 @@
 .section-wrapper {
-  width: 100%;
-  max-width: 96rem;
-  margin: 0 auto;
-  padding: 1.5rem;
-  position: relative;
+    width: 100%;
+    max-width: 96rem;
+    margin: 0 auto;
+    padding: 1.5rem;
+    position: relative;
 }
 
 .sort-bar_container {
@@ -20,7 +20,7 @@
 }
 
 .sort-bar_container select:has(option[value=""]:checked) {
-  color: white;
+    color: white;
 }
 
 h2 {
@@ -62,7 +62,7 @@ select, input, button {
    select, input, button {
      font-size: .8rem;
    }
-   h2{
+   h2 {
     font-size: .75rem;
    }
    h3 {
@@ -78,26 +78,23 @@ select, input, button {
         margin-bottom: 16rem;
     }
     button {
-      width: 100%;
+        width: 100%;
     }
-
     h2 {
-     font-size: .65rem;
-     margin-bottom: 0;
-       
+        font-size: .65rem;
+        margin-bottom: 0;
     }
     h3 {
-     font-size: 1rem;
-     margin-top: 2rem;
-     margin-left: 1rem;      
+        font-size: 1rem;
+        margin-top: 2rem;
+        margin-left: 1rem;      
     }
-
     .sort-bar_container select,
     .sort-bar_container input,
     .sort-bar_container button {
-      padding: .25rem;
-      font-size: .75rem;
-      box-sizing: border-box;
-      height: 12%;
+        padding: .25rem;
+        font-size: .75rem;
+        box-sizing: border-box;
+        height: 12%;
     }
 }
