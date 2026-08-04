@@ -109,6 +109,7 @@ and add your own games to start your personal library.
 - App is landscape-only for mobile — portrait mobile shows a rotate prompt by design (768px is the minimum supported viewport width).
 - Margin pixel art decoration only shows at a viewport width of 1680px and above.
 - Local storage only — data doesn't sync across devices or browsers.
+- Global CSS rules (h2, h3, select, input, button) are duplicated across component CSS files EntryBar and SortBar, rather than being consolidated in index.css — a future refactor could improve maintainability.
 
 #### UX/Design:
 - Native 'select' elements limit styling of placeholder text colour.
