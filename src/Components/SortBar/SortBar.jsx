@@ -12,7 +12,7 @@ import useLetterFlicker from '../../hooks/useLetterFlicker';
 // onsortChange for Platform, year, title, genre, rating to detect when those fields are chosen.
 // pass in isLoading to check for first time users
 function SortBar({savedPlatforms, savedYears, savedGenres, sortPlatform, onSortPlatformChange, sortYear, onSortYearChange, sortTitle, onSortTitleChange, sortGenre, onSortGenreChange, sortRating, onSortRatingChange, isLoading }) {
-    // set isActive to true, the fieldCount number of our SortBar fileds and the min and max delays for the hook animation of useStaticEffect, 
+    // set isActive to true, the fieldCount number of our SortBar fields and the min and max delays for the hook animation of useStaticEffect, 
     // saving it to two variable instances of staticEffect (1 & 2) in order for each effect to run indepenently with their own random timers
     const staticEffect1 = useStaticEffect ({ isActive: true, fieldCount: 6, minDelay: 8000, maxDelay: 16000 })
     const staticEffect2 = useStaticEffect ({ isActive: true, fieldCount: 6, minDelay: 8000, maxDelay: 16000 })
@@ -133,7 +133,7 @@ function SortBar({savedPlatforms, savedYears, savedGenres, sortPlatform, onSortP
         
         {/* see field-wrapper for staticEffect code logic */}
         <div className={`field-wrapper ${staticEffect1 === 3 ? 'static-lines' : ''} ${staticEffect2 === 3 ? 'static-colour' : ''}`}>
-            <button className='alphabet-sort' onClick={() => onSortTitleChange('z-a')}> {/* sorts our titles in revese alphabet */}
+            <button className='alphabet-sort' onClick={() => onSortTitleChange('z-a')}> {/* sorts our titles in reverse alphabet */}
                 Z-A
             </button>
         </div>
