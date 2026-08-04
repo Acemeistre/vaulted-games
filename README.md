@@ -99,6 +99,11 @@ npm run dev
 ### Or visit the live app
 [vaulted-games.vercel.app](https://vaulted-games.vercel.app/)
 
+### Sample Data
+The app comes pre-loaded with 6 sample games to demonstrate its features. 
+Clear localStorage in your browser's dev tools (Application → Local Storage) 
+and add your own games to start your personal library.
+
 ## ⚠️ Known limitations
 #### Technical:
 - App is landscape-only for mobile — portrait mobile shows a rotate prompt by design (768px is the minimum supported viewport width).
