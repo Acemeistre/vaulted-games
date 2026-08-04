@@ -83,7 +83,7 @@ function GameRow ({platforms, genres, game, removeGame, editingId, setEditingId,
         return (index + 1) * 0.6
     }, [index, isLoading, isAnimating])
     
-    // for the useTypewriter state set object property text to to a string of each field (platform, year, etc)
+    // for the useTypewriter state set object property text to a string of each field (platform, year, etc)
     // set isActive to the value of isAnimating or isLoading or isMounted,
     // set the delay of the state to 2 seconds for isNewGame, else use variable rowDelay
     // save these object property values to a variable for the displayed version (not the edit version of our entry fields), incrementing the delay values in order to stagger the delay between each field within the game row
