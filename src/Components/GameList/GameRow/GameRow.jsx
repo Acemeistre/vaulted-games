@@ -225,8 +225,10 @@ function GameRow ({platforms, genres, game, removeGame, editingId, setEditingId,
         <select
             value={editData.rank ?? ''} // use a nullish coalescing operator to set value to the rank of editData or an empty string if rank is null
             className='rank-select'
-            disabled={!(editData.rating === 'Top 10' || editData.rating === 'Top 20')} // field remains disabled if rating is not equal to top 10 or top 20
-            onChange={(e) => setEditData({...editData, rank: e.target.value})}> {/* spread all existing editData values along with targeting the value of the rank property to update it to our selected rank */}
+            // field remains disabled if rating is not equal to top 10 or top 20
+            disabled={!(editData.rating === 'Top 10' || editData.rating === 'Top 20')} 
+            // spread all existing editData values along with targeting the value of the rank property to update it to our selected rank, wrap this with the Number property to set the string to an integer
+            onChange={(e) => setEditData({...editData, rank: Number(e.target.value)})}> 
                 <option value="">-Rank-</option>
                     {/* use a ternary operator to take an array from the length property of the rating in editData if it's equal to 'top 10' to create 10 items else create 20 items,
                     call this with _ convention (to discard the parameter) and its index */}
