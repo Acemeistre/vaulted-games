@@ -49,10 +49,10 @@ This app uses flashing visual effects, that could potentially be hazardous to so
 ## 📸 Screenshots 
 
 #### Vaulted games - Screenshot
-<img src="./src/assets/screenshots/Vaulted games_screenshot.jpg" width="600">
+<img src="./src/assets/Screenshots/Vaulted games_screenshot.jpg" width="600">
 
 #### Vaulted games - demo
-<img src="./src/assets/screenshots/Vaulted games_demo.gif" width="600">
+<img src="./src/assets/Screenshots/Vaulted games_demo.gif" width="600">
 
 ## ✨ Features
 * **Game Entry** - allows you to enter in platform, year, title, genre, rating and conditional rank (appears for Top 10/20 ratings) of new game titles.
