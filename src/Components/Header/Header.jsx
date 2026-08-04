@@ -7,7 +7,7 @@ import useLetterFlicker from '../../hooks/useLetterFlicker.js'
 // pass isLoading to the function signature to check for new users
 function Header ({ isLoading }) {
     // pass isActive as true and the fieldCount number to useStaticEffect and save it to a variable of StaticEffect 1
-    // use the same criteria to save to insatnces of staticEffect in order to create separate timers for each static effect
+    // use the same criteria to save to instances of staticEffect in order to create separate timers for each static effect
     const staticEffect1 = useStaticEffect ({ isActive: true, fieldCount: 1 })
     const staticEffect2 = useStaticEffect ({ isActive: true, fieldCount: 1 })
     // set the property of text to Vaulted Games and isActive to true for the useLetterFlicker hook, saving it to a variable of flickerIndex

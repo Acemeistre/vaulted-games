@@ -18,7 +18,7 @@ function EntryBar ({platforms, genres, selectedPlatform, year, title, selectedGe
     const isReadyToContinue = selectedPlatform !== null && year !== '' && Number(year) >= 1970 && Number(year) <= currentYear && title !== '' && selectedGenre !== null && selectedRating !== null && (selectedRating === 'Top 10' || selectedRating === 'Top 20' ? selectedRank !== null : true)
 
     // set isActive to true, the fieldCount number of our EntryBar and the min and max delays for the hook animation of useStaticEffect, 
-    // saving it to two variable instances of staticEffect (1 & 2) in order for each effect to run indepenently with their own random timers
+    // saving it to two variable instances of staticEffect (1 & 2) in order for each effect to run independently with their own random timers
     const staticEffect1 = useStaticEffect ({ isActive: true, fieldCount: 7, minDelay: 8000, maxDelay: 16000 })
     const staticEffect2 = useStaticEffect ({ isActive: true, fieldCount: 7, minDelay: 8000, maxDelay: 16000 })
     // set text to the name of each EntryBar value, isActive to true and the min and max delays for the hook animation of useLetterFlicker 
@@ -34,7 +34,7 @@ function EntryBar ({platforms, genres, selectedPlatform, year, title, selectedGe
     <div className={`section-wrapper ${isLoading ? 'row-flicker' : ''}`} style={{animationDelay: '4.3s'}}>
     <h3>Entry</h3>
     <div className="entry-bar_container">
-        {/* use .split on our text, then use.map so that each character has an index to it.
+        {/* use .split on our text, then use .map so that each character has an index to it.
         Inside it's function we have a span which takes the index numbers as its keys and then when flickerPlatform (with all it's instructions) is equal to index we apply css 'letter-dim'
         to apply the letterFlicker animation else we return an empty string for the css name.
         If the character render is an empty space we render unicode charcter '\u00A0' (for any text with spaces) else we leave the character as is normally displayed.*/}
@@ -170,11 +170,11 @@ function EntryBar ({platforms, genres, selectedPlatform, year, title, selectedGe
             <select
                 value={selectedRank ?? ''}  
                 className='rank-select'
-                disabled={!(selectedRating === 'Top 10' || selectedRating === 'Top 20')} // we only this field available when a selected rating is either 'Top 10' or 'Top 20'
+                disabled={!(selectedRating === 'Top 10' || selectedRating === 'Top 20')} // we only make this field available when a selected rating is either 'Top 10' or 'Top 20'
                 onChange={(e) => onRankChange(e.target.value)}>
             <option value="">-Rank-</option>
                 {/* use a ternary operator to take an array from the length property of selectedRating, if it's equal to 'Top 10' to create 10 items else create 20 items 
-                call this with the _ convetion (to discard the parameter) and its index*/}
+                call this with the _ convention (to discard the parameter) and its index*/}
                 {Array.from({ length: selectedRating === 'Top 10' ? 10 : 20 }, (_, i) => (
             <option 
                 key={i + 1} // add 1 to index to give the correct representation of our top 10/20 to react
@@ -195,7 +195,7 @@ function EntryBar ({platforms, genres, selectedPlatform, year, title, selectedGe
                 onClick={isReadyToContinue ? addGame : null}
                 // disable button if isReadyToContinue is false
                 disabled={!isReadyToContinue}
-                // set titles using a chained ternary operator to determin whether data is correctly provided, using the not operator to set an appropriate string response for each field 
+                // set titles using a chained ternary operator to determine whether data is correctly provided, using the not operator to set an appropriate string response for each field 
                 title={
                 !selectedPlatform ? 'Please select a platform first' :
                 !year ? 'Please select a year' :
