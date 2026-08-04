@@ -6,7 +6,7 @@
     "title": "The Legend of Zelda: Ocarina of Time",
     "genre": "Action-adventure",
     "rating": "Top 10",
-    "rank": 5
+    "rank": 1
   },
   {
     "id": 2,
@@ -15,7 +15,7 @@
     "title": "Diddy Kong Racing",
     "genre": "Arcade racing",
     "rating": "Top 20",
-    "rank": 18
+    "rank": 3
   },
   {
     "id": 3,
@@ -24,7 +24,7 @@
     "title": "Super Smash Bros. Melee",
     "genre": "Beat-em up",
     "rating": "Top 10",
-    "rank": 4
+    "rank": 2
   },
   {
     "id": 4,
@@ -41,8 +41,8 @@
     "year": 2007,
     "title": "Formula One Championship Edition",
     "genre": "Arcade racing",
-    "rating": "Top 10",
-    "rank": 7
+    "rating": "Great",
+    "rank": null
   },
   {
     "id": 6,
@@ -50,7 +50,7 @@
     "year": 2008,
     "title": "Call of Duty 4: Modern Warfare",
     "genre": "FPS",
-    "rating": "Top 10",
-    "rank": 6
+    "rating": "Amazing",
+    "rank": null
   }
 ]
